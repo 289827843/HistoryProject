@@ -3,6 +3,11 @@ package com.sxun.server.platform.service.ucenter.dto.user.req;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * Created by leizheng on 12/10/2017.
  */
@@ -13,14 +18,19 @@ public class SearchUserParam {
     private int current_page;
     @ApiObjectField(description =  "每页记录数",required=true)
     private int page_size;
+
     @ApiObjectField(description =  "账号")
     private String account;
+
     @ApiObjectField(description =  "姓名")
     private String name;
+
     @ApiObjectField(description =  "昵称")
     private String nickname;
+
     @ApiObjectField(description =  "状态")
     private int status;
+
     @ApiObjectField(description =  "手机号码")
     private String mobile;
     @ApiObjectField(description =  "电子邮箱")

@@ -4,3 +4,5 @@ service-ucenter/target/
 *.iml
 service-cms/target/
 service-cms/service-cms-interface/target/
+*.log
+service-ucenter/src/main/java/com/sxun/server/platform/service/ucenter/dao/UcenterUserMapper.java.rej

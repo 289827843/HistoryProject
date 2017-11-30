@@ -5,9 +5,12 @@ import com.sxun.server.common.remote.ResultGenerator;
 import com.sxun.server.common.remote.session.LoginInfo;
 import com.sxun.server.common.util.IpUtil;
 import com.sxun.server.common.util.SessionUtil;
+import com.sxun.server.platform.service.ucenter.Util.Tools;
 import com.sxun.server.platform.service.ucenter.dto.auth.req.LoginParam;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.AuthCode;
 import com.sxun.server.platform.service.ucenter.itf.IAuthController;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionService;
+import com.sxun.server.platform.service.ucenter.service.UcenterUserAuthService;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserService;
 
 import org.jsondoc.core.annotation.*;
@@ -18,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.UUID;
 
 /**
  * Created by leizheng on 12/16/2017.
@@ -48,6 +53,12 @@ public class AuthController  implements IAuthController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private UcenterUserAuthService authService;
+
+    @Autowired
+    private HttpSession session;
+
     @ApiMethod(description = "账号密码登录")
     @RequestMapping(path="/login", method= RequestMethod.POST)
     @Override
@@ -61,4 +72,25 @@ public class AuthController  implements IAuthController {
             return ResultGenerator.genFailResult("密码错误");
         }
     }
+
+
+    @ApiMethod(description = "图形验证码")
+    @RequestMapping(path="/captcha", method= RequestMethod.POST)
+    @Override
+    public  @ApiResponseObject Result captcha(){
+
+        AuthCode authCode =  authService.getAuthCode();
+
+        return  ResultGenerator.genSuccessResult(authCode);
+    }
+
+
+
+
+
+
+
+
+
+
 }
