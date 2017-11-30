@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.cms.dao.CmsReplyMapper">
+    <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.cms.model.CmsReply">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="reply_id" jdbcType="INTEGER" property="replyId" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="comment_id" jdbcType="INTEGER" property="commentId" />
+        <result column="reply_user_id" jdbcType="INTEGER" property="replyUserId" />
+        <result column="is_display" jdbcType="BIT" property="isDisplay" />
+        <result column="is_del" jdbcType="BIT" property="isDel" />
+
+    </resultMap>
+    <insert id="insertReply" parameterType="com.sxun.server.platform.service.cms.model.CmsReply">
+        insert into cms_reply(
+        reply_id,
+        content,
+        create_time,
+        modify_time,
+        comment_id,
+        reply_user_id,
+        is_display,
+        is_del)values(
+        NULL,
+        #{content},
+        NOW(),
+        NOW(),
+        #{commentId},
+        #{replyUserId},
+        1,
+        0
+        );
+    </insert>
+    <select id="findReplyId" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsReply" >
+        select reply_id from cms_reply where reply_user_id=#{replyUserId} and content =#{content} and comment_id=#{commentId}
+    </select>
+    <update id="updateReply" parameterType="com.sxun.server.platform.service.cms.model.CmsReply">
+        update cms_reply
+        set content=#{content},
+        is_display=#{isDisplay},
+        is_del=#{isDel},
+        modify_time=#{modifyTime}
+        where reply_id = #{replyId}
+    </update>
+    <delete id="deleteReply" parameterType="Integer">
+        delete from cms_reply
+        where reply_id=#{reply_id}
+    </delete>
+</mapper>

@@ -14,10 +14,10 @@ public class AddDirParam {
     private String name;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "归属内容分类id",required=true)
-    private int cata_id;
+    private Integer cata_id;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "上级目录id，顶级目录为-1，需要存在于cata_id之下",required=true)
-    private int parent_id;
+    private Integer parent_id;
 
     public String getName() {
         return name;
@@ -27,17 +27,19 @@ public class AddDirParam {
         this.name = name;
     }
 
-    public int getCata_id(){return cata_id;}
+    public Integer getCata_id() {
+        return cata_id;
+    }
 
-    public void setCata_id(int cata_id) {
+    public void setCata_id(Integer cata_id) {
         this.cata_id = cata_id;
     }
 
-    public int getParent_id() {
+    public Integer getParent_id() {
         return parent_id;
     }
 
-    public void setParent_id(int parent_id) {
+    public void setParent_id(Integer parent_id) {
         this.parent_id = parent_id;
     }
 }

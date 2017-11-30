@@ -17,7 +17,6 @@ import javax.annotation.Resource;
 @Service
 @Transactional
 public class CmsArticleLogServiceImpl extends AbstractService<CmsArticleLog> implements CmsArticleLogService {
-    @Resource
-    private CmsArticleLogMapper cmsArticleLogMapper;
+
 
 }

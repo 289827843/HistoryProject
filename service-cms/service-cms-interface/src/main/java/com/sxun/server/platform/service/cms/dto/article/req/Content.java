@@ -8,45 +8,42 @@ import javax.persistence.Table;
 public class Content {
 
     @Column(name = "seq_no")
-    private Integer seqNo;
+    private Integer seq_no;
 
 
     @Column(name = "content_type")
-    private Integer contentType;
+    private Integer content_type;
 
 
     @Column(name = "file_id")
-    private Integer fileId;
+    private Integer file_id;
 
-
-    /**
-     * HTML内容 
-     */
+    @Column(name = "content")
     private String content;
 
 
-    public Integer getSeqNo() {
-        return seqNo;
+    public Integer getSeq_no() {
+        return seq_no;
     }
 
-    public void setSeqNo(Integer seqNo) {
-        this.seqNo = seqNo;
+    public void setSeq_no(Integer seq_no) {
+        this.seq_no = seq_no;
     }
 
-    public Integer getContentType() {
-        return contentType;
+    public Integer getContent_type() {
+        return content_type;
     }
 
-    public void setContentType(Integer contentType) {
-        this.contentType = contentType;
+    public void setContent_type(Integer content_type) {
+        this.content_type = content_type;
     }
 
-    public Integer getFileId() {
-        return fileId;
+    public Integer getFile_id() {
+        return file_id;
     }
 
-    public void setFileId(Integer fileId) {
-        this.fileId = fileId;
+    public void setFile_id(Integer file_id) {
+        this.file_id = file_id;
     }
 
     public String getContent() {

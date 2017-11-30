@@ -9,5 +9,6 @@ import com.sxun.server.common.web.core.Service;
 public interface CmsFileService extends Service<CmsFile> {
     int saveFirle(CmsFile cmsFile);
     int delFirle(Integer file_id);
-    CmsFile find(Integer file_id);
+
+    CmsFile find(String file_id);
 }

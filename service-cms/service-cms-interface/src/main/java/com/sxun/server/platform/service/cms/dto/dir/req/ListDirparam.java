@@ -19,7 +19,7 @@ public class ListDirparam {
     private Integer parent_id;
 
     @ApiObjectField(description = "是否显示")
-    private boolean is_display;
+    private Boolean is_display;
 
     @ApiObjectField(description = "目录id")
     private Integer dir_id;
@@ -48,16 +48,18 @@ public class ListDirparam {
         this.name = name;
     }
 
-    public void setIs_display(boolean is_display) {
-        this.is_display = is_display;
-    }
+
 
     public Integer getCata_id() {
         return cata_id;
     }
 
-    public boolean isIs_display() {
+    public Boolean getIs_display() {
         return is_display;
+    }
+
+    public void setIs_display(Boolean is_display) {
+        this.is_display = is_display;
     }
 
     public Integer getParent_id() {

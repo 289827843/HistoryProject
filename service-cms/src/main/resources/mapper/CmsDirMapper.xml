@@ -35,8 +35,8 @@
     );
   </insert>
 
-  <select id="findDirid" resultType="Integer" >
-    select dir_id from cms_dir where name=#{0} and cata_id =#{1} and parent_dir_id=#{2}
+  <select id="findDirid" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsDir" >
+    select dir_id from cms_dir where name=#{name} and cata_id =#{cataId} and parent_dir_id=#{parentDirId}
   </select>
   <update id="updateDir" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
     update cms_dir
@@ -57,23 +57,25 @@
   <select id="findDirs" resultMap="BaseResultMap" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
     select *
     from cms_dir
-    <where>
-      <if test="dirId != null ">
-        dir_id=#{dirId}
+    <trim prefix="where" prefixOverrides="and" >
+
+      <if test="dirId != null and dirId!='' ">
+         and dir_id =#{dirId}
       </if>
-      <if test="cataId != null ">
+      <if test="cataId != null and cataId!='' ">
         and cata_id =#{cataId}
       </if>
-      <if test="parentDirId != null ">
-        and parent_dir_id=#{parentDirId}
+      <if test="parentDirId != null and parentDirId!=''">
+        and parent_dir_id =#{parentDirId}
       </if>
-      <if test="name!= null ">
+      <if test="name!= null and name!=''">
         and name =#{name}
       </if>
-      <if test="isDisplay!= null">
+      <if test="isDisplay!= null and isDisplay!=''">
         and is_display =#{isDisplay}
       </if>
-    </where>
+
+    </trim>
   </select>
   <update id="updatePath" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
     update cms_dir

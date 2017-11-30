@@ -10,12 +10,14 @@ import com.sxun.server.platform.service.cms.itf.IFileConterller;
 import com.sxun.server.platform.service.cms.model.CmsFile;
 import com.sxun.server.platform.service.cms.service.CmsArticleService;
 import com.sxun.server.platform.service.cms.service.CmsFileService;
-import org.apache.commons.codec.binary.Base64;
+
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiBodyObject;
 import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.annotation.ApiResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Api(name = "附件管理", description = "内容管理相关服务", group = "cms")
@@ -37,27 +41,50 @@ public class FileController  implements IFileConterller{
     private HttpServletRequest request;
     @Autowired
     private HttpServletResponse response;
+    @Value("${sxun.service.cms.filepath.root}")
+    private String root;
     @ApiMethod(description = "添加附件")
     @RequestMapping(path ="/add", method = RequestMethod.POST)
     @Override
     public@ApiResponseObject Result<AddFileResult> addFile(@ApiBodyObject @RequestBody@Valid AddFileParam param) {
-       String filePath=null;
         int row=-1;
+        byte[] b=null;
+        String fileName=null;
         if(param.getName()==null){
 
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
             param.setName(uuid);
         }
+        String file_id=UUID.randomUUID().toString().replaceAll("-", "");
+        Date date=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMdd");
+        String time=simpleDateFormat.format(date);
+      String filepath=""+root+"/"+time;
+       // String filepath="C:/Users/admin/Desktop/xiaxiangfuwu/service-core/"+time;
         if(param.getExt()!=null) {
-             filePath = "D:" + param.getName() + "." + param.getExt();
-        }else{
-            filePath="D:"+param.getName();
+            fileName = file_id + "." + param.getExt();
+        }else {
+            fileName=file_id;
         }
+        File file = new File(filepath,fileName);
+
+        if(!file.exists())
+            //  先创建文件所在的目录
+            file.getParentFile().mkdirs();
+            try {
+                // 创建新文件
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("创建新文件时出现了错误。。。");
+                e.printStackTrace();
+            }
+
 
 
         try {
             //Base64解码
-            byte[] b = Base64.decodeBase64(param.getBase64_str());
+           //  b = Base64.decodeBase64(param.getBase64_str().getBytes("UTF-8"));
+            b= Base64.decodeBase64(param.getBase64_str());
             for(int i=0;i<b.length;++i){
                 if(b[i]<0){//调整异常数据
                     b[i]+=256;
@@ -65,7 +92,7 @@ public class FileController  implements IFileConterller{
             }
             //生成文件，并保存在服务器硬盘上
 
-            OutputStream out = new FileOutputStream(filePath);
+            OutputStream out = new FileOutputStream(file);
             out.write(b);
             out.flush();
             out.close();
@@ -74,17 +101,19 @@ public class FileController  implements IFileConterller{
             e.printStackTrace();
 
         }
+        String path=""+time+"/"+fileName;
         CmsFile cmsFile=new CmsFile();
         cmsFile.setFileExt(param.getExt());
         cmsFile.setFileName(param.getName());
-        cmsFile.setFilePath(filePath);
-         row=cmsFileService.saveFirle(cmsFile);
+        cmsFile.setFilePath(path);
+        cmsFile.setFileId(file_id);
+        row=cmsFileService.saveFirle(cmsFile);
         if(row>0){
             AddFileResult addFileResult=new AddFileResult();
-            addFileResult.setFile_id(row);
+            addFileResult.setFile_id(file_id);
             return ResultGenerator.genSuccessResult(addFileResult);
         }else {
-            return ResultGenerator.genFailResult("添加目录错误");
+            return ResultGenerator.genFailResult("添加附件失败");
         }
     }
     @ApiMethod(description = "删除附件")
@@ -103,25 +132,27 @@ public class FileController  implements IFileConterller{
     @Override
     public@ApiResponseObject
     Result OutputFile(@ApiBodyObject @RequestBody@Valid OutputFileParam param) {
-        Integer file_id=param.getFile_id();
-        CmsFile cmsFile=cmsFileService.find(file_id);
+        CmsFile cmsFile=cmsFileService.find(param.getFile_id());
+        OutputStream stream=null;
+        String filepath=""+root+"/"+cmsFile.getFilePath();
         if(cmsFile!=null){
-            File file=new File(cmsFile.getFilePath());
+            File file=new File(filepath);
 
             try {
                 FileInputStream inputStream = new FileInputStream(file);
                 byte[] data = new byte[(int)file.length()];
                 int length = inputStream.read(data);
                 inputStream.close();
-                OutputStream stream = response.getOutputStream();
+                stream = response.getOutputStream();
                 stream.write(data);
                 stream.flush();
                 stream.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-        return ResultGenerator.genSuccessResult(response);
+            return ResultGenerator.genSuccessResult(stream);
 
         }else {
             response.setStatus(404);

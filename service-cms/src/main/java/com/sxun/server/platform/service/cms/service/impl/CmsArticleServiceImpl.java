@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.awt.print.Pageable;
 import java.sql.Array;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,23 +51,18 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
         cmsArticle.setOwnUserId(param.getOpr_user_id());
         cmsArticle.setAuditUserId(-1);
         cmsArticle.setDirId(param.getDir_id().intValue());
-
-
-
-
         int row = cmsArticleMapper.insertArticle(cmsArticle);
         if (row > 0) {
-            articleId = cmsArticleMapper.findArticleid(param.getDir_id().intValue());
+            articleId = cmsArticleMapper.findArticleid(cmsArticle);
         }
         if (articleId > 0 && param.getCover_list()!=null) {
 
-            Integer[] array = param.getCover_list();
-            if (array != null) {
-                for (int i = 0; i < array.length; i++) {
+            List<Cover> covers = param.getCover_list();
+            if (covers != null) {
+                for (Cover a:covers) {
                     CmsCover cmsCover = new CmsCover();
                     cmsCover.setActicleId(articleId);
-
-                    cmsCover.setFileId((array[i]));
+                    cmsCover.setFileId(a.getFile_id());
                     cmsCoverMapper.insertCover(cmsCover);
                 }
             }
@@ -75,10 +71,10 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             if (articleId > 0 && content != null) {
                 for (Content a : content) {
                     CmsContent cmsContent = new CmsContent();
-                    cmsContent.setSeqNo(a.getSeqNo());
-                    cmsContent.setContentType(a.getContentType());
+                    cmsContent.setSeqNo(a.getSeq_no());
+                    cmsContent.setContentType(a.getContent_type());
                     cmsContent.setContent(a.getContent());
-                    cmsContent.setFileId(a.getFileId());
+                    cmsContent.setFileId(a.getFile_id());
                     cmsContent.setArticleId(articleId);
                     if (cmsContent.getFileId() != null) {
                         cmsContentMapper.insertContent(cmsContent);
@@ -94,10 +90,9 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             if (cmsArticleLog != null) {
                 cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
                 return articleId;
+            }else {
+                return -1;
             }
-
-
-        return -1;
     }
 
 
@@ -111,29 +106,32 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
         cmsArticle.setAuthor(param.getAuthor());
         cmsArticle.setArticleType(Integer.valueOf(param.getArticle_type()));
         cmsArticle.setDirId(param.getDir_id().intValue());
+        Date date=new Date();
+        cmsArticle.setModifyTime(date);
         if (param.getArticle_id() != null && param.getArticle_id().intValue() > 0) {
             cmsArticleMapper.updateAriticle(cmsArticle);
         }
          cmsCoverMapper.deleteCover(param.getArticle_id().intValue());
 
-            Integer[] array = param.getCover_list();
-            if (array != null) {
-                for (int i = 0; i < array.length; i++) {
-                    CmsCover cmsCover = new CmsCover();
-                    cmsCover.setActicleId(param.getArticle_id().intValue());
-                    cmsCover.setFileId(Integer.valueOf(array[i].toString()));
-                    cmsCoverMapper.insertCover(cmsCover);
-                }
-            }
+        List<Cover> covers = param.getCover_list();
+         if (covers != null) {
+             for (Cover a:covers) {
+                CmsCover cmsCover = new CmsCover();
+                cmsCover.setActicleId(param.getArticle_id());
+                cmsCover.setFileId(a.getFile_id());
+                cmsCoverMapper.insertCover(cmsCover);
+             }
+         }
+
             cmsContentMapper.deleteContent(param.getArticle_id().intValue());
             List<Content> content = param.getContent_List();
             if (content != null) {
                 for (Content a : content) {
                     CmsContent cmsContent = new CmsContent();
-                    cmsContent.setSeqNo(a.getSeqNo());
-                    cmsContent.setContentType(a.getContentType());
+                    cmsContent.setSeqNo(a.getSeq_no());
+                    cmsContent.setContentType(a.getContent_type());
                     cmsContent.setContent(a.getContent());
-                    cmsContent.setFileId(a.getFileId());
+                    cmsContent.setFileId(a.getFile_id());
                     cmsContent.setArticleId(param.getArticle_id().intValue());
                     if (cmsContent.getFileId() != null) {
                         cmsContentMapper.insertContent(cmsContent);
@@ -148,10 +146,11 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             if (cmsArticleLog != null) {
                 cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
                 return param.getArticle_id().intValue();
+            }else {
+
+
+                return -1;
             }
-
-
-        return -1;
     }
 
 
@@ -180,8 +179,9 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             cmsArticleLog.setOprContent("文章的提交");
             cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
             return 1;
+        }else {
+            return -1;
         }
-        return -1;
     }
 
 
@@ -219,8 +219,9 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             if(cmsArticleLog!=null) {
                 cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
                 return 1;
+            }else {
+                return 0;
             }
-        return 0;
     }
 
     @Override
@@ -241,8 +242,10 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
          }
          if(count>0){
              return 1;
+         }else{
+             return -1;
          }
-        return -1;
+
     }
 
     @Override
@@ -257,8 +260,9 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             map.put("CmsCover", coverlist);
 
             return map;
+        }else {
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -276,12 +280,19 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
         pageInfo.setStartRow(startIndex);
         pageInfo.setPageSize(param.getPage_size().intValue());
         pageInfo.setSize(counts);
-        int articleId= cmsArticleMapper.findArticleid(param.getDir_id().intValue());
+        CmsArticle cmsArticle = new CmsArticle();
+        cmsArticle.setTitle(param.getTitle());
+        cmsArticle.setSource(param.getSource());
+        cmsArticle.setAuthor(param.getAuthor());
+        cmsArticle.setDirId(param.getDir_id());
+        cmsArticle.setArticleType(Integer.valueOf(param.getArticle_type()));
+        int articleId= cmsArticleMapper.findArticleid(cmsArticle);
         List<CmsCover> cmsCovers=cmsCoverMapper.findCovers(articleId);
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("CmsArticle",cmsArticles);
         map.put("pageInfo",pageInfo);
         map.put("CmsCover",cmsCovers);
         return map;
+
     }
 }

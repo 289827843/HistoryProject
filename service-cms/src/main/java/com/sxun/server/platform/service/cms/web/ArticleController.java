@@ -35,9 +35,7 @@ import java.util.Map;
 public class ArticleController implements IArticleController {
     @Autowired
     private CmsArticleService cmsArticleService;
-    private CmsCoverService cmsCoverService;
-    private CmsContentService cmsContentService;
-    private CmsArticleLogService cmsArticleLogService;
+
 
     @ApiMethod(description = "添加文章")
     @RequestMapping(path = "/add", method = RequestMethod.POST)

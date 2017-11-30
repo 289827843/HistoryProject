@@ -31,7 +31,7 @@ public class CmsDirServiceImpl extends AbstractService<CmsDir> implements CmsDir
         int row=-1;
         int rows = cmsDirMapper.insertDir(cmsDir);
         if (rows > 0) {
-            dirId = cmsDirMapper.findDirid(cmsDir.getName(), cmsDir.getCataId(), cmsDir.getParentDirId());
+            dirId = cmsDirMapper.findDirid(cmsDir);
             String path = "\r\n/" + cmsDir.getCataId() + "/" + cmsDir.getParentDirId() + "/" + dirId;
             cmsDir.setPath(path);
             if(cmsDir.getParentDirId()==-1){

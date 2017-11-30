@@ -115,9 +115,10 @@ public class DirController implements IDirController {
       if(param.getParent_id()!=null){
           cmsDir.setParentDirId(param.getParent_id().intValue());
       }
-      if(param.isIs_display()==true || param.isIs_display()==false){
-          cmsDir.setIsDisplay(param.isIs_display());
-      }
+     if(param.getParent_id()!=null) {
+         cmsDir.setIsDisplay(param.getIs_display());
+     }
+
        List<CmsDir> resultList=cmsDirService.findDirs(cmsDir);
      if(resultList!=null) {
          return ResultGenerator.genSuccessResult(resultList);
