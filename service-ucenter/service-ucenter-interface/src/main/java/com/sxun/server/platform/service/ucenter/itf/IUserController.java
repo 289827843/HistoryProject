@@ -40,7 +40,7 @@ public interface IUserController {
     @RequestMapping(path="/list", method= RequestMethod.POST)
     public  Result<UserListResult> list(@RequestBody SearchUserParam param);
 
-    @RequestMapping(path="/detail", method= RequestMethod.GET)
+    @RequestMapping(path="/detail/{id}", method= RequestMethod.GET)
     public  Result<UserDetail> detail(@PathVariable Integer id);
 
 }

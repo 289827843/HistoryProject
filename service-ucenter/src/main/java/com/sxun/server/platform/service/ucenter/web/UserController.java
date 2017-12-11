@@ -68,7 +68,7 @@ public class UserController implements IUserController {
     }
 
     @ApiMethod(description = "获取用户详情")
-    @RequestMapping(path="/detail", method= RequestMethod.GET)
+    @RequestMapping(path="/detail/{id}", method= RequestMethod.GET)
     @Override
     public  @ApiResponseObject Result<UserDetail> detail(@ApiPathParam(name="id",description = "用户id") @PathVariable Integer id) {
         return null;
