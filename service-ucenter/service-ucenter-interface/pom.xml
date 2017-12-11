@@ -16,7 +16,7 @@
         <java.version>1.8</java.version>
         <pagehelper.version>4.1.6</pagehelper.version>
         <spring-cloud.version>Dalston.SR2</spring-cloud.version>
-        <proxy-url>http://192.168.195.31:8081</proxy-url>
+        <proxy-url>http://192.168.2.31:8081</proxy-url>
     </properties>
 
     <dependencies>
