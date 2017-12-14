@@ -1,6 +1,7 @@
 package com.sxun.server.platform.service.ucenter.itf;
 
 import com.sxun.server.common.remote.Result;
+import com.sxun.server.platform.service.ucenter.dto.PageInfo;
 import com.sxun.server.platform.service.ucenter.dto.req.*;
 import com.sxun.server.platform.service.ucenter.dto.rsp.AddUserResult;
 import com.sxun.server.platform.service.ucenter.dto.rsp.AvatarResult;

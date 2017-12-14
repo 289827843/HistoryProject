@@ -3,11 +3,13 @@ package com.sxun.server.platform.service.ucenter.dto.rsp;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import java.io.Serializable;
+
 /**
  * Created by leizheng on 12/10/2017.
  */
 @ApiObject(description = "用户详情")
-public class UserDetail {
+public class UserDetail implements Serializable {
     @ApiObjectField(description = "用户id")
     private int user_id;
 
