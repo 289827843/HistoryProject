@@ -3,13 +3,14 @@ package com.sxun.server.platform.service.ucenter.dto;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by leizheng on 12/14/2017.
  */
 @ApiObject(description = "分页对象")
-public class PageInfo<T> {
+public class PageInfo<T>  {
     @ApiObjectField(description = "页面数据")
     private List<T> list;
     @ApiObjectField(description = "当前页面")
