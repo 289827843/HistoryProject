@@ -1,6 +1,7 @@
 package com.sxun.server.platform.service.ucenter.model;
 
 import java.util.Date;
+import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Table(name = "ucenter_user")

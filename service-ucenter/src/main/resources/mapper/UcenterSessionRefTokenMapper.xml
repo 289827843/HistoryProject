@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterSessionRefTokenMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterSessionRefToken">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ref_token" jdbcType="VARCHAR" property="refToken" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="exp_time" jdbcType="TIMESTAMP" property="expTime" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="sys_id" jdbcType="INTEGER" property="sysId" />
+    <result column="sec_key" jdbcType="VARCHAR" property="secKey" />
+  </resultMap>
+</mapper>

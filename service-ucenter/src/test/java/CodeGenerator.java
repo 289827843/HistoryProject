@@ -37,7 +37,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("ucenter_user_log","ucenter_user_detail","ucenter_user","ucenter_user_auth","ucenter_auth_type");
+        genCode("ucenter_session","ucenter_session_ref_token");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
