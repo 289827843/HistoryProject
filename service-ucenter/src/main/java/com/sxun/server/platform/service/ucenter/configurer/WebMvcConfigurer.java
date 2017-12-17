@@ -16,17 +16,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,6 +38,12 @@ import java.util.List;
  */
 @Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("**/*.css", "**/*.js", "**/*.map", "*.html").addResourceLocations("classpath:META-INF/resources/").setCachePeriod(0);
+    }
+
 
     private final Logger logger = LoggerFactory.getLogger(WebMvcConfigurer.class);
 //    @Value("${spring.profiles.active}")
@@ -52,6 +62,20 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         converters.add(converter);
     }
 
+    private String convertMethodArgumentNotValidExceptionToString(MethodArgumentNotValidException e){
+        StringBuilder sb = new StringBuilder();
+        Iterator var2 =  e .getBindingResult().getAllErrors().iterator();
+
+        while(var2.hasNext()) {
+            ObjectError error = (ObjectError)var2.next();
+            if (sb.length()==0)
+                sb.append(error.getDefaultMessage());
+            else
+                sb.append("$$").append(error.getDefaultMessage());
+        }
+
+        return sb.toString();
+    }
 
     //统一异常处理
     @Override
@@ -62,13 +86,20 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 if (handler instanceof HandlerMethod) {
                     HandlerMethod handlerMethod = (HandlerMethod) handler;
 
-                    if (e instanceof ServiceException) {//业务失败的异常，如“账号或密码错误”
+                    if (e instanceof ServiceException  ) {//业务失败的异常，如“账号或密码错误”
                         result.setCode(ResultCode.FAIL);
                         result.setMessage(e.getMessage());
                         logger.info(e.getMessage());
-                    } else {
+                    }
+                    else if (e instanceof MethodArgumentNotValidException){
                         result.setCode(ResultCode.FAIL);
-                        result.setMessage("接口 [" + request.getRequestURI() + "] 必要参数缺失，请检查");
+                        result.setMessage(convertMethodArgumentNotValidExceptionToString(((MethodArgumentNotValidException)e)));
+                        logger.info(e.getMessage());
+                    }
+                    else
+                    {
+                        result.setCode(ResultCode.FAIL);
+                        result.setMessage("接口 [" + request.getRequestURI() + "] 出现异常，请检查日志输出。");
                         String message = String.format("接口 [%s] 出现异常，方法：%s.%s，异常摘要：%s",
                                 request.getRequestURI(),
                                 handlerMethod.getBean().getClass().getName(),
@@ -100,6 +131,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .allowedOrigins("*");
+
     }
 
     private void responseResult(HttpServletResponse response, Result result) {
