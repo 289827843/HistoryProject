@@ -2,15 +2,13 @@ package com.sxun.server.platform.service.ucenter.web;
 
 import com.sxun.server.common.remote.Result;
 import com.sxun.server.common.remote.ResultGenerator;
-
+import com.sxun.server.common.util.IpUtil;
 import com.sxun.server.platform.service.ucenter.dto.user.req.*;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.AddUserResult;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
-
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
 import com.sxun.server.platform.service.ucenter.itf.IUserController;
-import com.sxun.server.platform.service.ucenter.util.IpUtil;
 import org.jsondoc.core.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +29,8 @@ public class UserController implements IUserController {
     @ApiMethod(description = "添加用户账号")
     @RequestMapping(path="/add", method= RequestMethod.POST)
     @Override
-    public @ApiResponseObject Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
+    public @ApiResponseObject
+    Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
 
         Result<AddUserResult> re= ResultGenerator.genSuccessResult(new AddUserResult());
         re.setMessage(IpUtil.getIpAddr(request));
@@ -69,7 +68,7 @@ public class UserController implements IUserController {
     @ApiMethod(description = "更新头像")
     @RequestMapping(path="/update_avatar", method= RequestMethod.POST)
     @Override
-    public  @ApiResponseObject Result<AvatarResult> updateAvatar( @ApiBodyObject @RequestBody UpdateAvatarParam param) {
+    public  @ApiResponseObject Result<AvatarResult> updateAvatar(@ApiBodyObject @RequestBody UpdateAvatarParam param) {
         return null;
     }
 

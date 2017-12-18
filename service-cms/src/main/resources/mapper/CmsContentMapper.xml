@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.cms.dao.CmsContentMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.cms.model.CmsContent">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="content_id" jdbcType="INTEGER" property="contentId" />
+    <result column="seq_no" jdbcType="INTEGER" property="seqNo" />
+    <result column="content_type" jdbcType="INTEGER" property="contentType" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+</mapper>
