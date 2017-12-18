@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.cms.dao.CmsDirMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.cms.model.CmsDir">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="dir_id" jdbcType="INTEGER" property="dirId" />
+    <result column="parent_dir_id" jdbcType="INTEGER" property="parentDirId" />
+    <result column="cata_id" jdbcType="INTEGER" property="cataId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="is_display" jdbcType="BIT" property="isDisplay" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+</mapper>

@@ -2,3 +2,5 @@
 service-ucenter/service-ucenter-interface/target/
 service-ucenter/target/
 *.iml
+service-cms/target/
+service-cms/service-cms-interface/target/

@@ -2,14 +2,18 @@ package com.sxun.server.platform.service.ucenter.web;
 
 import com.sxun.server.common.remote.Result;
 import com.sxun.server.common.remote.ResultGenerator;
-import com.sxun.server.platform.service.ucenter.dto.req.*;
-import com.sxun.server.platform.service.ucenter.dto.rsp.AddUserResult;
-import com.sxun.server.platform.service.ucenter.dto.rsp.AvatarResult;
-import com.sxun.server.platform.service.ucenter.dto.rsp.UserDetail;
-import com.sxun.server.platform.service.ucenter.dto.rsp.UserListResult;
+import com.sxun.server.common.util.IpUtil;
+import com.sxun.server.platform.service.ucenter.dto.user.req.*;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.AddUserResult;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
 import com.sxun.server.platform.service.ucenter.itf.IUserController;
 import org.jsondoc.core.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by leizheng on 12/10/2017.
@@ -18,11 +22,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 public class UserController implements IUserController {
+
+    @Autowired
+    private HttpServletRequest request;
+
     @ApiMethod(description = "添加用户账号")
     @RequestMapping(path="/add", method= RequestMethod.POST)
     @Override
-    public @ApiResponseObject Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
-        return ResultGenerator.genSuccessResult(new AddUserResult());
+    public @ApiResponseObject
+    Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
+
+        Result<AddUserResult> re= ResultGenerator.genSuccessResult(new AddUserResult());
+        re.setMessage(IpUtil.getIpAddr(request));
+        return re;
     }
 
     @ApiMethod(description = "更新用户")
@@ -56,7 +68,7 @@ public class UserController implements IUserController {
     @ApiMethod(description = "更新头像")
     @RequestMapping(path="/update_avatar", method= RequestMethod.POST)
     @Override
-    public  @ApiResponseObject Result<AvatarResult> updateAvatar( @ApiBodyObject @RequestBody UpdateAvatarParam param) {
+    public  @ApiResponseObject Result<AvatarResult> updateAvatar(@ApiBodyObject @RequestBody UpdateAvatarParam param) {
         return null;
     }
 
@@ -68,7 +80,7 @@ public class UserController implements IUserController {
     }
 
     @ApiMethod(description = "获取用户详情")
-    @RequestMapping(path="/detail", method= RequestMethod.GET)
+    @RequestMapping(path="/detail/{id}", method= RequestMethod.GET)
     @Override
     public  @ApiResponseObject Result<UserDetail> detail(@ApiPathParam(name="id",description = "用户id") @PathVariable Integer id) {
         return null;

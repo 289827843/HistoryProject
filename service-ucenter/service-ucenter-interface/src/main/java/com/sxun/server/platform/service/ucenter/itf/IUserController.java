@@ -1,15 +1,12 @@
 package com.sxun.server.platform.service.ucenter.itf;
 
 import com.sxun.server.common.remote.Result;
-import com.sxun.server.platform.service.ucenter.dto.req.*;
-import com.sxun.server.platform.service.ucenter.dto.rsp.AddUserResult;
-import com.sxun.server.platform.service.ucenter.dto.rsp.AvatarResult;
-import com.sxun.server.platform.service.ucenter.dto.rsp.UserDetail;
-import com.sxun.server.platform.service.ucenter.dto.rsp.UserListResult;
-import org.jsondoc.core.annotation.Api;
-import org.jsondoc.core.annotation.ApiBodyObject;
-import org.jsondoc.core.annotation.ApiMethod;
-import org.jsondoc.core.annotation.ApiResponseObject;
+
+import com.sxun.server.platform.service.ucenter.dto.user.req.*;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.AddUserResult;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -40,7 +37,7 @@ public interface IUserController {
     @RequestMapping(path="/list", method= RequestMethod.POST)
     public  Result<UserListResult> list(@RequestBody SearchUserParam param);
 
-    @RequestMapping(path="/detail", method= RequestMethod.GET)
+    @RequestMapping(path="/detail/{id}", method= RequestMethod.GET)
     public  Result<UserDetail> detail(@PathVariable Integer id);
 
 }
