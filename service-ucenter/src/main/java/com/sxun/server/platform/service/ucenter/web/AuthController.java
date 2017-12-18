@@ -1,30 +1,24 @@
 package com.sxun.server.platform.service.ucenter.web;
 
-import com.alibaba.fastjson.JSON;
 import com.sxun.server.common.remote.Result;
 import com.sxun.server.common.remote.ResultGenerator;
 import com.sxun.server.common.remote.session.LoginInfo;
-import com.sxun.server.common.util.ValidatorHelper;
+import com.sxun.server.common.util.IpUtil;
+import com.sxun.server.common.util.SessionUtil;
 import com.sxun.server.platform.service.ucenter.dto.auth.req.LoginParam;
 import com.sxun.server.platform.service.ucenter.itf.IAuthController;
-import com.sxun.server.platform.service.ucenter.itf.IUserController;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionService;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserService;
-import com.sxun.server.platform.service.ucenter.util.IpUtil;
-import com.sxun.server.platform.service.ucenter.util.SessionUtil;
+
 import org.jsondoc.core.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.apache.commons.codec.binary.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * Created by leizheng on 12/16/2017.
@@ -38,7 +32,7 @@ public class AuthController  implements IAuthController {
     @RequestMapping(path="/test", method= RequestMethod.POST)
     @ApiAuthToken(scheme = "token")
     @Override public @ApiResponseObject Result<String> tokenTest() {
-        LoginInfo login_info=SessionUtil.getLoginInfo(request.getHeader("auth_str"));
+        LoginInfo login_info= SessionUtil.getLoginInfo(request.getHeader("auth_str"));
         if (login_info==null)
             return  ResultGenerator.genFailResult("找不到令牌 ");
         else

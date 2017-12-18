@@ -1,14 +1,15 @@
 package com.sxun.server.platform.service.ucenter.service.impl;
 
+
 import com.sxun.server.common.remote.session.LoginInfo;
 import com.sxun.server.common.remote.session.RefTokenInfo;
 import com.sxun.server.common.remote.session.SessionInfo;
+import com.sxun.server.common.web.core.AbstractService;
 import com.sxun.server.platform.service.ucenter.dao.UcenterSessionMapper;
 import com.sxun.server.platform.service.ucenter.model.UcenterSession;
 import com.sxun.server.platform.service.ucenter.model.UcenterSessionRefToken;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionRefTokenService;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionService;
-import com.sxun.server.platform.service.ucenter.core.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
-
 
 /**
  * Created by CodeGenerator on 2017/12/16.
@@ -41,7 +40,7 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
     private int ref_token_exp_time;
 
     @Override
-    public LoginInfo createSession(int user_id, int sys_id,String client,String ip) {
+    public LoginInfo createSession(int user_id, int sys_id, String client, String ip) {
         LoginInfo login_info=new LoginInfo();
 
         //生成会话
