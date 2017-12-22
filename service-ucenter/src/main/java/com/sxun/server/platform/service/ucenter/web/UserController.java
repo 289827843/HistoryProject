@@ -32,9 +32,9 @@ public class UserController implements IUserController {
     public @ApiResponseObject
     Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
 
-        Result<AddUserResult> re= ResultGenerator.genSuccessResult(new AddUserResult());
-        re.setMessage(IpUtil.getIpAddr(request));
-        return re;
+            Result<AddUserResult> re= ResultGenerator.genSuccessResult(new AddUserResult());
+            re.setMessage(IpUtil.getIpAddr(request));
+            return re;
     }
 
     @ApiMethod(description = "更新用户")

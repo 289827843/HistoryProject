@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterRoleMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="`desc`" jdbcType="VARCHAR" property="desc" />
+    <result column="sys_id" jdbcType="INTEGER" property="sysId" />
+
+  </resultMap>
+  <!--角色查询,根据sys_id字段-->
+  <select id="selectRoleBySysId" resultMap="BaseResultMap">
+
+    select * from ucenter_role where sys_id = #{sysId}
+  </select>
+  <!--角色添加
+  <insert id="addRole" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole" useGeneratedKeys="true" keyProperty="role_id">
+
+    insert into ucenter_role(role_id,name,desc,sys_id) values(#{roleId},#{name},#{desc},#{sysId})
+  </insert>-->
+
+  <!--根据角色名称查询角色，判断角色是否重复-->
+  <select id="selectRoleByName" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole" resultMap="BaseResultMap">
+
+    select * from ucenter_role where `name` = #{name}
+  </select>
+  <!--角色删除-->
+  <delete id="deleteRoleByKey" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole">
+
+    delete from ucenter_role where role_id = #{roleId}
+  </delete>
+
+  <!--角色权限对应表删除-->
+  <delete id="deleteRoleAndPermission" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole">
+    delete from ucenter_role_permission where role_id = #{roleId}
+  </delete>
+</mapper>

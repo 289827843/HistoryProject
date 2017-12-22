@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterPermission">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="type_name" jdbcType="INTEGER" property="typeName" />
+    <result column="`link_url`" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="`create_time`" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="`modify_time`" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="`sys_id`" jdbcType="INTEGER" property="sysId" />
+  </resultMap>
+  <!--查询是否存在指定的sys_id-->
+  <select id="selectSysId" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterPermission" resultMap="BaseResultMap">
+    select * from ucenter_permission where sys_id = #{sysId}
+  </select>
+
+  <select id="selectIsUnique" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterPermission" resultMap="BaseResultMap">
+    select * from ucenter_permission where `name` = #{name} and sys_id = #{sysId}
+  </select>
+</mapper>
