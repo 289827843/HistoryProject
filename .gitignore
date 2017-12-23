@@ -4,3 +4,4 @@ service-ucenter/target/
 *.iml
 service-cms/target/
 service-cms/service-cms-interface/target/
+*.log

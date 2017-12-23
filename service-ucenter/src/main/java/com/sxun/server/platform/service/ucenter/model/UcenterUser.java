@@ -6,9 +6,12 @@ import javax.persistence.*;
 @Table(name = "ucenter_user")
 public class UcenterUser {
     /**
+     *
      * 用户唯一标示
      */
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //自增
     @Column(name = "user_id")
     private Integer userId;
 
