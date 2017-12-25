@@ -20,13 +20,4 @@ public class CmsArticleLogServiceImpl extends AbstractService<CmsArticleLog> imp
     @Resource
     private CmsArticleLogMapper cmsArticleLogMapper;
 
-    @Override
-    public void saveArticleLog(CmsArticleLog cmsArticleLog) {
-        if(cmsArticleLog!=null){
-            int rows=cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
-        }
-    }
-
-    ;
-
 }

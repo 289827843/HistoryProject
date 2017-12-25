@@ -8,13 +8,13 @@ import javax.validation.constraints.NotNull;
 public class AddDirResult {
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "新增的目录ID")
-    private Number dir_id;
+    private Integer dir_id;
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 }

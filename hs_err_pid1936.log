@@ -10,7 +10,7 @@
 #   Check if swap backing store is full
 #   Use 64 bit Java on a 64 bit OS
 #   Decrease Java heap size (-Xmx/-Xms)
-#   Decrease number of Java threads
+#   Decrease Integer of Java threads
 #   Decrease Java thread stack sizes (-Xss)
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
@@ -213,16 +213,16 @@ Event: 7.022 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=
 Event: 7.115 Thread 0x0000000002482000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002f7c730 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253
 
 Internal exceptions (10 events):
-Event: 7.034 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/config/client/ConfigClientProperties$DiscoveryCustomizer> (0x00000000d6802cc0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\+.@€RF@
+Event: 7.034 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/config/client/ConfigClientProperties$DiscoveryCustomizer> (0x00000000d6802cc0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\+.@ï¿½RF@
 Event: 7.069 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d693b680) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 7.071 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/config/client/ConfigServicePropertySourceLocatorCustomizer> (0x00000000d6973af8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfilºLO0K@
+Event: 7.071 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/config/client/ConfigServicePropertySourceLocatorCustomizer> (0x00000000d6973af8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfilï¿½LO0K@
 Event: 7.073 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/config/PropertySourceLocatorCustomizer> (0x00000000d69a8080) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDi
 Event: 7.116 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d6b0d6f8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 7.118 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/encrypt/EncryptionBootstrapConfigurationCustomizer> (0x00000000d6b46698) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfä±èy{@
-Event: 7.120 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/encrypt/EncryptionBootstrapConfiguration$$EnhancerBySpringCGLIB$$14851079Customizer> (0x00000000d6b8dab8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77Ë_i{y}@
-Event: 7.123 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassEnhancer$EnhancedConfigurationCustomizer> (0x00000000d6bcf538) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\sharž@¿û‚@
+Event: 7.118 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/encrypt/EncryptionBootstrapConfigurationCustomizer> (0x00000000d6b46698) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfï¿½ï¿½y{@
+Event: 7.120 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/encrypt/EncryptionBootstrapConfiguration$$EnhancerBySpringCGLIB$$14851079Customizer> (0x00000000d6b8dab8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77ï¿½_i{y}@
+Event: 7.123 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassEnhancer$EnhancedConfigurationCustomizer> (0x00000000d6bcf538) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\sharï¿½@ï¿½ï¿½ï¿½@
 Event: 7.128 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d6be9540) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 7.130 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/encrypt/KeyPropertiesCustomizer> (0x00000000d6c19f10) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionarÂ=Žê‡"@
+Event: 7.130 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/bootstrap/encrypt/KeyPropertiesCustomizer> (0x00000000d6c19f10) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionarï¿½=ï¿½ï¿½"@
 
 Events (10 events):
 Event: 7.127 loading class java/lang/ObjectCustomizer

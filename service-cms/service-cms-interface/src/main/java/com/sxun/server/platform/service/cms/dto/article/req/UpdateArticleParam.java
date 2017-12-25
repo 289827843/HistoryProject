@@ -24,15 +24,15 @@ public class UpdateArticleParam {
     private String author;
     @ApiObjectField(description = "文章id",required=true)
     @NotNull(message = "不能为空")
-    private Number article_id;
+    private Integer article_id;
     @NotEmpty(message = "不能为空")
     @ApiObjectField(description = "文章类型",required=true)
     private String article_type;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "所属目录id",required=true)
-    private Number dir_id;
+    private Integer dir_id;
     @ApiObjectField(description = "封面图片列表")
-    private Array[] cover_list;
+    private Integer[] cover_list;
     @ApiObjectField(description = "内容列表")
     private List<Content> content_List;
 
@@ -68,11 +68,11 @@ public class UpdateArticleParam {
         this.author = author;
     }
 
-    public Number getArticle_id() {
+    public Integer getArticle_id() {
         return article_id;
     }
 
-    public void setArticle_id(Number article_id) {
+    public void setArticle_id(Integer article_id) {
         this.article_id = article_id;
     }
 
@@ -84,19 +84,19 @@ public class UpdateArticleParam {
         this.article_type = article_type;
     }
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 
-    public Array[] getCover_list() {
+    public Integer[] getCover_list() {
         return cover_list;
     }
 
-    public void setCover_list(Array[] cover_list) {
+    public void setCover_list(Integer[] cover_list) {
         this.cover_list = cover_list;
     }
 

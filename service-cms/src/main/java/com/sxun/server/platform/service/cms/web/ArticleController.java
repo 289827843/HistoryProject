@@ -53,8 +53,9 @@ public class ArticleController implements IArticleController {
             AddArticleResult addArticleResult = new AddArticleResult();
             addArticleResult.setArticle_id(AritcleId);
             return ResultGenerator.genSuccessResult(addArticleResult);
+        }else {
+            return ResultGenerator.genFailResult("文章创建失败");
         }
-        return ResultGenerator.genFailResult("文章创建失败");
     }
 
     @ApiMethod(description = "更新文章")
@@ -64,15 +65,13 @@ public class ArticleController implements IArticleController {
     Result updateArticle(@ApiBodyObject @RequestBody@Valid UpdateArticleParam param) {
 
         if (param.getArticle_id().intValue() > 0) {
-          int article_id= cmsArticleService.updateArticle(param);
-
+            int article_id= cmsArticleService.updateArticle(param);
             AddArticleResult addArticleResult = new AddArticleResult();
             addArticleResult.setArticle_id(article_id);
             return ResultGenerator.genSuccessResult(addArticleResult);
-
+        }else {
+            return ResultGenerator.genFailResult("文章修改失败");
         }
-
-        return ResultGenerator.genFailResult("文章修改失败");
     }
 
     @ApiMethod(description = "提交文章")
@@ -82,9 +81,10 @@ public class ArticleController implements IArticleController {
     Result sumbitArticle(@ApiBodyObject @RequestBody @Valid SumbitArticleParam param) {
         int result=cmsArticleService.sumbitArticle(param.getArticle_id().intValue(),param.getOpr_user_id());
         if(result==1){
-            ResultGenerator.genSuccessResult();
+        return     ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult("提交失败");
         }
-        return ResultGenerator.genFailResult("提交失败");
     }
 
 
@@ -95,8 +95,9 @@ public class ArticleController implements IArticleController {
         int result=cmsArticleService.auditArticle(param);
        if(result==1){
           return ResultGenerator.genSuccessResult();
+       }else {
+           return ResultGenerator.genFailResult("审核操作失败");
        }
-        return ResultGenerator.genFailResult("审核操作失败");
     }
     @ApiMethod(description = "文章详情")
     @RequestMapping(path ="/detail", method = RequestMethod.POST)
@@ -105,9 +106,10 @@ public class ArticleController implements IArticleController {
         Map<String,Object> map=cmsArticleService.detailArticle(param.getArticle_id().intValue());
         if(map!=null) {
             return ResultGenerator.genSuccessResult(map);
-        }
+        }else {
 
-        return ResultGenerator.genFailResult("操作失败");
+            return ResultGenerator.genFailResult("操作失败");
+        }
     }
     @ApiMethod(description = "文章下架")
     @RequestMapping(path ="/close", method = RequestMethod.POST)
@@ -116,18 +118,20 @@ public class ArticleController implements IArticleController {
         int result=cmsArticleService.closeArticle(param.getArticle_id().intValue());
         if(result==1){
             return ResultGenerator.genSuccessResult();
+        }else {
+            return ResultGenerator.genFailResult("下架失败");
         }
-        return ResultGenerator.genFailResult("下架失败");
     }
     @ApiMethod(description = "文章查询")
-    @RequestMapping(path ="/close", method = RequestMethod.POST)
+    @RequestMapping(path ="/list", method = RequestMethod.POST)
     @Override
     public @ApiResponseObject Result listArticle(@ApiBodyObject @RequestBody@Valid ListArticleParam param) {
         Map<String,Object> map=cmsArticleService.listArticle(param);
         if(map!=null) {
             return ResultGenerator.genSuccessResult(map);
-        }
+        }else {
 
-        return ResultGenerator.genFailResult("查询失败");
+            return ResultGenerator.genFailResult("查询失败");
+        }
     }
 }

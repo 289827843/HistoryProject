@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 public class ListArticleParam {
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "当前页",required=true)
-    private Number current_page;
+    private Integer current_page;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "每页记录数",required=true)
-    private Number page_size;
+    private Integer page_size;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "所属目录id",required=true)
-    private Number dir_id;
+    private Integer dir_id;
     @NotEmpty(message = "不能为空")
     @ApiObjectField(description = "文章标题",required=true)
     private String title;
@@ -25,32 +25,32 @@ public class ListArticleParam {
     private String source;
     @NotEmpty(message = "不能为空")
     @ApiObjectField(description = "文章作者",required=true)
-    private String autuor;
+    private String author;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "文章类型",required=true,allowedvalues ={"0","1","2","3"})
     private String article_type;
 
-    public Number getCurrent_page() {
+    public Integer getCurrent_page() {
         return current_page;
     }
 
-    public void setCurrent_page(Number current_page) {
+    public void setCurrent_page(Integer current_page) {
         this.current_page = current_page;
     }
 
-    public Number getPage_size() {
+    public Integer getPage_size() {
         return page_size;
     }
 
-    public void setPage_size(Number page_size) {
+    public void setPage_size(Integer page_size) {
         this.page_size = page_size;
     }
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 
@@ -70,12 +70,12 @@ public class ListArticleParam {
         this.source = source;
     }
 
-    public String getAutuor() {
-        return autuor;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAutuor(String autuor) {
-        this.autuor = autuor;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getArticle_type() {

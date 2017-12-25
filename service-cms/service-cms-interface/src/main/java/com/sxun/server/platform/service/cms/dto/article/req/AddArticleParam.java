@@ -3,6 +3,7 @@ package com.sxun.server.platform.service.cms.dto.article.req;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
+import org.springframework.web.servlet.resource.ContentVersionStrategy;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Array;
@@ -28,9 +29,9 @@ public class AddArticleParam {
     private String article_type;
     @NotNull(message = "不能为空")
      @ApiObjectField(description = "所属目录id",required=true)
-    private Number dir_id;
+    private Integer dir_id;
     @ApiObjectField(description = "封面图片列表")
-    private Array[] cover_list;
+    private Integer[] cover_list;
 
     @ApiObjectField(description = "内容列表")
     private List<Content> content_List;
@@ -76,19 +77,19 @@ public class AddArticleParam {
         this.article_type = article_type;
     }
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 
-    public Array[] getCover_list() {
+    public Integer[] getCover_list() {
         return cover_list;
     }
 
-    public void setCover_list(Array[] cover_list) {
+    public void setCover_list(Integer[] cover_list) {
         this.cover_list = cover_list;
     }
 

@@ -14,32 +14,32 @@
   </resultMap>
   <insert id="insertContent" parameterType="com.sxun.server.platform.service.cms.model.CmsContent">
     insert into cms_content(
-    `content_id,
+    content_id,
     seq_no,
     content_type,
     content,
     file_id,
     article_id)values(
     NULL,
-    #{seq_no},
-    #{content_type},
+    #{seqNo},
+    #{contentType},
     #{content},
-    #{file_id},
-    #{article_id},
+    #{fileId},
+    #{articleId}
     );
   </insert>
   <delete id="deleteContent" parameterType="Integer">
     delete from cms_content
-    where acticle_id=#{acticle_id}
+    where article_id=#{0}
   </delete>
   <select id="getCounts" resultType="Integer">
     select count(*)
     from  cms_content
-    where article_id=#{article_id}
+    where article_id=#{0}
   </select>
-  <select id="findContents" resultMap="com.sxun.server.platform.service.cms.model.CmsContent">
+  <select id="findContents" resultMap="BaseResultMap">
     select *
     from  cms_content
-    where article_id=#{article_id}
+    where article_id=#{0}
   </select>
 </mapper>

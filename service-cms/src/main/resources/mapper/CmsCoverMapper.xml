@@ -15,23 +15,23 @@
     acticle_id,
     file_id)values(
     NULL,
-    #{ acticle_id},
-    #{ file_id}
+    #{acticleId},
+    #{fileId}
     );
   </insert>
   <delete id="deleteCover" parameterType="Integer">
     delete from cms_cover
-    where acticle_id=#{acticle_id}
+    where acticle_id =#{0}
   </delete>
   <select id="getCounts" resultType="Integer">
     select count(*)
     from  cms_cover
-    where article_id=#{article_id}
+    where acticle_id =#{0}
   </select>
-  <select id="findCovers" resultMap="com.sxun.server.platform.service.cms.model.CmsCover">
+  <select id="findCovers" resultMap="BaseResultMap">
     select *
     from  cms_cover
-    where article_id=#{article_id}
+    where acticle_id =#{0}
   </select>
 
 </mapper>

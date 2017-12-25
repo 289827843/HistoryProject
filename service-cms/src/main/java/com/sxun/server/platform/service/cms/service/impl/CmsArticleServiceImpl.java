@@ -31,8 +31,11 @@ import java.util.Map;
 public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implements CmsArticleService {
     @Resource
     private CmsArticleMapper cmsArticleMapper;
+    @Resource
     private CmsCoverMapper cmsCoverMapper;
+    @Resource
     private CmsContentMapper cmsContentMapper;
+    @Resource
     private CmsArticleLogMapper cmsArticleLogMapper;
 
 
@@ -47,23 +50,29 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
         cmsArticle.setOwnUserId(param.getOpr_user_id());
         cmsArticle.setAuditUserId(-1);
         cmsArticle.setDirId(param.getDir_id().intValue());
+
+
+
+
         int row = cmsArticleMapper.insertArticle(cmsArticle);
         if (row > 0) {
             articleId = cmsArticleMapper.findArticleid(param.getDir_id().intValue());
         }
-        if (articleId > 0) {
-            Array[] cover = param.getCover_list();
-            Object[] array = new Object[]{cover};
+        if (articleId > 0 && param.getCover_list()!=null) {
+
+            Integer[] array = param.getCover_list();
             if (array != null) {
                 for (int i = 0; i < array.length; i++) {
                     CmsCover cmsCover = new CmsCover();
                     cmsCover.setActicleId(articleId);
-                    cmsCover.setFileId(Integer.valueOf(array[i].toString()));
+
+                    cmsCover.setFileId((array[i]));
                     cmsCoverMapper.insertCover(cmsCover);
                 }
             }
+        }
             List<Content> content = param.getContent_List();
-            if (content != null) {
+            if (articleId > 0 && content != null) {
                 for (Content a : content) {
                     CmsContent cmsContent = new CmsContent();
                     cmsContent.setSeqNo(a.getSeqNo());
@@ -84,9 +93,10 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             cmsArticleLog.setOprContent("文章的创建");
             if (cmsArticleLog != null) {
                 cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
+                return articleId;
             }
-            return articleId;
-        }
+
+
         return -1;
     }
 
@@ -103,10 +113,10 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
         cmsArticle.setDirId(param.getDir_id().intValue());
         if (param.getArticle_id() != null && param.getArticle_id().intValue() > 0) {
             cmsArticleMapper.updateAriticle(cmsArticle);
-            cmsCoverMapper.deleteCover(param.getArticle_id().intValue());
+        }
+         cmsCoverMapper.deleteCover(param.getArticle_id().intValue());
 
-            Array[] cover = param.getCover_list();
-            Object[] array = new Object[]{cover};
+            Integer[] array = param.getCover_list();
             if (array != null) {
                 for (int i = 0; i < array.length; i++) {
                     CmsCover cmsCover = new CmsCover();
@@ -137,9 +147,10 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             cmsArticleLog.setOprContent("文章的修改");
             if (cmsArticleLog != null) {
                 cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
+                return param.getArticle_id().intValue();
             }
-            return param.getArticle_id().intValue();
-        }
+
+
         return -1;
     }
 
@@ -188,7 +199,7 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
             if (param.getAudit_result()) {
                 CmsArticle cmsArticle = new CmsArticle();
                 cmsArticle.setArticleId(param.getArticle_id().intValue());
-                cmsArticle.setStatus(4);
+                cmsArticle.setStatus(2);
                 cmsArticle.setAuditUserId(param.getOpr_user_id());
                 cmsArticle.setAuditMemo("");
                 cmsArticleMapper.sumbitAriticle(cmsArticle);
@@ -200,13 +211,15 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
                 cmsArticle.setAuditMemo(param.getAudit_memo());
                 cmsArticleMapper.sumbitAriticle(cmsArticle);
             }
+        }
             CmsArticleLog cmsArticleLog = new CmsArticleLog();
             cmsArticleLog.setArticleId(param.getArticle_id().intValue());
             cmsArticleLog.setOprUserId(param.getOpr_user_id());
             cmsArticleLog.setOprContent("文章审核");
-            cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
-            return 1;
-        }
+            if(cmsArticleLog!=null) {
+                cmsArticleLogMapper.insertArticleLog(cmsArticleLog);
+                return 1;
+            }
         return 0;
     }
 
@@ -251,8 +264,9 @@ public class CmsArticleServiceImpl extends AbstractService<CmsArticle> implement
     @Override
     public Map<String, Object> listArticle(ListArticleParam param) {
         int startIndex=(param.getCurrent_page().intValue()-1)*param.getPage_size().intValue();
-        List<CmsArticle> cmsArticles=cmsArticleMapper.listAriticle(startIndex,param.getPage_size().intValue(),param.getDir_id().intValue(),param.getTitle(),param.getSource(),param.getAutuor(),param.getArticle_type());
-        int counts=cmsArticleMapper.getAriticleCounts(param.getDir_id().intValue(),param.getTitle(),param.getSource(),param.getAutuor(),param.getArticle_type());
+        param.setCurrent_page(startIndex);
+        List<CmsArticle> cmsArticles=cmsArticleMapper.listAriticle(param);
+        int counts=cmsArticleMapper.getAriticleCounts(param);
         int pageCount=counts/param.getPage_size().intValue();
         if(counts%param.getPage_size().intValue()!=0){
             pageCount++;

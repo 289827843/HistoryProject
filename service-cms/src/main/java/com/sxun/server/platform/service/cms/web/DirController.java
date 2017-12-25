@@ -34,24 +34,25 @@ import java.util.List;
 public class DirController implements IDirController {
     @Autowired
     private CmsDirService cmsDirService;
-    private CmsArticleService cmsArticleService;
+
+
     @ApiMethod(description = "添加目录")
     @RequestMapping(path ="/add", method = RequestMethod.POST)
     @Override
-
     public @ApiResponseObject
     Result<AddDirResult> addDir(@ApiBodyObject @RequestBody @Valid AddDirParam param) {
         CmsDir cmsDir = new CmsDir();
         cmsDir.setCataId(param.getCata_id());
         cmsDir.setName(param.getName());
         cmsDir.setParentDirId(param.getParent_id());
-        int dir_id= cmsDirService.saveDir(cmsDir,param.getName());
+        int dir_id= cmsDirService.saveDir(cmsDir);
         if(dir_id!=-1){
             AddDirResult addDirResult=new AddDirResult();
             addDirResult.setDir_id(dir_id);
             return ResultGenerator.genSuccessResult(addDirResult);
+        }else {
+            return ResultGenerator.genFailResult("添加目录错误");
         }
-         return ResultGenerator.genFailResult("添加目录错误");
     }
 
     @ApiMethod(description = "修改目录")
@@ -62,36 +63,67 @@ public class DirController implements IDirController {
         cmsDir.setName(param.getName());
         cmsDir.setDirId(param.getDir_id());
         cmsDir.setIsDisplay(param.isIs_display());
-        cmsDirService.updateDir(cmsDir);
-
-        return ResultGenerator.genSuccessResult();
+      int row=  cmsDirService.updateDir(cmsDir);
+      if(row>0) {
+          return ResultGenerator.genSuccessResult();
+      }else{
+          return ResultGenerator.genFailResult("修改失败");
+      }
     }
     @ApiMethod(description = "移动目录")
     @RequestMapping(path ="/move", method = RequestMethod.POST)
     @Override
     public @ApiResponseObject Result moveDir(@ApiBodyObject @RequestBody @Valid MoveDirParam param) {
 
-        return null;
+       int rows=cmsDirService.moveDirs(param);
+     if(rows==1){
+         return  ResultGenerator.genSuccessResult();
+     }else{
+         return  ResultGenerator.genFailResult("移动失败");
+     }
+
     }
     @ApiMethod(description = "删除目录")
     @RequestMapping(path ="/del", method = RequestMethod.POST)
-    @Override
     public @ApiResponseObject Result delDir(@ApiBodyObject @RequestBody @Valid DelDirParam param) {
+//        int dir_id=param.getDir_id();
+//        int count;
+        Integer  count = cmsDirService.deleteDir(param.getDir_id());
+           if(count==1){
+               return  ResultGenerator.genSuccessResult();
 
-        int count= cmsDirService.deleteDir(Integer.valueOf(param.getDir_id()));
-        if(count==1){
-            return  ResultGenerator.genSuccessResult();
+           }else {
 
-        }
-        return ResultGenerator.genFailResult("删除失败");
+
+               return ResultGenerator.genFailResult("删除失败");
+           }
     }
     @ApiMethod(description = "查询目录")
     @RequestMapping(path ="/list", method = RequestMethod.POST)
     @Override
     public @ApiResponseObject Result listDir(@ApiBodyObject @RequestBody @Valid ListDirparam param) {
-       List<ListDirResult> resultList=cmsDirService.findDirs(param.getDir_id().intValue(),param.getCata_id().intValue(),param.getParent_id().intValue(),param.getName(),param.isIs_display());
-
-       return ResultGenerator.genSuccessResult(resultList);
+      CmsDir cmsDir=new CmsDir();
+      if(param.getDir_id()!=null) {
+          cmsDir.setDirId(param.getDir_id().intValue());
+      }
+      if(param.getCata_id()!=null){
+          cmsDir.setCataId(param.getCata_id().intValue());
+      }
+      if(param.getName()!=null){
+          cmsDir.setName(param.getName());
+      }
+      if(param.getParent_id()!=null){
+          cmsDir.setParentDirId(param.getParent_id().intValue());
+      }
+      if(param.isIs_display()==true || param.isIs_display()==false){
+          cmsDir.setIsDisplay(param.isIs_display());
+      }
+       List<CmsDir> resultList=cmsDirService.findDirs(cmsDir);
+     if(resultList!=null) {
+         return ResultGenerator.genSuccessResult(resultList);
+     }else {
+         return ResultGenerator.genFailResult("查询失败");
+     }
     }
 
 

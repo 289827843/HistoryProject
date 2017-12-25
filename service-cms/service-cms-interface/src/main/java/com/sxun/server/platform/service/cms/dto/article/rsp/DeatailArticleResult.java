@@ -10,7 +10,7 @@ import java.util.List;
 @ApiObject(description = "文章详情结果对象")
 public class DeatailArticleResult {
     @ApiObjectField(description = "文章ID")
-    private Number article_id;
+    private Integer article_id;
     @ApiObjectField(description = "文章标题",required=true)
     private String title;
     @ApiObjectField(description = "文章来源",required=true)
@@ -20,7 +20,7 @@ public class DeatailArticleResult {
     @ApiObjectField(description = "文章类型",required=true,allowedvalues ={"0","1","2","3"})
     private String article_type;
     @ApiObjectField(description = "所属目录id",required=true)
-    private Number dir_id;
+    private Integer dir_id;
     @ApiObjectField(description = "审核结果")
     private String audit_memo;
     @ApiObjectField(description = "创建时间",required=true)
@@ -28,22 +28,22 @@ public class DeatailArticleResult {
     @ApiObjectField(description = "修改时间",required=true)
     private String modify_time;
     @ApiObjectField(description = "文章状态",required=true,allowedvalues ={"0","1","2","3"})
-    private Number status;
+    private Integer status;
     @ApiObjectField(description = "拥有者id",required=true)
-    private Number own_user_id;
+    private Integer own_user_id;
     @ApiObjectField(description = "审核者id-1代表还没有审核人")
-    private Number audit_user_id;
+    private Integer audit_user_id;
     @ApiObjectField(description = "封面图片列表")
     private Array[] cover_list;
     @ApiObjectField(description = "内容列表")
     private List<Content> content_List;
 
 
-    public Number getArticle_id() {
+    public Integer getArticle_id() {
         return article_id;
     }
 
-    public void setArticle_id(Number article_id) {
+    public void setArticle_id(Integer article_id) {
         this.article_id = article_id;
     }
 
@@ -79,11 +79,11 @@ public class DeatailArticleResult {
         this.article_type = article_type;
     }
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 
@@ -111,27 +111,27 @@ public class DeatailArticleResult {
         this.modify_time = modify_time;
     }
 
-    public Number getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Number status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Number getOwn_user_id() {
+    public Integer getOwn_user_id() {
         return own_user_id;
     }
 
-    public void setOwn_user_id(Number own_user_id) {
+    public void setOwn_user_id(Integer own_user_id) {
         this.own_user_id = own_user_id;
     }
 
-    public Number getAudit_user_id() {
+    public Integer getAudit_user_id() {
         return audit_user_id;
     }
 
-    public void setAudit_user_id(Number audit_user_id) {
+    public void setAudit_user_id(Integer audit_user_id) {
         this.audit_user_id = audit_user_id;
     }
 

@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 public class ListDirResult {
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "目录id",required=true)
-    private Number dir_id;
+    private Integer dir_id;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "归属内容分类id",required=true)
-    private Number cata_id;
+    private Integer cata_id;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "上级目录id，顶级目录为-1，需要存在于cata_id之下",required=true)
-    private Number parent_id;
+    private Integer parent_id;
     @NotEmpty(message = "不能为空")
     @ApiObjectField(description = "目录名称，在2到20字符",required=true)
     private String name;
@@ -27,7 +27,7 @@ public class ListDirResult {
     @ApiObjectField(description = "目录层级",required=true)
     private  int level;
 
-    public Number getParent_id() {
+    public Integer getParent_id() {
         return parent_id;
     }
 
@@ -35,7 +35,7 @@ public class ListDirResult {
         return is_display;
     }
 
-    public Number getCata_id() {
+    public Integer getCata_id() {
         return cata_id;
     }
 
@@ -51,19 +51,19 @@ public class ListDirResult {
         return name;
     }
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setParent_id(Number parent_id) {
+    public void setParent_id(Integer parent_id) {
         this.parent_id = parent_id;
     }
 
-    public void setCata_id(Number cata_id) {
+    public void setCata_id(Integer cata_id) {
         this.cata_id = cata_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 

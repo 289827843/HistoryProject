@@ -10,9 +10,14 @@ import java.util.List;
 
 public interface CmsDirMapper extends Mapper<CmsDir> {
     int insertDir(CmsDir cmsDir);
-    int findDirid (@Param("name") String name);
+    int findDirid ( String name, Integer cataId, Integer parentDirId);
     int  updateDir(CmsDir cmsDir);
     int deleteDir(@Param("dir_id")Integer dir_id);
-    int hasChilds(@Param("dir_id")Integer dir_id);
-    List<ListDirResult> findDirs(@Param("dir_id") int dir_id,@Param("cata_id") int cata_id,@Param("parent_id") int parent_id,@Param("name") String name,@Param("is_display") boolean is_display);
+    int hasChilds(Integer dir_id);
+    List<CmsDir> findDirs(CmsDir cmsDir );
+    int updatePath(CmsDir cmsDir);
+    CmsDir findDir(@Param("dir_id")Integer dir_id);
+    List<CmsDir> findChilds(@Param("dir_id")Integer dir_id);
+    int updateCataId(CmsDir cmsDir);
+
 }

@@ -10,7 +10,7 @@
 #   Check if swap backing store is full
 #   Use 64 bit Java on a 64 bit OS
 #   Decrease Java heap size (-Xmx/-Xms)
-#   Decrease number of Java threads
+#   Decrease Integer of Java threads
 #   Decrease Java thread stack sizes (-Xss)
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
@@ -207,7 +207,7 @@ Heap after GC invocations=9 (full 1):
 }
 
 Deoptimization events (10 events):
-Event: 11.514 Thread 0x00000000023b2000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000031f1294 method=org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(Ljava/lang/String;Lorg/springframework/beans/factory/support/RootBeanDefinition;[ý`)('@
+Event: 11.514 Thread 0x00000000023b2000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000031f1294 method=org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(Ljava/lang/String;Lorg/springframework/beans/factory/support/RootBeanDefinition;[ï¿½`)('@
 Event: 11.539 Thread 0x00000000023b2000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002f6dd30 method=java.lang.String$CaseInsensitiveComparator.compare(Ljava/lang/String;Ljava/lang/String;)I @ 70
 Event: 11.865 Thread 0x00000000023b2000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000003190758 method=org.springframework.asm.ClassReader.readUTF(II[C)Ljava/lang/String; @ 77
 Event: 11.865 Thread 0x00000000023b2000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002e8152c method=org.springframework.asm.ClassReader.readUTF(II[C)Ljava/lang/String; @ 77
@@ -220,15 +220,16 @@ Event: 12.963 Thread 0x00000000023b2000 Uncommon trap: reason=unstable_if action
 
 Internal exceptions (10 events):
 Event: 10.665 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d8c6deb0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 10.667 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/config/client/ConfigClientPropertiesCustomizer> (0x00000000d8c9fdc8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictwù—Jsï&@
+Event: 10.667 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/config/client/ConfigClientPropertiesCustomizer> (0x00000000d8c9fdc8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictwï¿½ï¿½Jsï¿½&@
 Event: 11.468 Thread 0x00000000023b2000 Implicit null exception at 0x000000000344bbce to 0x000000000344e5c5
 Event: 11.517 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d990b568) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
 Event: 11.523 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassPostProcessorCustomizer> (0x00000000d9941b98) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\sy
-Event: 11.525 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/beans/factory/support/BeanDefinitionRegistryPostProcessorCustomizer> (0x00000000d9989ba8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\class«ß¨«H'@
+Event: 11.525 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/beans/factory/support/BeanDefinitionRegistryPostProcessorCustomizer> (0x00000000d9989ba8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classï¿½ß¨ï¿½H
+'@
 Event: 11.526 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/core/PriorityOrderedCustomizer> (0x00000000d99ae128) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 11.527 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/ResourceLoaderAwareCustomizer> (0x00000000d99d5428) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, linEÛ9k'@
-Event: 11.528 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/beans/factory/BeanClassLoaderAwareCustomizer> (0x00000000d9a01688) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cºrÊ	ó'@
-Event: 11.529 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/EnvironmentAwareCustomizer> (0x00000000d9a28710) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 2nÛ¬T%@
+Event: 11.527 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/ResourceLoaderAwareCustomizer> (0x00000000d99d5428) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, linEï¿½9k'@
+Event: 11.528 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/beans/factory/BeanClassLoaderAwareCustomizer> (0x00000000d9a01688) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cï¿½rï¿½	ï¿½'@
+Event: 11.529 Thread 0x00000000023b2000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/EnvironmentAwareCustomizer> (0x00000000d9a28710) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 2nï¿½ï¿½T%@
 
 Events (10 events):
 Event: 13.165 loading class com/alibaba/druid/pool/DruidAbstractDataSourceMBean

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CmsCoverMapper extends Mapper<CmsCover> {
     int insertCover(CmsCover cmsCover);
-    int deleteCover(@Param("article_id")Integer article_id);
-    int getCounts(@Param("article_id") Integer article_id);
-    List<CmsCover> findCovers(@Param("article_id")Integer article_id);
+    int deleteCover(Integer article_id);
+    int getCounts(Integer article_id);
+    List<CmsCover> findCovers(Integer article_id);
 }

@@ -18,7 +18,7 @@ public interface IFileConterller {
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public Result<AddFileResult> addFile(@RequestBody AddFileParam param) ;
     @RequestMapping(path = "/del", method = RequestMethod.POST)
-    public Result addFile(@RequestBody DelFileparam param) ;
+    public Result delFile(@RequestBody DelFileparam param) ;
     @RequestMapping(path = "/{file_id}", method = RequestMethod.POST)
     public Result OutputFile(@RequestBody OutputFileParam param) ;
 }
