@@ -39,7 +39,7 @@ public interface IUserController {
     public Result resetPassword(@RequestBody ResetUserPasswordParam param);
 
     @RequestMapping(path="/update_avatar", method= RequestMethod.POST)
-    public Result<AvatarResult> updateAvatar(@RequestBody UpdateAvatarParam param);
+    public Result updateAvatar(@RequestBody UpdateAvatarParam param);
 
     @RequestMapping(path="/list", method= RequestMethod.POST)
     public  Result<UserListResult> list(@RequestBody SearchUserParam param);

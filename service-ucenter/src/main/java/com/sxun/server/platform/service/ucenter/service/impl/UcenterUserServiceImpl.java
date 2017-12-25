@@ -293,7 +293,7 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
 
          userLogService.logUpdateAvatar(param,IpUtil.getIpAddr(request));
 
-         map.put("success",userAvatar);
+         map.put("success",userAvatar.getUserId());
          return map;
     }
 

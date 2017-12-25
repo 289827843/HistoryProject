@@ -155,7 +155,7 @@ public class UserController implements IUserController {
     @ApiMethod(description = "更新头像")
     @RequestMapping(path="/update_avatar", method= RequestMethod.POST)
     @Override
-    public  @ApiResponseObject Result<AvatarResult> updateAvatar(@ApiBodyObject @RequestBody @Valid  UpdateAvatarParam param) {
+    public  @ApiResponseObject Result updateAvatar(@ApiBodyObject @RequestBody @Valid  UpdateAvatarParam param) {
 
 
         Map<String,Object> map = ucenterUserService.updateAvatar(param);
@@ -167,6 +167,7 @@ public class UserController implements IUserController {
         if (map.get(key).equals("success")){
 
             return ResultGenerator.genSuccessResult((AvatarResult)map.get(key));
+            return ResultGenerator.genSuccessResult(map.get(key).toString());
         }else{
 
             return ResultGenerator.genFailResult(map.get(key).toString());

@@ -40,6 +40,7 @@ public class UcenterUserAvatarServiceImpl extends AbstractService<UcenterUserAva
           }
 
         String url = new String(ucenterUserAvatar.getImgData());
+
         try {
             FileInputStream fileInputStream = new FileInputStream(url);
             OutputStream outputStream = response.getOutputStream();
@@ -47,7 +48,6 @@ public class UcenterUserAvatarServiceImpl extends AbstractService<UcenterUserAva
             byte [] bs = new byte[1024];
 
             while (true){
-
                 count = fileInputStream.read(bs);
                 outputStream.write(bs);
                 outputStream.flush();
@@ -56,7 +56,6 @@ public class UcenterUserAvatarServiceImpl extends AbstractService<UcenterUserAva
 
                     break;
                 }
-
             }
             fileInputStream.close();
             outputStream.close();
