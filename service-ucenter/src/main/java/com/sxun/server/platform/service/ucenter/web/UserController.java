@@ -166,7 +166,6 @@ public class UserController implements IUserController {
         }
         if (map.get(key).equals("success")){
 
-            return ResultGenerator.genSuccessResult((AvatarResult)map.get(key));
             return ResultGenerator.genSuccessResult(map.get(key).toString());
         }else{
 
