@@ -4,6 +4,8 @@ import com.sxun.server.common.web.core.AbstractService;
 import com.sxun.server.platform.service.ucenter.dao.UcenterRoleMapper;
 import com.sxun.server.platform.service.ucenter.dao.UcenterRolePermissionMapper;
 import com.sxun.server.platform.service.ucenter.dto.role.req.AddRoleParam;
+import com.sxun.server.platform.service.ucenter.dto.role.req.SearchRoleParam;
+import com.sxun.server.platform.service.ucenter.dto.role.rsp.RoleListResult;
 import com.sxun.server.platform.service.ucenter.model.UcenterRole;
 import com.sxun.server.platform.service.ucenter.service.UcenterRoleService;
 import org.springframework.stereotype.Service;
@@ -27,45 +29,34 @@ public class UcenterRoleServiceImpl extends AbstractService<UcenterRole> impleme
 
     /**
      * 角色查询
-     * @param role
-     * @return UcenterRole集合
+     * @param param
+     * @return RoleListResult集合
      */
     @Override
-    public List<UcenterRole> selectRole(UcenterRole role) {
-        List<UcenterRole> roleList = new ArrayList<UcenterRole>();
-        UcenterRole ucenterRole = new UcenterRole();
-        //给UcenterRole赋初值
-        ucenterRole.setRoleId(null);
-        ucenterRole.setName(null);
-        ucenterRole.setDesc(null);
-        ucenterRole.setSysId(null);
-        //判断前台是根据sys_id查询还是role_id查询角色
-        //如果role_id为空,则不使用role_id查询，根据sys_id查询；否则根据role_id查询，不管sys_id值是多少
+    public List<RoleListResult> selectRole(SearchRoleParam param) {
+        List<RoleListResult> roleListResultList = new ArrayList<RoleListResult>();
+
+        //如果role_id为空,则不使用role_id查询
         //如果sys_id为空,则查询所有角色
-        if(role.getRoleId().equals("")||role.getRoleId()==null||role.getRoleId()==0){
-            if(role.getSysId().equals("")||role.getSysId()==null||role.getSysId()==0){
-                roleList = this.findAll();//查询所有角色
-                if(roleList.size()<0){
-                    roleList.add(ucenterRole);
-                }
+        if(null==param.getRole_id()){
+
+            if(null==param.getSys_id()){
+                roleListResultList = ucenterRoleMapper.selectRole();//查询所有
             }else {
-                roleList = ucenterRoleMapper.selectRoleBySysId(role);//根据sys_id查询
-                if (roleList.size()<0){
-                    roleList.add(ucenterRole);
-                }
+                roleListResultList = ucenterRoleMapper.selectRoleBySysId(param);//根据sys_id查询
             }
 
         }else{
-            UcenterRole roleResult = this.findById(role.getRoleId());//根据role_id查询
-            if (roleResult==null){
-                roleList.add(ucenterRole);
-            }else{
-                roleList.add(roleResult);
+
+            if(null==param.getSys_id()){
+                roleListResultList = ucenterRoleMapper.selectRoleByRoleId(param);//根据role_id查询
+            }else {
+                roleListResultList = ucenterRoleMapper.selectRoleByBoth(param);//根据role_id和sys_id查询
             }
 
         }
 
-        return  roleList;
+        return  roleListResultList;
     }
 
     /**
@@ -82,7 +73,6 @@ public class UcenterRoleServiceImpl extends AbstractService<UcenterRole> impleme
             return 0;
         }else {
             this.save(role);
-
             return role.getRoleId();
 
         }

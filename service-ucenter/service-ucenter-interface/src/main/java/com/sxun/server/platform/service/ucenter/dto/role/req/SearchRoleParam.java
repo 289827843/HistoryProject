@@ -1,7 +1,10 @@
 package com.sxun.server.platform.service.ucenter.dto.role.req;
 
+
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
+
+
 
 /**
  * created by lz on 2017/12/19.
@@ -9,6 +12,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 
 @ApiObject(description = "查询角色请求")
 public class SearchRoleParam {
+
     @ApiObjectField(description =  "角色id")
     private Integer role_id;
 

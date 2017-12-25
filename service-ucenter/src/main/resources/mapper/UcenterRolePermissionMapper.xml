@@ -16,4 +16,6 @@
   <delete id="deleteRolePermissionByRoleId" parameterType="java.lang.Integer">
     delete from ucenter_role_permission where role_id = #{roleId}
   </delete>
+
+
 </mapper>

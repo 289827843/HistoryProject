@@ -12,9 +12,9 @@ public class UcenterSys {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sys_id")
     private Integer sysId;
-    @Column(name = "name")
+    @Column(name = "`name`")
     private String name;
-    @Column(name = "desc")
+    @Column(name = "`desc`")
     private String desc;
 
     public Integer getSysId() {

@@ -29,17 +29,17 @@ public class UcenterPermission {
     /**
      * 地址路径
      */
-    @Column(name = "`link_url`")
+    @Column(name = "link_url")
     private String linkUrl;
     /**
      * 创建时间
      */
-    @Column(name = "`create_time`")
+    @Column(name = "create_time")
     private Date createTime;
     /**
      * 修改时间
      */
-    @Column(name = "`modify_time`")
+    @Column(name = "modify_time")
     private Date modifyTime;
     /**
      * 所属子系统id

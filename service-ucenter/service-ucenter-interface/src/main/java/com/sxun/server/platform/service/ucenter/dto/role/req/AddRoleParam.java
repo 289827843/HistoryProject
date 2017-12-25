@@ -3,6 +3,7 @@ package com.sxun.server.platform.service.ucenter.dto.role.req;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -12,12 +13,14 @@ import javax.validation.constraints.Size;
 public class AddRoleParam {
     //@ApiObjectField(description = "角色id")
     //private  int role_id;
+    @NotNull
     @Size(min = 2,max = 20,message = "角色名称应该在2到20位")
     @ApiObjectField(description = "角色名称 2到20位",required = true)
     private String name;
     @Size(max = 50,message = "角色描述应该在0到50位")
     @ApiObjectField(description = "角色描述 0到50位",required = true)
     private String desc;
+    @NotNull
     @ApiObjectField(description = "角色所属子系统",required = true)
     private Integer sys_id;
 

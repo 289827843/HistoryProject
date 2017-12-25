@@ -11,16 +11,36 @@
     <result column="sys_id" jdbcType="INTEGER" property="sysId" />
 
   </resultMap>
-  <!--角色查询,根据sys_id字段-->
-  <select id="selectRoleBySysId" resultMap="BaseResultMap">
 
-    select * from ucenter_role where sys_id = #{sysId}
+  <resultMap id="roleResultMap" type="com.sxun.server.platform.service.ucenter.dto.role.rsp.RoleListResult">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="role_id" jdbcType="INTEGER" property="role_id" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="`desc`" jdbcType="VARCHAR" property="desc" />
+    <result column="sys_id" jdbcType="INTEGER" property="sys_id" />
+
+  </resultMap>
+
+  <select id="selectRole" resultMap="roleResultMap">
+
+    select * from ucenter_role
   </select>
-  <!--角色添加
-  <insert id="addRole" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole" useGeneratedKeys="true" keyProperty="role_id">
 
-    insert into ucenter_role(role_id,name,desc,sys_id) values(#{roleId},#{name},#{desc},#{sysId})
-  </insert>-->
+  <select id="selectRoleByRoleId" parameterType="com.sxun.server.platform.service.ucenter.dto.role.req.SearchRoleParam" resultMap="roleResultMap">
+    select * from ucenter_role where role_id = #{role_id}
+  </select>
+  <!--角色查询,根据sys_id字段-->
+  <select id="selectRoleBySysId" parameterType="com.sxun.server.platform.service.ucenter.dto.role.req.SearchRoleParam" resultMap="roleResultMap">
+
+    select * from ucenter_role where sys_id = #{sys_id}
+  </select>
+
+  <select id="selectRoleByBoth" parameterType="com.sxun.server.platform.service.ucenter.dto.role.req.SearchRoleParam" resultMap="roleResultMap">
+
+    select * from ucenter_role where role_id = #{role_id} and sys_id = #{sys_id}
+  </select>
 
   <!--根据角色名称查询角色，判断角色是否重复-->
   <select id="selectRoleByName" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole" resultMap="BaseResultMap">

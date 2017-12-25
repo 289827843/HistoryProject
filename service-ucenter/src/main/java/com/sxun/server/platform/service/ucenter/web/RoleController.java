@@ -42,22 +42,16 @@ public class RoleController implements IRoleController{
     @RequestMapping(path = "/list",method = RequestMethod.POST)
     @Override
     public @ApiResponseObject Result<List<RoleListResult>> selectRole(@ApiBodyObject @RequestBody SearchRoleParam param) {
-        UcenterRole urole = new UcenterRole();
-        urole.setRoleId(param.getRole_id());
-        urole.setSysId(param.getSys_id());
-        List<UcenterRole> roleList = ucenterRoleService.selectRole(urole);
-        List<RoleListResult> roleListResultList = new ArrayList<RoleListResult>();
-        RoleListResult roleListResult = new RoleListResult();
-        for (int i=0;i<roleList.size();i++){
-            roleListResult.setRole_id(roleList.get(i).getRoleId());
-            roleListResult.setName(roleList.get(i).getName());
-            roleListResult.setDesc(roleList.get(i).getDesc());
-            roleListResult.setSys_id(roleList.get(i).getSysId());
-            roleListResultList.add(roleListResult);
+
+        List<RoleListResult> results = ucenterRoleService.selectRole(param);
+        if(results.size()==0){
+            return ResultGenerator.genFailResult("未查询到指定角色");
+        }else {
+            Result<List<RoleListResult>> result = ResultGenerator.genSuccessResult();
+            result.setDataObj(results);
+            return result;
         }
-        Result<List<RoleListResult>> result = ResultGenerator.genSuccessResult();
-        result.setDataObj(roleListResultList);
-        return result;
+
     }
 
     @ApiMethod(description = "角色添加")
