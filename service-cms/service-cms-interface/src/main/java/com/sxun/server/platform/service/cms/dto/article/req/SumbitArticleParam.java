@@ -9,16 +9,16 @@ import javax.validation.constraints.NotNull;
 public class SumbitArticleParam {
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "文章id",required=true)
-    private Number article_id;
+    private Integer article_id;
     @NotNull(message = "不能为空")
     @ApiObjectField(description = "操作员ID,具有权限的操作员ID",required=true)
     private int opr_user_id;
 
-    public Number getArticle_id() {
+    public Integer getArticle_id() {
         return article_id;
     }
 
-    public void setArticle_id(Number article_id) {
+    public void setArticle_id(Integer article_id) {
         this.article_id = article_id;
     }
 

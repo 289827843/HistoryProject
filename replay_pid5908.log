@@ -197,7 +197,7 @@ instanceKlass sun/net/www/http/KeepAliveKey
 instanceKlass sun/net/NetworkClient$1
 instanceKlass sun/net/NetworkClient
 instanceKlass sun/net/www/protocol/http/HttpURLConnection$7
-instanceKlass com/fasterxml/jackson/databind/deser/std/NumberDeserializers
+instanceKlass com/fasterxml/jackson/databind/deser/std/IntegerDeserializers
 instanceKlass com/fasterxml/jackson/databind/annotation/JacksonStdImpl
 instanceKlass com/fasterxml/jackson/databind/deser/ContextualKeyDeserializer
 instanceKlass java/util/zip/ZipUtils
@@ -354,9 +354,9 @@ instanceKlass com/fasterxml/jackson/annotation/JsonTypeInfo$None
 instanceKlass com/fasterxml/jackson/databind/jsontype/TypeSerializer
 instanceKlass com/fasterxml/jackson/databind/jsontype/TypeDeserializer
 instanceKlass com/fasterxml/jackson/databind/jsontype/impl/StdTypeResolverBuilder
-instanceKlass com/fasterxml/jackson/core/io/NumberOutput
+instanceKlass com/fasterxml/jackson/core/io/IntegerOutput
 instanceKlass com/fasterxml/jackson/databind/node/TreeTraversingParser$1
-instanceKlass com/fasterxml/jackson/core/io/NumberInput
+instanceKlass com/fasterxml/jackson/core/io/IntegerInput
 instanceKlass com/fasterxml/jackson/databind/type/TypeBindings$AsKey
 instanceKlass com/fasterxml/jackson/databind/type/TypeBindings$TypeParamStash
 instanceKlass com/fasterxml/jackson/core/util/TextBuffer
@@ -599,7 +599,7 @@ instanceKlass com/sun/jersey/core/spi/factory/MessageBodyFactory$MessageBodyWrit
 instanceKlass com/sun/jersey/core/reflection/ReflectionHelper$DeclaringClassInterfacePair
 instanceKlass com/alibaba/fastjson/parser/deserializer/StackTraceElementDeserializer
 instanceKlass com/alibaba/fastjson/serializer/CharArrayCodec
-instanceKlass com/alibaba/fastjson/parser/deserializer/NumberDeserializer
+instanceKlass com/alibaba/fastjson/parser/deserializer/IntegerDeserializer
 instanceKlass com/alibaba/fastjson/parser/deserializer/JavaObjectDeserializer
 instanceKlass com/alibaba/fastjson/serializer/CollectionCodec
 instanceKlass com/alibaba/fastjson/parser/deserializer/MapDeserializer
@@ -1250,8 +1250,8 @@ instanceKlass sun/security/x509/X500Name$1
 instanceKlass sun/security/x509/X500Name
 instanceKlass sun/security/x509/GeneralNameInterface
 instanceKlass sun/security/x509/CertificateAlgorithmId
-instanceKlass sun/security/x509/SerialNumber
-instanceKlass sun/security/x509/CertificateSerialNumber
+instanceKlass sun/security/x509/SerialInteger
+instanceKlass sun/security/x509/CertificateSerialInteger
 instanceKlass sun/security/x509/CertificateVersion
 instanceKlass sun/security/x509/X509CertInfo
 instanceKlass sun/security/x509/CertAttrSet
@@ -1635,12 +1635,12 @@ instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/NotNullVa
 instanceKlass org/springframework/format/datetime/joda/JodaTimeConverters$DateTimeToLocalDateConverter
 instanceKlass javax/validation/constraints/NotNull
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MinValidatorForCharSequence
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MinValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MinValidatorForInteger
 instanceKlass org/springframework/format/datetime/joda/JodaTimeConverters
 instanceKlass javax/validation/constraints/Min
 instanceKlass org/springframework/format/datetime/joda/DateTimeFormatterFactory
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MaxValidatorForCharSequence
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MaxValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MaxValidatorForInteger
 instanceKlass javax/validation/constraints/Max
 instanceKlass javax/validation/constraints/Future
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/future/FutureValidatorForOffsetDateTime
@@ -1657,19 +1657,19 @@ instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/future/Fu
 instanceKlass org/springframework/format/datetime/standard/YearMonthFormatter
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/future/FutureValidatorForCalendar
 instanceKlass java/time/YearMonth
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DigitsValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DigitsValidatorForInteger
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DigitsValidatorForCharSequence
 instanceKlass org/springframework/format/datetime/standard/DurationFormatter
 instanceKlass javax/validation/constraints/Digits
 instanceKlass org/springframework/format/datetime/standard/PeriodFormatter
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMinValidatorForCharSequence
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMinValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMinValidatorForInteger
 instanceKlass org/springframework/format/datetime/standard/InstantFormatter
 instanceKlass javax/validation/constraints/DecimalMin
 instanceKlass java/time/OffsetTime
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMaxValidatorForCharSequence
 instanceKlass org/springframework/format/support/FormattingConversionService$ParserConverter
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMaxValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMaxValidatorForInteger
 instanceKlass org/springframework/format/support/FormattingConversionService$PrinterConverter
 instanceKlass javax/validation/constraints/DecimalMax
 instanceKlass org/hibernate/validator/internal/constraintvalidators/hv/br/CPFValidator
@@ -1721,7 +1721,7 @@ instanceKlass java/time/chrono/AbstractChronology
 instanceKlass java/time/chrono/Chronology
 instanceKlass java/time/format/DateTimeFormatterBuilder$CharLiteralPrinterParser
 instanceKlass org/hibernate/validator/internal/xml/BootstrapConfigurationImpl
-instanceKlass java/time/format/DateTimeFormatterBuilder$NumberPrinterParser
+instanceKlass java/time/format/DateTimeFormatterBuilder$IntegerPrinterParser
 instanceKlass java/time/format/DateTimeFormatterBuilder$DateTimePrinterParser
 instanceKlass java/time/format/DateTimeFormatterBuilder$2
 instanceKlass org/hibernate/validator/internal/util/privilegedactions/GetClassLoader
@@ -1934,8 +1934,8 @@ instanceKlass org/springframework/format/datetime/standard/DateTimeFormatterRegi
 instanceKlass org/springframework/format/FormatterRegistrar
 instanceKlass org/springframework/format/support/FormattingConversionService$AnnotationParserConverter
 instanceKlass org/springframework/format/support/FormattingConversionService$AnnotationPrinterConverter
-instanceKlass org/springframework/util/NumberUtils
-instanceKlass org/springframework/format/annotation/NumberFormat
+instanceKlass org/springframework/util/IntegerUtils
+instanceKlass org/springframework/format/annotation/IntegerFormat
 instanceKlass org/springframework/context/support/EmbeddedValueResolutionSupport
 instanceKlass org/springframework/format/Formatter
 instanceKlass org/springframework/format/AnnotationFormatterFactory
@@ -2573,7 +2573,7 @@ instanceKlass org/springframework/context/annotation/ComponentScans
 instanceKlass org/springframework/context/annotation/PropertySource
 instanceKlass org/springframework/context/annotation/PropertySources
 instanceKlass org/springframework/context/annotation/ConfigurationClassParser$SourceClass
-instanceKlass com/fasterxml/jackson/databind/ser/std/NumberSerializers
+instanceKlass com/fasterxml/jackson/databind/ser/std/IntegerSerializers
 instanceKlass org/springframework/context/annotation/ConfigurationClass
 instanceKlass org/springframework/context/annotation/ComponentScanAnnotationParser
 instanceKlass org/springframework/context/annotation/ConfigurationClassParser$1
@@ -3315,12 +3315,12 @@ instanceKlass sun/reflect/ByteVectorFactory
 instanceKlass sun/reflect/AccessorGenerator
 instanceKlass sun/reflect/ClassFileConstants
 instanceKlass org/springframework/core/convert/support/StringToBooleanConverter
-instanceKlass org/springframework/core/convert/support/CharacterToNumberFactory
-instanceKlass org/springframework/core/convert/support/NumberToCharacterConverter
+instanceKlass org/springframework/core/convert/support/CharacterToIntegerFactory
+instanceKlass org/springframework/core/convert/support/IntegerToCharacterConverter
 instanceKlass org/springframework/core/convert/support/StringToCharacterConverter
 instanceKlass org/springframework/core/convert/support/GenericConversionService$ConverterAdapter
 instanceKlass org/springframework/core/convert/support/ObjectToStringConverter
-instanceKlass org/springframework/core/convert/support/StringToNumberConverterFactory
+instanceKlass org/springframework/core/convert/support/StringToIntegerConverterFactory
 instanceKlass org/springframework/core/convert/support/GenericConversionService$ConvertersForPair
 instanceKlass java/util/Collections$1
 instanceKlass org/springframework/core/convert/converter/GenericConverter$ConvertiblePair
@@ -3381,7 +3381,7 @@ instanceKlass org/springframework/util/ObjectUtils
 instanceKlass org/springframework/core/ResolvableType$VariableResolver
 instanceKlass org/springframework/core/SerializableTypeWrapper$TypeProvider
 instanceKlass org/springframework/core/ResolvableType
-instanceKlass org/springframework/core/convert/support/NumberToNumberConverterFactory
+instanceKlass org/springframework/core/convert/support/IntegerToIntegerConverterFactory
 instanceKlass org/springframework/core/convert/converter/ConditionalConverter
 instanceKlass org/springframework/core/convert/support/GenericConversionService$Converters
 instanceKlass java/util/stream/Stream
@@ -3917,7 +3917,7 @@ instanceKlass java/security/Guard
 instanceKlass java/lang/String$CaseInsensitiveComparator
 instanceKlass java/util/Comparator
 instanceKlass java/io/ObjectStreamField
-instanceKlass java/lang/Number
+instanceKlass java/lang/Integer
 instanceKlass java/lang/Character
 instanceKlass java/lang/Boolean
 instanceKlass java/nio/Buffer
@@ -4420,7 +4420,7 @@ instanceKlass java/lang/Short
 instanceKlass java/lang/Byte
 instanceKlass java/lang/Double
 instanceKlass java/lang/Float
-ciInstanceKlass java/lang/Number 1 1 34 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 0 100 100 7 12 12 10 10 1
+ciInstanceKlass java/lang/Integer 1 1 34 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 0 100 100 7 12 12 10 10 1
 ciInstanceKlass java/lang/Float 1 1 169 3 3 3 4 4 4 4 8 8 8 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 4 4 5 0 7 100 100 7 100 7 100 100 7 1 1 1 1 1 1 1 1 1 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1
 staticfield java/lang/Float TYPE Ljava/lang/Class; java/lang/Class
 ciInstanceKlass java/lang/Double 1 1 223 8 8 8 8 8 8 8 8 8 8 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 5 0 5 0 5 0 5 0 5 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 7 100 7 100 100 7 100 100 100 7 1 1 1 1 1 1 1 1 1 1 1 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1
@@ -4545,7 +4545,7 @@ instanceKlass org/springframework/core/ConstantException
 instanceKlass java/nio/charset/UnsupportedCharsetException
 instanceKlass org/springframework/http/InvalidMediaTypeException
 instanceKlass org/springframework/util/InvalidMimeTypeException
-instanceKlass java/lang/NumberFormatException
+instanceKlass java/lang/IntegerFormatException
 ciInstanceKlass java/lang/IllegalArgumentException 1 1 27 1 1 1 1 1 1 1 1 1 1 1 1 5 0 100 7 1 12 12 12 12 10 10 10 10 1
 ciInstanceKlass java/util/Locale 1 1 891 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 7 7 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 3 3 5 0 8 8 8 8 100 100 100 100 100 100 100 100 7 100 100 100 7 100 100 100 100 7 100 100 7 100 7 100 100 7 100 100 100 100 100 7 7 7 100 7 7 100 100 7 100 100 100 100 7 7 100 7 100 100 100 7 100 100 100 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 1 1 1 1 1 1 1 1 1 1 1
 staticfield java/util/Locale LOCALECACHE Ljava/util/Locale$Cache; java/util/Locale$Cache

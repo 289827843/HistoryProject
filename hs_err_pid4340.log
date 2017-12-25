@@ -10,7 +10,7 @@
 #   Check if swap backing store is full
 #   Use 64 bit Java on a 64 bit OS
 #   Decrease Java heap size (-Xmx/-Xms)
-#   Decrease number of Java threads
+#   Decrease Integer of Java threads
 #   Decrease Java thread stack sizes (-Xss)
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
@@ -219,20 +219,20 @@ Event: 16.451 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action
 Event: 16.452 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000031c750c method=java.util.concurrent.ConcurrentHashMap.putVal(Ljava/lang/Object;Ljava/lang/Object;Z)Ljava/lang/Object; @ 152
 Event: 17.764 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000032d7430 method=org.springframework.util.StringUtils.collectionToDelimitedString(Ljava/util/Collection;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; @ 4
 Event: 17.843 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000033a82b4 method=java.io.WinNTFileSystem.isLetter(C)Z @ 3
-Event: 18.029 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000035e6dd0 method=org.springframework.util.ConcurrentReferenceHashMap$Segment.findInChain(Lorg/springframework/util/ConcurrentReferenceHashMap$Reference;Ljava/lang/Object;I)Lorg/springframeworÄaqYå2@
-Event: 18.029 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000003387800 method=org.springframework.util.ConcurrentReferenceHashMap$Segment.findInChain(Lorg/springframework/util/ConcurrentReferenceHashMap$Reference;Ljava/lang/Object;I)Lorg/springframewor÷±áL/@
+Event: 18.029 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000035e6dd0 method=org.springframework.util.ConcurrentReferenceHashMap$Segment.findInChain(Lorg/springframework/util/ConcurrentReferenceHashMap$Reference;Ljava/lang/Object;I)Lorg/springframeworÔøΩaqYÔøΩ2@
+Event: 18.029 Thread 0x0000000002482000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000003387800 method=org.springframework.util.ConcurrentReferenceHashMap$Segment.findInChain(Lorg/springframework/util/ConcurrentReferenceHashMap$Reference;Ljava/lang/Object;I)Lorg/springframewor÷±ÔøΩL/@
 
 Internal exceptions (10 events):
-Event: 18.440 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/autoconfigure/InfoContributorAutoConfigurationCustomizer> (0x00000000dd6cf448) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\cla∏Ä‹Ó“p2@
-Event: 18.441 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/autoconfigure/InfoContributorAutoConfiguration$$EnhancerBySpringCGLIB$$4964573Customizer> (0x00000000dd7185c0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8uù§∏€q2@
-Event: 18.442 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassEnhancer$EnhancedConfigurationCustomizer> (0x00000000dd75c528) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\shar‹^˛ìs2@
+Event: 18.440 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/autoconfigure/InfoContributorAutoConfigurationCustomizer> (0x00000000dd6cf448) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\claÔøΩÔøΩÔøΩÔøΩÔøΩp2@
+Event: 18.441 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/autoconfigure/InfoContributorAutoConfiguration$$EnhancerBySpringCGLIB$$4964573Customizer> (0x00000000dd7185c0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8uÔøΩÔøΩÔøΩÔøΩq2@
+Event: 18.442 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassEnhancer$EnhancedConfigurationCustomizer> (0x00000000dd75c528) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\sharÔøΩ^ÔøΩÔøΩs2@
 Event: 18.451 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000dd83b158) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 18.453 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/info/EnvironmentInfoContributorCustomizer> (0x00000000dd86da40) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDiÕ *&t2@
-Event: 18.454 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/info/InfoContributorCustomizer> (0x00000000dd89a448) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpÁS'p°t2@
+Event: 18.453 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/info/EnvironmentInfoContributorCustomizer> (0x00000000dd86da40) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDiÔøΩÔøΩ*&t2@
+Event: 18.454 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/actuate/info/InfoContributorCustomizer> (0x00000000dd89a448) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpÔøΩS'pÔøΩt2@
 Event: 18.456 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000dd8b21f0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 18.457 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/autoconfigure/gson/GsonAutoConfigurationCustomizer> (0x00000000dd8e6950) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDÏ“Úã4u2@
+Event: 18.457 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/autoconfigure/gson/GsonAutoConfigurationCustomizer> (0x00000000dd8e6950) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDÔøΩÔøΩÔøΩ4u2@
 Event: 18.458 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/boot/autoconfigure/gson/GsonAutoConfiguration$$EnhancerBySpringCGLIB$$99ea8e53Customizer> (0x00000000dd9286f8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotsp
-Event: 18.459 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassEnhancer$EnhancedConfigurationCustomizer> (0x00000000dd9697d8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\shar≤∑„µàp2@
+Event: 18.459 Thread 0x0000000002482000 Exception <a 'java/lang/ClassNotFoundException': org/springframework/context/annotation/ConfigurationClassEnhancer$EnhancedConfigurationCustomizer> (0x00000000dd9697d8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\sharÔøΩÔøΩ„µàp2@
 
 Events (10 events):
 Event: 18.475 loading class com/google/gson/JsonSyntaxException

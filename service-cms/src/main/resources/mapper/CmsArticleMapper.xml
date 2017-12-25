@@ -20,11 +20,11 @@
   </resultMap>
   <select id="findArticles" resultType="Integer">
     select count(*) from
-    cms_article where dir_id=#{dir_id}
+    cms_article where dir_id=#{0}
   </select>
   <insert id="insertArticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
     insert into cms_article(
-    `article_id,
+    article_id,
     title,
     source,
     author,
@@ -41,29 +41,29 @@
     #{source},
     #{author},
     0,
-    #{article_type}
-    #{own_user_id},
-    #{audit_user_id},
+    #{articleType},
+    #{ownUserId},
+    #{auditUserId},
     NOW(),
-    #{modify_time},
-    #{dir_id},
-    #{audit_memo}
+   NOW(),
+    #{dirId},
+    #{auditMemo}
     );
   </insert>
   <select id="findArticleid" resultType="Integer">
-    <if test="dir_id != null and dir_id != ''">
-      select article_id from cms_article where dir_id=#{dir_id}
-    </if>
+
+    select article_id from cms_article where dir_id=#{dir_id}
+
   </select>
   <update id="updateAriticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
     update cms_article
-    set title=#{ title},
+    set title=#{title},
     source=#{source},
     author=#{author},
-    article_type=#{article_type},
-    status=#{status}
-    dir_id=#{dir_id}
-    where article_id=#{article_id}
+    article_type=#{articleType},
+    status=#{status},
+    dir_id=#{dirId}
+    where article_id=#{articleId}
 
   </update>
   <select id="getCounts" resultType="Integer">
@@ -73,10 +73,10 @@
   </select>
   <update id="sumbitAriticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
     update cms_article
-    set audit_user_id=#{ audit_user_id},
-    audit_memo=#{audit_memo},
+    set audit_user_id=#{auditUserId},
+    audit_memo=#{auditMemo},
     status=#{status}
-    where article_id=#{article_id}
+    where article_id=#{articleId}
 
   </update>
   <select id="getStatus" resultType="Integer">
@@ -84,7 +84,7 @@
     from  cms_article
     where article_id=#{article_id}
   </select>
-  <select id="findArticle" resultMap="com.sxun.server.platform.service.cms.model.CmsArticle">
+  <select id="findArticle" resultMap="BaseResultMap">
     select *
     from  cms_article
     where article_id=#{article_id}
@@ -93,15 +93,16 @@
     update cms_article
     set
     status=#{status}
-    where article_id=#{article_id}
+    where article_id=#{articleId}
 
   </update>
-  <select id="listAriticle" resultMap="com.sxun.server.platform.service.cms.model.CmsArticle">
+  <select id="listAriticle" resultMap="BaseResultMap"  parameterType="com.sxun.server.platform.service.cms.dto.article.req.ListArticleParam">
     select *
     from  cms_article
+
     <where>
     <if test="dir_id != null ">
-      and dir_id=#{dir_id}
+      dir_id =#{dir_id}
     </if>
     <if test="title != null ">
       and title =#{title}
@@ -112,18 +113,18 @@
     <if test="author!= null ">
       and author =#{author}
     </if>
-    <if test="is_display!= null">
+    <if test="article_type!= null">
       and article_type =#{article_type}
     </if>
     </where>
-    limit #{startIndex},#{page_size};
+    limit #{current_page},#{page_size};
   </select>
-  <select id="getAriticleCounts" resultType="Integer">
+  <select id="getAriticleCounts" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.dto.article.req.ListArticleParam">
     select count(*)
     from  cms_article
     <where>
       <if test="dir_id != null ">
-        and dir_id=#{dir_id}
+        dir_id =#{dir_id}
       </if>
       <if test="title != null ">
         and title =#{title}
@@ -134,10 +135,13 @@
       <if test="author!= null ">
         and author =#{author}
       </if>
-      <if test="is_display!= null">
+      <if test="article_type!= null">
         and article_type =#{article_type}
       </if>
     </where>
+  </select>
+  <select id="findArticls" resultMap="BaseResultMap" >
+    select * from cms_article where dir_id=#{dirId}
   </select>
 
 </mapper>

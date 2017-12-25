@@ -369,7 +369,7 @@ instanceKlass org/apache/ibatis/builder/StaticSqlSource
 instanceKlass java/math/MathContext
 instanceKlass org/apache/ibatis/ognl/ObjectMethodAccessor
 instanceKlass org/apache/ibatis/ognl/ObjectNullHandler
-instanceKlass org/apache/ibatis/ognl/NumberElementsAccessor
+instanceKlass org/apache/ibatis/ognl/IntegerElementsAccessor
 instanceKlass org/apache/ibatis/ognl/NumericTypes
 instanceKlass org/apache/ibatis/ognl/EnumerationElementsAccessor
 instanceKlass org/apache/ibatis/ognl/IteratorElementsAccessor
@@ -1488,7 +1488,7 @@ instanceKlass org/springframework/boot/actuate/endpoint/mvc/MvcEndpoint
 instanceKlass org/springframework/web/cors/CorsConfiguration
 instanceKlass org/springframework/boot/actuate/endpoint/mvc/MvcEndpoints
 instanceKlass org/springframework/boot/actuate/autoconfigure/EndpointWebMvcManagementContextConfiguration
-instanceKlass org/springframework/core/convert/support/StringToNumberConverterFactory$StringToNumber
+instanceKlass org/springframework/core/convert/support/StringToIntegerConverterFactory$StringToInteger
 instanceKlass org/springframework/boot/autoconfigure/web/HttpMessageConvertersAutoConfiguration
 instanceKlass org/springframework/boot/autoconfigure/web/HttpMessageConverters
 instanceKlass org/springframework/boot/autoconfigure/web/GsonHttpMessageConvertersConfiguration
@@ -1976,7 +1976,7 @@ instanceKlass sun/net/www/http/KeepAliveKey
 instanceKlass sun/net/NetworkClient$1
 instanceKlass sun/net/NetworkClient
 instanceKlass sun/net/www/protocol/http/HttpURLConnection$7
-instanceKlass com/fasterxml/jackson/databind/deser/std/NumberDeserializers
+instanceKlass com/fasterxml/jackson/databind/deser/std/IntegerDeserializers
 instanceKlass com/fasterxml/jackson/databind/annotation/JacksonStdImpl
 instanceKlass com/fasterxml/jackson/databind/deser/ContextualKeyDeserializer
 instanceKlass java/util/zip/ZipUtils
@@ -2133,9 +2133,9 @@ instanceKlass com/fasterxml/jackson/annotation/JsonTypeInfo$None
 instanceKlass com/fasterxml/jackson/databind/jsontype/TypeSerializer
 instanceKlass com/fasterxml/jackson/databind/jsontype/TypeDeserializer
 instanceKlass com/fasterxml/jackson/databind/jsontype/impl/StdTypeResolverBuilder
-instanceKlass com/fasterxml/jackson/core/io/NumberOutput
+instanceKlass com/fasterxml/jackson/core/io/IntegerOutput
 instanceKlass com/fasterxml/jackson/databind/node/TreeTraversingParser$1
-instanceKlass com/fasterxml/jackson/core/io/NumberInput
+instanceKlass com/fasterxml/jackson/core/io/IntegerInput
 instanceKlass com/fasterxml/jackson/databind/type/TypeBindings$AsKey
 instanceKlass com/fasterxml/jackson/databind/type/TypeBindings$TypeParamStash
 instanceKlass com/fasterxml/jackson/core/util/TextBuffer
@@ -2378,7 +2378,7 @@ instanceKlass com/sun/jersey/core/spi/factory/MessageBodyFactory$MessageBodyWrit
 instanceKlass com/sun/jersey/core/reflection/ReflectionHelper$DeclaringClassInterfacePair
 instanceKlass com/alibaba/fastjson/parser/deserializer/StackTraceElementDeserializer
 instanceKlass com/alibaba/fastjson/serializer/CharArrayCodec
-instanceKlass com/alibaba/fastjson/parser/deserializer/NumberDeserializer
+instanceKlass com/alibaba/fastjson/parser/deserializer/IntegerDeserializer
 instanceKlass com/alibaba/fastjson/parser/deserializer/JavaObjectDeserializer
 instanceKlass com/alibaba/fastjson/serializer/CollectionCodec
 instanceKlass com/alibaba/fastjson/parser/deserializer/MapDeserializer
@@ -3029,8 +3029,8 @@ instanceKlass sun/security/x509/X500Name$1
 instanceKlass sun/security/x509/X500Name
 instanceKlass sun/security/x509/GeneralNameInterface
 instanceKlass sun/security/x509/CertificateAlgorithmId
-instanceKlass sun/security/x509/SerialNumber
-instanceKlass sun/security/x509/CertificateSerialNumber
+instanceKlass sun/security/x509/SerialInteger
+instanceKlass sun/security/x509/CertificateSerialInteger
 instanceKlass sun/security/x509/CertificateVersion
 instanceKlass sun/security/x509/X509CertInfo
 instanceKlass sun/security/x509/CertAttrSet
@@ -3457,13 +3457,13 @@ instanceKlass java/lang/invoke/LambdaForm$BMH
 instanceKlass javax/validation/constraints/NotNull
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MinValidatorForCharSequence
 instanceKlass java/time/chrono/AbstractChronology
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MinValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MinValidatorForInteger
 instanceKlass java/time/chrono/Chronology
 instanceKlass javax/validation/constraints/Min
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MaxValidatorForCharSequence
 instanceKlass java/time/format/DateTimeFormatterBuilder$CharLiteralPrinterParser
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MaxValidatorForNumber
-instanceKlass java/time/format/DateTimeFormatterBuilder$NumberPrinterParser
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/MaxValidatorForInteger
+instanceKlass java/time/format/DateTimeFormatterBuilder$IntegerPrinterParser
 instanceKlass java/time/format/DateTimeFormatterBuilder$DateTimePrinterParser
 instanceKlass javax/validation/constraints/Max
 instanceKlass javax/validation/constraints/Future
@@ -3478,7 +3478,7 @@ instanceKlass java/time/temporal/IsoFields
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/future/FutureValidatorForDate
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/future/FutureValidatorForCalendar
 instanceKlass java/time/temporal/ValueRange
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DigitsValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DigitsValidatorForInteger
 instanceKlass java/time/Duration
 instanceKlass java/time/temporal/TemporalAmount
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DigitsValidatorForCharSequence
@@ -3488,12 +3488,12 @@ instanceKlass java/time/temporal/TemporalField
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMinValidatorForCharSequence
 instanceKlass java/lang/invoke/LambdaForm$MH
 instanceKlass java/lang/invoke/LambdaForm$MH
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMinValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMinValidatorForInteger
 instanceKlass java/lang/invoke/InnerClassLambdaMetafactory$1
 instanceKlass javax/validation/constraints/DecimalMin
 instanceKlass java/time/format/DateTimeFormatterBuilder$$Lambda$1
 instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMaxValidatorForCharSequence
-instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMaxValidatorForNumber
+instanceKlass org/hibernate/validator/internal/constraintvalidators/bv/DecimalMaxValidatorForInteger
 instanceKlass java/lang/invoke/InfoFromMemberName
 instanceKlass java/lang/invoke/MethodHandleInfo
 instanceKlass javax/validation/constraints/DecimalMax
@@ -3711,9 +3711,9 @@ instanceKlass org/springframework/beans/factory/annotation/Lookup
 instanceKlass org/springframework/format/support/FormattingConversionService$AnnotationPrinterConverter
 instanceKlass org/springframework/beans/factory/support/MethodOverride
 instanceKlass org/springframework/beans/factory/annotation/AutowiredAnnotationBeanPostProcessor$1
-instanceKlass org/springframework/util/NumberUtils
+instanceKlass org/springframework/util/IntegerUtils
 instanceKlass org/springframework/core/NestedExceptionUtils
-instanceKlass org/springframework/format/annotation/NumberFormat
+instanceKlass org/springframework/format/annotation/IntegerFormat
 instanceKlass org/springframework/boot/context/properties/ConfigurationPropertiesBindingPostProcessor$FlatPropertySources
 instanceKlass org/springframework/context/support/EmbeddedValueResolutionSupport
 instanceKlass org/springframework/format/Formatter
@@ -4422,7 +4422,7 @@ instanceKlass java/io/Console$2
 instanceKlass sun/misc/JavaIOAccess
 instanceKlass java/io/Console$1
 instanceKlass java/io/Console
-instanceKlass com/fasterxml/jackson/databind/ser/std/NumberSerializers
+instanceKlass com/fasterxml/jackson/databind/ser/std/IntegerSerializers
 instanceKlass org/springframework/boot/ansi/AnsiOutput
 instanceKlass java/text/DontCareFieldPosition$1
 instanceKlass java/text/Format$FieldDelegate
@@ -5094,12 +5094,12 @@ instanceKlass sun/reflect/ByteVectorFactory
 instanceKlass sun/reflect/AccessorGenerator
 instanceKlass sun/reflect/ClassFileConstants
 instanceKlass org/springframework/core/convert/support/StringToBooleanConverter
-instanceKlass org/springframework/core/convert/support/CharacterToNumberFactory
-instanceKlass org/springframework/core/convert/support/NumberToCharacterConverter
+instanceKlass org/springframework/core/convert/support/CharacterToIntegerFactory
+instanceKlass org/springframework/core/convert/support/IntegerToCharacterConverter
 instanceKlass org/springframework/core/convert/support/StringToCharacterConverter
 instanceKlass org/springframework/core/convert/support/GenericConversionService$ConverterAdapter
 instanceKlass org/springframework/core/convert/support/ObjectToStringConverter
-instanceKlass org/springframework/core/convert/support/StringToNumberConverterFactory
+instanceKlass org/springframework/core/convert/support/StringToIntegerConverterFactory
 instanceKlass org/springframework/core/convert/support/GenericConversionService$ConvertersForPair
 instanceKlass java/util/Collections$1
 instanceKlass org/springframework/core/convert/converter/GenericConverter$ConvertiblePair
@@ -5160,7 +5160,7 @@ instanceKlass org/springframework/util/ObjectUtils
 instanceKlass org/springframework/core/ResolvableType$VariableResolver
 instanceKlass org/springframework/core/SerializableTypeWrapper$TypeProvider
 instanceKlass org/springframework/core/ResolvableType
-instanceKlass org/springframework/core/convert/support/NumberToNumberConverterFactory
+instanceKlass org/springframework/core/convert/support/IntegerToIntegerConverterFactory
 instanceKlass org/springframework/core/convert/converter/ConditionalConverter
 instanceKlass org/springframework/core/convert/support/GenericConversionService$Converters
 instanceKlass java/util/stream/Stream
@@ -5696,7 +5696,7 @@ instanceKlass java/security/Guard
 instanceKlass java/lang/String$CaseInsensitiveComparator
 instanceKlass java/util/Comparator
 instanceKlass java/io/ObjectStreamField
-instanceKlass java/lang/Number
+instanceKlass java/lang/Integer
 instanceKlass java/lang/Character
 instanceKlass java/lang/Boolean
 instanceKlass java/nio/Buffer
@@ -6285,7 +6285,7 @@ instanceKlass java/lang/Short
 instanceKlass java/lang/Byte
 instanceKlass java/lang/Double
 instanceKlass java/lang/Float
-ciInstanceKlass java/lang/Number 1 1 34 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 0 100 100 7 12 12 10 10 1
+ciInstanceKlass java/lang/Integer 1 1 34 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 0 100 100 7 12 12 10 10 1
 ciInstanceKlass java/lang/Float 1 1 169 3 3 3 4 4 4 4 8 8 8 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 4 4 5 0 7 100 100 7 100 7 100 100 7 1 1 1 1 1 1 1 1 1 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1
 staticfield java/lang/Float TYPE Ljava/lang/Class; java/lang/Class
 ciInstanceKlass java/lang/Double 1 1 223 8 8 8 8 8 8 8 8 8 8 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 3 3 3 5 0 5 0 5 0 5 0 5 0 6 0 6 0 6 0 6 0 6 0 6 0 6 0 7 100 7 100 100 7 100 100 100 7 1 1 1 1 1 1 1 1 1 1 1 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1
@@ -6571,7 +6571,7 @@ instanceKlass com/sun/org/apache/xerces/internal/utils/XMLSecurityManager$NameMa
 instanceKlass com/sun/org/apache/xerces/internal/utils/XMLSecurityManager$State
 instanceKlass com/sun/org/apache/xerces/internal/utils/XMLSecurityManager$Limit
 instanceKlass org/springframework/expression/spel/SpelCompilerMode
-instanceKlass com/fasterxml/jackson/core/JsonParser$NumberType
+instanceKlass com/fasterxml/jackson/core/JsonParser$IntegerType
 instanceKlass org/springframework/boot/ansi/AnsiOutput$Enabled
 instanceKlass org/springframework/boot/autoconfigure/condition/ConditionMessage$Style
 instanceKlass org/springframework/boot/autoconfigure/condition/OnClassCondition$MatchType
@@ -6639,7 +6639,7 @@ instanceKlass org/springframework/core/ConstantException
 instanceKlass java/nio/charset/UnsupportedCharsetException
 instanceKlass org/springframework/http/InvalidMediaTypeException
 instanceKlass org/springframework/util/InvalidMimeTypeException
-instanceKlass java/lang/NumberFormatException
+instanceKlass java/lang/IntegerFormatException
 ciInstanceKlass java/lang/IllegalArgumentException 1 1 27 1 1 1 1 1 1 1 1 1 1 1 1 5 0 100 7 1 12 12 12 12 10 10 10 10 1
 ciInstanceKlass java/lang/reflect/Array 1 1 70 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 100 100 100 7 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 12 12 12 10 10 10 1
 ciInstanceKlass java/util/HashMap$TreeNode 0 0 177 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 100 100 100 100 100 100 100 100 100 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 1 1
@@ -6916,7 +6916,7 @@ ciMethod java/lang/Character <init> (C)V 1025 1 130 0 -1
 ciMethod java/lang/Character valueOf (C)Ljava/lang/Character; 1889 1 10069 0 0
 ciMethod java/lang/Float valueOf (F)Ljava/lang/Float; 0 0 23 0 0
 ciMethod java/lang/Float <init> (F)V 0 0 25 0 -1
-ciMethod java/lang/Number <init> ()V 3337 1 21760 0 -1
+ciMethod java/lang/Integer <init> ()V 3337 1 21760 0 -1
 ciMethod java/lang/Double valueOf (D)Ljava/lang/Double; 0 0 1 0 0
 ciMethod java/lang/Double <init> (D)V 0 0 4 0 -1
 ciMethod java/lang/Byte valueOf (B)Ljava/lang/Byte; 0 0 13 0 0
@@ -7153,7 +7153,7 @@ ciMethod sun/reflect/generics/visitor/Reifier reifyTypeArguments ([Lsun/reflect/
 ciMethod sun/reflect/generics/visitor/Reifier getResult ()Ljava/lang/reflect/Type; 433 1 8162 0 0
 ciMethod sun/reflect/generics/visitor/Reifier visitClassTypeSignature (Lsun/reflect/generics/tree/ClassTypeSignature;)V 761 1 8314 0 -1
 ciMethod java/lang/reflect/GenericArrayType getGenericComponentType ()Ljava/lang/reflect/Type; 0 0 1 0 -1
-ciMethodData java/lang/Number <init> ()V 2 21906 orig 264 8 177 206 102 0 0 0 0 96 211 36 87 0 0 0 0 48 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 161 1 0 0 137 159 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 2 0x10002 0x53f1 oops 0
+ciMethodData java/lang/Integer <init> ()V 2 21906 orig 264 8 177 206 102 0 0 0 0 96 211 36 87 0 0 0 0 48 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 161 1 0 0 137 159 2 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 16 0 0 0 255 255 255 255 2 0 1 0 0 0 0 0 data 2 0x10002 0x53f1 oops 0
 ciMethodData java/util/Collections emptySet ()Ljava/util/Set; 2 14124 orig 264 8 177 206 102 0 0 0 0 24 65 40 87 0 0 0 0 24 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 56 0 0 0 161 183 1 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
 ciMethodData java/util/LinkedHashMap afterNodeAccess (Ljava/util/HashMap$Node;)V 2 8252 orig 264 8 177 206 102 0 0 0 0 232 252 50 87 0 0 0 0 104 2 0 0 200 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 225 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 17 0 2 0 0 0 24 1 0 0 255 255 255 255 7 0 4 0 0 0 0 0 data 35 0x40007 0x1ebc 0x118 0x180 0xe0007 0x7 0xf8 0x179 0x120004 0x0 0x5d0342c0 0x179 0x0 0x0 0x290007 0x179 0x38 0x0 0x320003 0x0 0x18 0x3e0007 0x0 0x38 0x179 0x480003 0x179 0x18 0x4f0007 0x179 0x38 0x0 0x570003 0x0 0x18 oops 1 10 java/util/LinkedHashMap$Entry
 ciMethodData java/util/ArrayList$Itr hasNext ()Z 2 11324 orig 264 8 177 206 102 0 0 0 0 120 225 72 87 0 0 0 0 144 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 149 1 0 0 57 85 1 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 6 0 2 0 0 0 72 0 0 0 255 255 255 255 2 0 8 0 0 0 0 0 data 9 0x80002 0x2aa7 0xb0007 0xdd5 0x38 0x1cd2 0xf0003 0x1cd2 0x18 oops 0

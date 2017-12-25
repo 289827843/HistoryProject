@@ -10,7 +10,7 @@
 #   Check if swap backing store is full
 #   Use 64 bit Java on a 64 bit OS
 #   Decrease Java heap size (-Xmx/-Xms)
-#   Decrease number of Java threads
+#   Decrease Integer of Java threads
 #   Decrease Java thread stack sizes (-Xss)
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
@@ -251,9 +251,9 @@ Heap after GC invocations=18 (full 2):
 Deoptimization events (10 events):
 Event: 17832.589 Thread 0x000000005d734000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000043dab4c method=org.apache.coyote.http11.Http11Processor.prepareResponse()V @ 60
 Event: 17832.590 Thread 0x000000005d734000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00000000043cc608 method=org.apache.coyote.http11.Http11OutputBuffer.nextRequest()V @ 16
-Event: 17833.100 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000004357324 method=com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;)Ljava/lanÍJŠlFjÑ@
-Event: 17833.100 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000439cd10 method=com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializatioÇÒžmFjÑ@
-Event: 17833.100 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000328ee98 method=com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;)LjavaÊvFjÑ@
+Event: 17833.100 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000004357324 method=com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;)Ljava/lanï¿½Jï¿½lFjï¿½@
+Event: 17833.100 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000439cd10 method=com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/Deserializatioï¿½ÒžmFjï¿½@
+Event: 17833.100 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000328ee98 method=com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(Lcom/fasterxml/jackson/core/JsonParser;Lcom/fasterxml/jackson/databind/DeserializationContext;)Ljavaï¿½vFjï¿½@
 Event: 17833.101 Thread 0x000000005d738000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000003bd5ff0 method=java.util.concurrent.ConcurrentLinkedQueue.add(Ljava/lang/Object;)Z @ 2
 Event: 18131.983 Thread 0x000000005d737000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00000000043a8578 method=sun.nio.ch.SocketChannelImpl.implCloseSelectableChannel()V @ 71
 Event: 24399.024 Thread 0x000000005d2cd000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000000000340c6ec method=ch.qos.logback.core.pattern.FormattingConverter.write(Ljava/lang/StringBuilder;Ljava/lang/Object;)V @ 114

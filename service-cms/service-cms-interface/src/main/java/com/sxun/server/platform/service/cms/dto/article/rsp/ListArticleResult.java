@@ -8,15 +8,15 @@ import java.sql.Array;
 @ApiObject(description = "文章查询结果对象")
 public class ListArticleResult {
     @ApiObjectField(description = "当前页",required=true)
-    private Number current_page;
+    private Integer current_page;
     @ApiObjectField(description = "每页记录数",required=true)
-    private Number page_size;
+    private Integer page_size;
     @ApiObjectField(description = "总页数",required=true)
-    private Number total_page;
+    private Integer total_page;
     @ApiObjectField(description = "总记录数",required=true)
-    private Number tatal_count;
+    private Integer tatal_count;
     @ApiObjectField(description = "文章id",required=true)
-    private Number article_id;
+    private Integer article_id;
     @ApiObjectField(description = "文章标题",required=true)
     private String title;
     @ApiObjectField(description = "文章来源",required=true)
@@ -26,7 +26,7 @@ public class ListArticleResult {
     @ApiObjectField(description = "文章类型",required=true)
     private String article_type;
     @ApiObjectField(description = "所属目录id",required=true)
-    private Number dir_id;
+    private Integer dir_id;
     @ApiObjectField(description = "审核结果")
     private String audit_meno;
     @ApiObjectField(description = "创建时间",required=true)
@@ -34,53 +34,53 @@ public class ListArticleResult {
     @ApiObjectField(description = "修改时间",required=true)
     private String modify_time;
     @ApiObjectField(description = "文章状态",required=true,allowedvalues ={"0","1","2","3"})
-    private Number staus;
+    private Integer staus;
     @ApiObjectField(description = "拥有者id",required=true)
-    private Number own_user_id;
+    private Integer own_user_id;
     @ApiObjectField(description = "审核者id，-1代表还没有审核人")
-    private Number audit_user_id;
+    private Integer audit_user_id;
     @ApiObjectField(description = "封面图片列表")
     private Array[] cover_list;
     @ApiObjectField(description = "图片id",required=true)
-    private Number file_id;
+    private Integer file_id;
 
-    public Number getCurrent_page() {
+    public Integer getCurrent_page() {
         return current_page;
     }
 
-    public void setCurrent_page(Number current_page) {
+    public void setCurrent_page(Integer current_page) {
         this.current_page = current_page;
     }
 
-    public Number getPage_size() {
+    public Integer getPage_size() {
         return page_size;
     }
 
-    public void setPage_size(Number page_size) {
+    public void setPage_size(Integer page_size) {
         this.page_size = page_size;
     }
 
-    public Number getTotal_page() {
+    public Integer getTotal_page() {
         return total_page;
     }
 
-    public void setTotal_page(Number total_page) {
+    public void setTotal_page(Integer total_page) {
         this.total_page = total_page;
     }
 
-    public Number getTatal_count() {
+    public Integer getTatal_count() {
         return tatal_count;
     }
 
-    public void setTatal_count(Number tatal_count) {
+    public void setTatal_count(Integer tatal_count) {
         this.tatal_count = tatal_count;
     }
 
-    public Number getArticle_id() {
+    public Integer getArticle_id() {
         return article_id;
     }
 
-    public void setArticle_id(Number article_id) {
+    public void setArticle_id(Integer article_id) {
         this.article_id = article_id;
     }
 
@@ -116,11 +116,11 @@ public class ListArticleResult {
         this.article_type = article_type;
     }
 
-    public Number getDir_id() {
+    public Integer getDir_id() {
         return dir_id;
     }
 
-    public void setDir_id(Number dir_id) {
+    public void setDir_id(Integer dir_id) {
         this.dir_id = dir_id;
     }
 
@@ -148,27 +148,27 @@ public class ListArticleResult {
         this.modify_time = modify_time;
     }
 
-    public Number getStaus() {
+    public Integer getStaus() {
         return staus;
     }
 
-    public void setStaus(Number staus) {
+    public void setStaus(Integer staus) {
         this.staus = staus;
     }
 
-    public Number getOwn_user_id() {
+    public Integer getOwn_user_id() {
         return own_user_id;
     }
 
-    public void setOwn_user_id(Number own_user_id) {
+    public void setOwn_user_id(Integer own_user_id) {
         this.own_user_id = own_user_id;
     }
 
-    public Number getAudit_user_id() {
+    public Integer getAudit_user_id() {
         return audit_user_id;
     }
 
-    public void setAudit_user_id(Number audit_user_id) {
+    public void setAudit_user_id(Integer audit_user_id) {
         this.audit_user_id = audit_user_id;
     }
 
@@ -181,11 +181,11 @@ public class ListArticleResult {
         this.cover_list = cover_list;
     }
 
-    public Number getFile_id() {
+    public Integer getFile_id() {
         return file_id;
     }
 
-    public void setFile_id(Number file_id) {
+    public void setFile_id(Integer file_id) {
         this.file_id = file_id;
     }
 }

@@ -19,4 +19,34 @@ public class CmsFileServiceImpl extends AbstractService<CmsFile> implements CmsF
     @Resource
     private CmsFileMapper cmsFileMapper;
 
+    @Override
+    public int saveFirle(CmsFile cmsFile) {
+        int row=cmsFileMapper.insertFile(cmsFile);
+        if(row>0){
+            int frileId=cmsFileMapper.findFirleId(cmsFile);
+            return frileId;
+        }else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int delFirle(Integer file_id) {
+        int row=cmsFileMapper.deleteFirle(file_id);
+        if(row>0){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
+
+    @Override
+    public CmsFile find(Integer file_id) {
+        CmsFile cmsFile=cmsFileMapper.findByFileId(file_id);
+        if(cmsFile!=null){
+            return cmsFile;
+        }else {
+            return null;
+        }
+    }
 }

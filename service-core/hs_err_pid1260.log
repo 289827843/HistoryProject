@@ -10,7 +10,7 @@
 #   Check if swap backing store is full
 #   Use 64 bit Java on a 64 bit OS
 #   Decrease Java heap size (-Xmx/-Xms)
-#   Decrease number of Java threads
+#   Decrease Integer of Java threads
 #   Decrease Java thread stack sizes (-Xss)
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
@@ -237,7 +237,7 @@ Event: 113.308 Thread 0x000000005dc1d800 Uncommon trap: reason=bimorphic action=
 Event: 113.308 Thread 0x000000005dc1d800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x000000000357df94 method=java.util.regex.Pattern$7.isSatisfiedBy(I)Z @ 16
 Event: 113.308 Thread 0x000000005dc1d800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00000000035642e4 method=java.util.regex.Pattern$CharProperty$1.isSatisfiedBy(I)Z @ 5
 Event: 113.309 Thread 0x000000005dc1d800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002cc2484 method=java.util.regex.Pattern$BmpCharProperty.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 34
-Event: 113.322 Thread 0x000000005dc1d800 Uncommon trap: reason=null_check action=make_not_entrant pc=0x00000000037a2c3c method=org.springframework.core.annotation.AnnotatedElementUtils.searchWithFindSemantics(Ljava/lang/reflect/AnnotatedElement;Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;$S�ڴS\@
+Event: 113.322 Thread 0x000000005dc1d800 Uncommon trap: reason=null_check action=make_not_entrant pc=0x00000000037a2c3c method=org.springframework.core.annotation.AnnotatedElementUtils.searchWithFindSemantics(Ljava/lang/reflect/AnnotatedElement;Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;$S�ڴS\@
 
 Internal exceptions (10 events):
 Event: 1429.583 Thread 0x000000005c341800 Exception <a 'java/net/SocketTimeoutException': Read timed out> (0x00000000de525770) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\prims\jni.cpp, line 735]

@@ -10,7 +10,7 @@
 #   Check if swap backing store is full
 #   Use 64 bit Java on a 64 bit OS
 #   Decrease Java heap size (-Xmx/-Xms)
-#   Decrease number of Java threads
+#   Decrease Integer of Java threads
 #   Decrease Java thread stack sizes (-Xss)
 #   Set larger code cache with -XX:ReservedCodeCacheSize=
 # This output file may be truncated or incomplete.
@@ -216,15 +216,15 @@ Event: 7.704 Thread 0x00000000024a2800 Uncommon trap: reason=class_check action=
 
 Internal exceptions (10 events):
 Event: 7.321 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/discovery/AbstractDiscoveryClientOptionalArgsCustomizer> (0x00000000d8d681e8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionar
-Event: 7.325 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/discovery/shared/transport/jersey/Jersey1DiscoveryClientOptionalArgsCustomizer> (0x00000000d8dbb610) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\cl∞V‰È«P@
-Event: 7.329 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/discovery/DiscoveryClient$DiscoveryClientOptionalArgsCustomizer> (0x00000000d8e0dfe0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDâóp∑S@
-Event: 7.332 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/netflix/eureka/MutableDiscoveryClientOptionalArgsCustomizer> (0x00000000d8e47ad0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfiZúƒO|@
+Event: 7.325 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/discovery/shared/transport/jersey/Jersey1DiscoveryClientOptionalArgsCustomizer> (0x00000000d8dbb610) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\clÔøΩVÔøΩÔøΩÔøΩP@
+Event: 7.329 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/discovery/DiscoveryClient$DiscoveryClientOptionalArgsCustomizer> (0x00000000d8e0dfe0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDÔøΩÔøΩpÔøΩS@
+Event: 7.332 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/netflix/eureka/MutableDiscoveryClientOptionalArgsCustomizer> (0x00000000d8e47ad0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfiZÔøΩÔøΩO|@
 Event: 7.371 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d8f32fa0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 7.373 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/appinfo/ApplicationInfoManagerCustomizer> (0x00000000d8f5be08) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 2102“xÃ©@
+Event: 7.373 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/appinfo/ApplicationInfoManagerCustomizer> (0x00000000d8f5be08) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 2102ÔøΩxÃ©@
 Event: 7.416 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': java/lang/ObjectCustomizer> (0x00000000d90428c0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 7.417 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/netflix/eureka/EurekaClientConfigBeanCustomizer> (0x00000000d9074ff0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDicR3«dlØ@
+Event: 7.417 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/netflix/eureka/EurekaClientConfigBeanCustomizer> (0x00000000d9074ff0) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDicR3ÔøΩdlÔøΩ@
 Event: 7.421 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': com/netflix/discovery/EurekaClientConfigCustomizer> (0x00000000d912a4a8) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionary.cpp, line 210]
-Event: 7.430 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/netflix/eureka/EurekaConstantsCustomizer> (0x00000000d919ad20) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionaryı}⁄çH@
+Event: 7.430 Thread 0x00000000024a2800 Exception <a 'java/lang/ClassNotFoundException': org/springframework/cloud/netflix/eureka/EurekaConstantsCustomizer> (0x00000000d919ad20) thrown at [D:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u77\6540\hotspot\src\share\vm\classfile\systemDictionaryÔøΩ}⁄çH@
 
 Events (10 events):
 Event: 7.855 loading class java/security/NoSuchAlgorithmException done

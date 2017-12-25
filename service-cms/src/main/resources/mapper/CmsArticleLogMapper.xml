@@ -13,16 +13,16 @@
   </resultMap>
   <insert id="insertArticleLog" parameterType="com.sxun.server.platform.service.cms.model.CmsArticleLog">
     insert into cms_article_log(
-    `article_log_id,
+    article_log_id,
     opr_user_id,
     opr_content,
     create_time,
     article_id)values(
     NULL,
-    #{opr_user_id},
-    #{ opr_content},
+    #{oprUserId},
+    #{oprContent},
     NOW(),
-    #{article_id},
+    #{articleId}
     );
   </insert>
 </mapper>

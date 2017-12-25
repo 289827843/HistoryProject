@@ -11,4 +11,28 @@
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
     <result column="file_ext" jdbcType="VARCHAR" property="fileExt" />
   </resultMap>
+  <insert id="insertFile" parameterType="com.sxun.server.platform.service.cms.model.CmsFile">
+    insert into cms_file(
+    file_id,
+    file_path,
+    create_time,
+    file_name,
+    file_ext)values(
+    NULL,
+    #{filePath},
+    NOW(),
+    #{fileName},
+    #{fileExt},
+    );
+  </insert>
+  <select id="findFirleId" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsFile" >
+    select file_id from cms_file where  file_path=#{file_path} and file_name=#{fileName} and file_ext=#{fileExt}
+  </select>
+  <delete id="deleteFirle" parameterType="Integer">
+    delete from cms_file
+    where file_id=#{0}
+  </delete>
+  <select id="findByFileId" resultMap="BaseResultMap" >
+    select * from cms_file where file_id=#{file_id}
+  </select>
 </mapper>
