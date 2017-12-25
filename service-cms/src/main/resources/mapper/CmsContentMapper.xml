@@ -12,4 +12,34 @@
     <result column="article_id" jdbcType="INTEGER" property="articleId" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+  <insert id="insertContent" parameterType="com.sxun.server.platform.service.cms.model.CmsContent">
+    insert into cms_content(
+    `content_id,
+    seq_no,
+    content_type,
+    content,
+    file_id,
+    article_id)values(
+    NULL,
+    #{seq_no},
+    #{content_type},
+    #{content},
+    #{file_id},
+    #{article_id},
+    );
+  </insert>
+  <delete id="deleteContent" parameterType="Integer">
+    delete from cms_content
+    where acticle_id=#{acticle_id}
+  </delete>
+  <select id="getCounts" resultType="Integer">
+    select count(*)
+    from  cms_content
+    where article_id=#{article_id}
+  </select>
+  <select id="findContents" resultMap="com.sxun.server.platform.service.cms.model.CmsContent">
+    select *
+    from  cms_content
+    where article_id=#{article_id}
+  </select>
 </mapper>

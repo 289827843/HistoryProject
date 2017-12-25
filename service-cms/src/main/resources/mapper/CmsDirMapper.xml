@@ -14,4 +14,66 @@
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="path" jdbcType="VARCHAR" property="path" />
   </resultMap>
+    <insert id="insertDir" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+      insert into cms_dir(
+      `dir_id,
+      parent_dir_id,
+      cata_id,
+      create_time,
+      name,
+      is_display,
+      level,
+      path)values(
+      NULL,
+      #{ parent_dir_id},
+      #{cata_id},
+      NOW(),
+      1,
+      #{level},
+      #{path}
+      );
+    </insert>
+
+    <select id="findDirid" resultType="Integer">
+      <if test="name != null and name != ''">
+      select dir_id from cms_dir where name=#{name}
+      </if>
+    </select>
+    <update id="updateDir" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+      update cms_dir
+      set name=#{name},
+      is_display=#{is_display}
+      where dir_id=#{dir_id}
+
+    </update>
+  <delete id="deleteDir" parameterType="Integer">
+    delete from cms_dir
+    where dir_id=#{dir_id}
+  </delete>
+  <select id="hasChilds" resultType="Integer">
+    select count(*)
+    from cms_dir
+    where parent_dir_id=#{dir_id}
+  </select>
+  <select id="findDirs" resultMap="com.sxun.server.platform.service.cms.dto.dir.rsp.ListDirResult">
+    select dir_id,cata_id,parent_dir_id as parent_id,name,level,is_display
+    from cms_dir
+    <where>
+      <if test="dir_id != null ">
+        and dir_id=#{dir_id}
+      </if>
+      <if test="cata_id != null ">
+        and cata_id =#{cata_id}
+      </if>
+      <if test="parent_id != null ">
+        and parent_dir_id=#{parent_id}
+      </if>
+      <if test="name!= null ">
+        and name =#{name}
+      </if>
+      <if test="is_display!= null">
+        and is_display =#{is_display}
+      </if>
+    </where>
+  </select>
 </mapper>

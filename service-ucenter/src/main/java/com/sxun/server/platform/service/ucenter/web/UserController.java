@@ -9,11 +9,14 @@ import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
 import com.sxun.server.platform.service.ucenter.itf.IUserController;
+import com.sxun.server.platform.service.ucenter.model.UcenterUser;
+import com.sxun.server.platform.service.ucenter.service.UcenterUserService;
 import org.jsondoc.core.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by leizheng on 12/10/2017.
@@ -26,13 +29,16 @@ public class UserController implements IUserController {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private UcenterUserService ucenterUserService;
+
     @ApiMethod(description = "添加用户账号")
     @RequestMapping(path="/add", method= RequestMethod.POST)
     @Override
     public @ApiResponseObject
     Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
 
-        Result<AddUserResult> re= ResultGenerator.genSuccessResult(new AddUserResult());
+        Result re= ResultGenerator.genSuccessResult();
         re.setMessage(IpUtil.getIpAddr(request));
         return re;
     }
@@ -48,7 +54,11 @@ public class UserController implements IUserController {
     @RequestMapping(path="/change_status", method= RequestMethod.POST)
     @Override
     public  @ApiResponseObject Result changeStatus(@ApiBodyObject @RequestBody ChangeUserStatusParam param) {
-        return null;
+        UcenterUser ucenterUser = new UcenterUser();
+        List<UcenterUser> UcenterUser = ucenterUserService.findAll();
+       Result<List<UcenterUser>> result= new  Result<List<UcenterUser>>();
+        result.setDataObj(UcenterUser);
+        return result;
     }
 
     @ApiMethod(description = "修改密码")

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -19,4 +20,35 @@ public class CmsContentServiceImpl extends AbstractService<CmsContent> implement
     @Resource
     private CmsContentMapper cmsContentMapper;
 
+    @Override
+    public void saveContent(CmsContent cmsContent) {
+        if(cmsContent!=null) {
+            int rows = cmsContentMapper.insertContent(cmsContent);
+        }
+    }
+
+    @Override
+    public void deleteContent(Integer article_id) {
+        if(article_id!=null || article_id>0){
+            cmsContentMapper.deleteContent(article_id);
+        }
+    }
+
+    @Override
+    public int getCounts(Integer article_id) {
+        if(article_id!=null && article_id>0){
+            int count=cmsContentMapper.getCounts(article_id);
+            return count;
+        }
+        return 0;
+    }
+
+    @Override
+    public List<CmsContent> findContents(Integer article_id) {
+        if(article_id!=null || article_id>0){
+            List<CmsContent> cmsContents=cmsContentMapper.findContents(article_id);
+            return  cmsContents;
+        }
+        return null;
+    }
 }

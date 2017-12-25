@@ -62,6 +62,20 @@ public class CmsArticle {
     @Column(name = "dir_id")
     private Integer dirId;
 
+    public String getAuditMemo() {
+        return auditMemo;
+    }
+
+    public void setAuditMemo(String auditMemo) {
+        this.auditMemo = auditMemo;
+    }
+
+    /**
+     * 归属目录id
+     */
+    @Column(name = "audit_memo")
+    private String auditMemo;
+
     /**
      * @return article_id
      */
@@ -251,4 +265,5 @@ public class CmsArticle {
     public void setDirId(Integer dirId) {
         this.dirId = dirId;
     }
+
 }
