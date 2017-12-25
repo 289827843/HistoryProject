@@ -9,13 +9,18 @@ import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
 import com.sxun.server.platform.service.ucenter.itf.IUserController;
+import com.sxun.server.platform.service.ucenter.model.UcenterUserAvatar;
+import com.sxun.server.platform.service.ucenter.service.UcenterUserAvatarService;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserLogService;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserService;
 import org.jsondoc.core.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +37,10 @@ public class UserController implements IUserController {
     private UcenterUserService ucenterUserService;
     @Autowired
     private UcenterUserLogService userLogService;
+    @Autowired
+    private UcenterUserAvatarService userAvatarService;
+    @Autowired
+    private  HttpServletResponse response;
 
 
     private  String key ;
@@ -106,22 +115,65 @@ public class UserController implements IUserController {
     @ApiMethod(description = "修改密码")
     @RequestMapping(path="/change_pwd", method= RequestMethod.POST)
     @Override
-    public  @ApiResponseObject Result changePassword(@ApiBodyObject @RequestBody ChangeUserPasswordParam param) {
-        return null;
+    public  @ApiResponseObject Result changePassword(@ApiBodyObject @RequestBody @Valid ChangeUserPasswordParam param) {
+
+        Map<String,Object> map = ucenterUserService.changeUserPassword(param);
+
+        for (String s: map.keySet()) {
+
+            key = s;
+        }
+        if (map.get(key).equals("success")){
+
+            return ResultGenerator.genSuccessResult();
+        }else{
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+        }
+
     }
 
     @ApiMethod(description = "重置密码")
     @RequestMapping(path="/reset_ped", method= RequestMethod.POST)
     @Override
-    public  @ApiResponseObject Result resetPassword(@ApiBodyObject @RequestBody ResetUserPasswordParam param) {
-        return null;
+    public  @ApiResponseObject Result resetPassword(@ApiBodyObject @RequestBody @Valid ResetUserPasswordParam param) {
+
+        Map<String,Object> map = ucenterUserService.resetUserPassword(param);
+
+         for (String s: map.keySet()) {
+
+            key = s;
+         }
+        if (map.get(key).equals("success")){
+
+            return ResultGenerator.genSuccessResult();
+        }else{
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+        }
+
     }
 
     @ApiMethod(description = "更新头像")
     @RequestMapping(path="/update_avatar", method= RequestMethod.POST)
     @Override
-    public  @ApiResponseObject Result<AvatarResult> updateAvatar(@ApiBodyObject @RequestBody UpdateAvatarParam param) {
-        return null;
+    public  @ApiResponseObject Result<AvatarResult> updateAvatar(@ApiBodyObject @RequestBody @Valid  UpdateAvatarParam param) {
+
+
+        Map<String,Object> map = ucenterUserService.updateAvatar(param);
+
+        for (String s: map.keySet()) {
+
+            key = s;
+        }
+        if (map.get(key).equals("success")){
+
+            return ResultGenerator.genSuccessResult((AvatarResult)map.get(key));
+        }else{
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+        }
+
     }
 
     @ApiMethod(description = "查询用户列表")
@@ -140,7 +192,7 @@ public class UserController implements IUserController {
             return ResultGenerator.genSuccessResult((UserListResult)map.get(key));
         }else {
 
-            return ResultGenerator.genFailResult("无用户信息");
+            return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
     }
@@ -149,8 +201,88 @@ public class UserController implements IUserController {
     @RequestMapping(path="/detail/{id}", method= RequestMethod.GET)
     @Override
     public  @ApiResponseObject Result<UserDetail> detail(@ApiPathParam(name="id",description = "用户id") @PathVariable Integer id) {
-        return null;
+
+        Map<String ,Object> map =ucenterUserService.userDetail(id);
+
+        for (String s: map.keySet()) {
+
+            key = s;
+        }
+        if (key.equals("success")){
+
+            return ResultGenerator.genSuccessResult((UserDetail)map.get(key));
+        }else {
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+       }
+
     }
+
+    @ApiMethod(description = "用户对应角色查询")
+    @RequestMapping(path="/user_role/list/{id}", method= RequestMethod.GET)
+    @Override
+    public @ApiResponseObject Result<List> userRole(@ApiPathParam(name="id",description = "用户id") @PathVariable Integer id){
+
+        Map<String,Object> map = ucenterUserService.userRole(id);
+
+        for (String s: map.keySet()) {
+
+            key = s;
+        }
+        if (key.equals("success")){
+
+            return ResultGenerator.genSuccessResult(new ArrayList((ArrayList)map.get(key)));
+        }else {
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+        }
+
+   }
+
+
+    @ApiMethod(description = "用户对应角色更新")
+    @RequestMapping(path="/user_role/update", method= RequestMethod.POST)
+    @Override
+    public @ApiResponseObject Result userRoleUpdate(@ApiBodyObject @RequestBody @Valid  UpdateUserRoleParam param){
+
+
+        Map<String,Object> map = ucenterUserService.userRoleUpdate(param);
+
+        for (String s: map.keySet()) {
+
+            key = s;
+        }
+        if (key.equals("success")){
+
+            return ResultGenerator.genSuccessResult(map.get(key).toString());
+        }else {
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+        }
+
+    }
+
+    @ApiMethod(description = "用户头像获取")
+    @RequestMapping(path="/avatar/{avatar_id}", method= RequestMethod.POST)
+    @Override
+    public @ApiResponseObject Result avatar(@ApiPathParam(name="avatar_id",description = "用户id") @PathVariable  Integer avatar_id){
+
+        Map<String,Object> map = userAvatarService.outPutAvatar(response,avatar_id);
+
+        for (String s: map.keySet()) {
+
+            key = s;
+        }
+        if (key.equals("success")){
+
+            return ResultGenerator.genSuccessResult(map.get(key));
+        }else {
+
+            return ResultGenerator.genFailResult(map.get(key).toString());
+        }
+
+    }
+
 
 
 }

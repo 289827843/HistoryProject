@@ -2,35 +2,24 @@ package com.sxun.server.platform.service.ucenter.service.impl;
 
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.sxun.server.common.util.IpUtil;
 import com.sxun.server.common.util.MD5Util;
 import com.sxun.server.common.web.core.AbstractService;
 import com.sxun.server.platform.service.ucenter.Util.Tools;
 import com.sxun.server.platform.service.ucenter.dao.UcenterUserMapper;
-import com.sxun.server.platform.service.ucenter.dto.user.req.AddUserParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.ChangeUserStatusParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.SearchUserParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserParam;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
+import com.sxun.server.platform.service.ucenter.dto.user.req.*;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.*;
 import com.sxun.server.platform.service.ucenter.model.UcenterUser;
+import com.sxun.server.platform.service.ucenter.model.UcenterUserAvatar;
 import com.sxun.server.platform.service.ucenter.model.UcenterUserDetail;
-import com.sxun.server.platform.service.ucenter.service.UcenterUserDetailService;
-import com.sxun.server.platform.service.ucenter.service.UcenterUserLogService;
-import com.sxun.server.platform.service.ucenter.service.UcenterUserService;
-import org.apache.catalina.startup.Tool;
+import com.sxun.server.platform.service.ucenter.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.locks.Condition;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by CodeGenerator on 2017/12/10.
@@ -50,8 +39,10 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
 
     @Resource
     private UcenterUserMapper ucenterUserMapper;
+    @Resource
+    private UcenterUserAvatarService ucenterUserAvatarService;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat();
+    private   Map<String,Object> map = new HashMap<String, Object>();
 
     private String account ,name ,nickname ,password ,mobile ,email;
     int sex;
@@ -74,7 +65,6 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
     @Override
     public Map<String,Object> addUser(AddUserParam param) {
 
-        Map<String, Object> map = new HashMap<String, Object>();
         account = param.getAccount();
         name = param.getName();
         nickname = param.getNickname();
@@ -121,8 +111,6 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
     @Override
     public Map<String, Object> updateUser(UpdateUserParam param) {
 
-         Map<String,Object> map = new HashMap<String, Object>();
-
          UcenterUser ucenterUser = this.findById(param.getUser_id());
 
          if (ucenterUser == null ){
@@ -157,7 +145,6 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
     @Override
     public Map<String, Object> changeUserStatus(ChangeUserStatusParam param) {
 
-        Map<String,Object> map = new HashMap<String, Object>();
         UcenterUser ucenterUser = this.findById(param.getUser_id());
          if (ucenterUser == null){
 
@@ -179,7 +166,6 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
     public Map<String, Object> userListResult(SearchUserParam param) {
 
          PageHelper.startPage(param.getCurrent_page(),param.getPage_size());
-         Map<String,Object> map = new HashMap<String, Object>();
 
          List<UserDetail> listUserDatail = new ArrayList<UserDetail>();
          UserListResult userListResult = new UserListResult();
@@ -211,7 +197,6 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
 
            }
 
-
 //            PageInfo pageInfo = new PageInfo(listUserDatail);
            if (param.getPage_size() <= 0){
 
@@ -229,4 +214,167 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
 
     }
 
+    @Override
+    public Map<String, Object> changeUserPassword(ChangeUserPasswordParam param) {
+
+              UcenterUser user = this.findById(param.getUser_id());
+              if (user == null){
+
+                  map.put("fail","用户不存在");
+
+                  return map;
+              }
+              if (!user.getPwd().equals(MD5Util.MD5(param.getOld_pwd()+user.getAccount()))){
+
+                  map.put("fail","旧密码输入不正确");
+
+                  return map;
+              }
+
+              UcenterUser ucenterUser = new UcenterUser();
+              ucenterUser.setUserId(param.getUser_id());
+              ucenterUser.setPwd(MD5Util.MD5(param.getNew_pwd()+user.getAccount()));
+              this.save(ucenterUser);
+
+              userLogService.logChangeUserPassword(param,IpUtil.getIpAddr(request));
+              map.put("success","success");
+
+              return map;
+    }
+
+
+    @Override
+    public Map<String, Object> resetUserPassword(ResetUserPasswordParam param) {
+
+        UcenterUser user = this.findById(param.getUser_id());
+
+           if (user == null){
+
+               map.put("fail","用户不存在");
+               return map;
+           }
+
+         UcenterUser ucenterUser = new UcenterUser();
+         ucenterUser.setUserId(param.getUser_id());
+         String pwd = Tools.getRandomPwd(6)+user.getAccount();
+         ucenterUser.setPwd(MD5Util.MD5(pwd));
+         this.update(ucenterUser);
+
+         userLogService.logResetUserPassword(param,IpUtil.getIpAddr(request));
+
+         map.put("success","success");
+         return map;
+    }
+
+    @Override
+    public Map<String, Object> updateAvatar(UpdateAvatarParam param) {
+
+        UcenterUser user = this.findById(param.getUser_id());
+
+        if (user == null){
+
+            map.put("fail","用户不存在");
+            return map;
+        }
+
+        UcenterUserAvatar userAvatar = new UcenterUserAvatar();
+        userAvatar.setImgData(param.getAvatar_base64().getBytes());
+        userAvatar.setUserId(param.getUser_id());
+
+        UcenterUserAvatar userAvatar1 =ucenterUserAvatarService.findById(param.getUser_id());
+
+        if (userAvatar1 == null ){
+
+            ucenterUserAvatarService.save(userAvatar);
+        }else{
+
+            ucenterUserAvatarService.update(userAvatar);
+        }
+
+         userLogService.logUpdateAvatar(param,IpUtil.getIpAddr(request));
+
+         map.put("success",userAvatar);
+         return map;
+    }
+
+
+    @Override
+    public Map<String, Object> userDetail(Integer user_id) {
+
+        if (user_id == null){
+
+            map.put("fail","userId不能为空");
+            return map;
+        }
+
+        UserDetail userDetail = ucenterUserMapper.userDetail(user_id);
+
+        if (userDetail == null){
+
+            map.put("fail","用户不存在");
+            return map;
+
+        }
+
+        map.put("success",userDetail);
+        return map;
+
+    }
+
+
+    @Override
+    public Map<String, Object> userRole(Integer user_id) {
+
+       if (user_id == null){
+
+           map.put("fail","userId不能为空");
+           return map;
+       }
+        List<List> arrayList = new ArrayList<List>();
+
+        List<UserRoleResult> roleResults = ucenterUserMapper.userRole(user_id);  //角色列表
+        List<UserPermissionResult> permissionResults = ucenterUserMapper.userPermission(user_id);  //去重后的权限列表
+
+        arrayList.add(roleResults);
+        arrayList.add(permissionResults);
+        map.put("success",arrayList);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> userRoleUpdate(UpdateUserRoleParam param) {
+
+          UserRoleId userRoleId = ucenterUserMapper.selectUserRole(param);
+
+          if (userRoleId == null){
+
+              map.put("fail","用户角色不存在 请输入正确user_i、role_id、sys_id");
+              return map;
+
+          }
+          UcenterRole ucenterRole = new UcenterRole();
+          ucenterRole.setRole_id(param.getRole_id());
+          ucenterRole.setSys_id(param.getSys_id());
+          ucenterRole.setDesc(param.getDesc());
+          ucenterRole.setName(param.getName());
+
+          ucenterUserMapper.updateRole(ucenterRole);
+
+           map.put("success","success");
+           return map;
+     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

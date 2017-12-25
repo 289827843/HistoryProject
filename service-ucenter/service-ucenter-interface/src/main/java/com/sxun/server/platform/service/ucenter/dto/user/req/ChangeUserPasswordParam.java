@@ -3,18 +3,27 @@ package com.sxun.server.platform.service.ucenter.dto.user.req;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Created by leizheng on 12/10/2017.
  */
 @ApiObject(description = "修改用户密码请求对象")
 public class ChangeUserPasswordParam {
     @ApiObjectField(description = "操作员ID,自己更新则是自身userid",required=true)
+    @NotNull
     private int opr_user_id;
     @ApiObjectField(description = "需要更新的用户id",required=true)
+    @NotNull
     private int user_id;
     @ApiObjectField(description = "旧密码，最小6位,最大30位",required=true)
+    @NotNull
+    @Size(min = 6,max = 30,message = "旧密码，最小6位,最大30位")
     private int old_pwd;
 
+    @NotNull
+    @Size(min = 6,max = 30,message = "新密码，最小6位,最大30位")
     @ApiObjectField(description = "新密码，最小6位,最大30位",required=true)
     private int new_pwd;
 

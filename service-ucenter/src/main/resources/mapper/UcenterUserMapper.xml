@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sxun.server.platform.service.cms.dao.UcenterUserMapper">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterUserMapper">
   <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterUser">
     <!--
       WARNING - @mbg.generated
@@ -16,4 +16,86 @@
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="salt" jdbcType="VARCHAR" property="salt" />
   </resultMap>
+
+    <resultMap id="DetailResultMap" type="com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail">
+        <result column="account" jdbcType="VARCHAR" property="account" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="sex" jdbcType="TINYINT" property="sex" />
+        <result column="avatar_img_id" jdbcType="INTEGER" property="avatar_img_id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+    </resultMap>
+
+
+
+
+   <select id="findbyaccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+     select * from ucenter_user where account = #{account}
+   </select>
+
+
+    <select id="userListResult" parameterType="com.sxun.server.platform.service.ucenter.dto.user.req.SearchUserParam" resultMap="DetailResultMap">
+
+        SELECT * from ucenter_user_detail d INNER JOIN ucenter_user u ON d.user_id = u.user_id
+        <trim prefix="where" prefixOverrides="or" >
+         <if test="account != null and account != ''">
+             or u.account = #{account}
+         </if>
+         <if test="name != null and name != ''">
+             or u.name like  concat('%',#{name},'%')
+         </if>
+        <if test="nickname != null and nickname != ''">
+            or u.nickname like  concat('%',#{nickname},'%')
+        </if>
+        <if test="status != null and status != ''">
+            or u.status = #{status}
+        </if>
+        <if test="mobile != null and mobile != ''">
+            or d.mobile like concat('%',#{mobile},'%')
+        </if>
+        <if test="email != null and email != ''">
+            or d.email = #{email}
+        </if>
+        </trim>
+    </select>
+
+     <select id="userDetail" parameterType="java.lang.Integer" resultMap="DetailResultMap">
+
+         SELECT * FROM ucenter_user u INNER JOIN ucenter_user_detail d ON u.user_id = d.user_id WHERE u.user_id = #{id}
+     </select>
+
+
+    <select id="userRole" parameterType="java.lang.Integer" resultType="com.sxun.server.platform.service.ucenter.dto.user.rsp.UserRoleResult">
+
+        select r.role_id ,r.`name`,s.`name` as sName  from
+        ucenter_user_role ur inner join ucenter_role r on ur.role_id = r.role_id
+        inner join  ucenter_sys s on r.sys_id = s.sys_id
+        where ur.user_id = #{id}
+    </select>
+
+    <select id="userPermission" parameterType="java.lang.Integer" resultType="com.sxun.server.platform.service.ucenter.dto.user.rsp.UserPermissionResult">
+
+        SELECT DISTINCT r.permission_id ,p.`name`,p.type_name,p.link_url,p.sys_id FROM
+        ucenter_role_permission r INNER JOIN ucenter_permission p ON r.permission_id = p.permission_id
+        WHERE r.role_id IN (SELECT role_id FROM ucenter_user_role WHERE user_id = #{id})
+    </select>
+
+
+    <select id="selectUserRole" parameterType="com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserRoleParam"
+            resultType="com.sxun.server.platform.service.ucenter.dto.user.rsp.UserRoleId">
+
+        SELECT u.user_id , r.role_id ,r.sys_id FROM ucenter_user_role u INNER JOIN ucenter_role r ON u.role_id = r.role_id
+        WHERE u.user_id = #{user_id} AND r.role_id = #{role_id} AND r.sys_id = #{sys_id}
+    </select>
+
+
+    <update id="updateRole" parameterType="com.sxun.server.platform.service.ucenter.dto.user.rsp.UcenterRole" >
+
+        UPDATE ucenter_role SET `name` = #{name} ,`desc` = #{desc} WHERE role_id = #{role_id}
+    </update>
+
 </mapper>

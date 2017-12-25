@@ -2,9 +2,7 @@ package com.sxun.server.platform.service.ucenter.service;
 
 
 import com.sxun.server.common.web.core.Service;
-import com.sxun.server.platform.service.ucenter.dto.user.req.AddUserParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.ChangeUserStatusParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserParam;
+import com.sxun.server.platform.service.ucenter.dto.user.req.*;
 import com.sxun.server.platform.service.ucenter.model.UcenterUserLog;
 
 /**
@@ -18,5 +16,11 @@ public interface UcenterUserLogService extends Service<UcenterUserLog> {
     public void logUpdateUser(UpdateUserParam param ,String ip);
 
     public void logChangeUserStatus(ChangeUserStatusParam param ,String ip);
+
+    public void logChangeUserPassword(ChangeUserPasswordParam param,String ip);
+
+    public void logResetUserPassword(ResetUserPasswordParam param ,String ip);
+
+    public void logUpdateAvatar(UpdateAvatarParam param, String ip);
 
 }

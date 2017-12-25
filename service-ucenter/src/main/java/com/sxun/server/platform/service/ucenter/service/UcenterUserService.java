@@ -2,10 +2,7 @@ package com.sxun.server.platform.service.ucenter.service;
 
 
 import com.sxun.server.common.web.core.Service;
-import com.sxun.server.platform.service.ucenter.dto.user.req.AddUserParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.ChangeUserStatusParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.SearchUserParam;
-import com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserParam;
+import com.sxun.server.platform.service.ucenter.dto.user.req.*;
 import com.sxun.server.platform.service.ucenter.model.UcenterUser;
 
 import java.util.List;
@@ -31,5 +28,17 @@ public interface UcenterUserService extends Service<UcenterUser> {
     public Map<String,Object> changeUserStatus(ChangeUserStatusParam param);
 
     public Map<String,Object> userListResult(SearchUserParam param);
+
+    public Map<String,Object> changeUserPassword(ChangeUserPasswordParam param);
+
+    public Map<String,Object> resetUserPassword(ResetUserPasswordParam param);
+
+    public Map<String,Object> updateAvatar(UpdateAvatarParam param);
+
+    public Map<String,Object> userDetail(Integer user_id);
+
+    public Map<String,Object> userRole(Integer user_id);
+
+    public Map<String,Object> userRoleUpdate(UpdateUserRoleParam param);
 
 }
