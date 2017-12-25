@@ -12,6 +12,7 @@ import org.jsondoc.core.annotation.ApiPathParam;
 import org.jsondoc.core.annotation.ApiResponseObject;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -53,6 +54,6 @@ public interface IUserController {
     public @ApiResponseObject Result userRoleUpdate(@ApiBodyObject @RequestBody @Valid UpdateUserRoleParam param);
 
     @RequestMapping(path="/avatar/{avatar_id}", method= RequestMethod.POST)
-    public @ApiResponseObject Result avatar(@ApiPathParam(name="user_avatar_id",description = "頭像id") @PathVariable Integer avatar_id);
+    public @ApiResponseObject Result avatar(@ApiPathParam(name="user_avatar_id",description = "頭像id") @PathVariable Integer avatar_id , HttpServletResponse response);
 
 }

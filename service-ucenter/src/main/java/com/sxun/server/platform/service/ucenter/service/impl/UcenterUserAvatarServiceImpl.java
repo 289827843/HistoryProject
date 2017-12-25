@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URL;
@@ -38,38 +39,33 @@ public class UcenterUserAvatarServiceImpl extends AbstractService<UcenterUserAva
 
           }
 
-        BufferedImage  bufferedImage = null;
-        OutputStream   outputStream  = null;
         String url = new String(ucenterUserAvatar.getImgData());
-
         try {
+            FileInputStream fileInputStream = new FileInputStream(url);
+            OutputStream outputStream = response.getOutputStream();
+            int count = 0;
+            byte [] bs = new byte[1024];
 
-            bufferedImage = ImageIO.read(new URL(url));
-            outputStream =  new FileOutputStream(new File("D:\\image"));
-            ImageIO.write(bufferedImage,  "jpg", outputStream);
+            while (true){
+
+                count = fileInputStream.read(bs);
+                outputStream.write(bs);
+                outputStream.flush();
+
+                if (count < 0){
+
+                    break;
+                }
+
+            }
+            fileInputStream.close();
+            outputStream.close();
 
         }catch (Exception e){
-             e.printStackTrace();
-        }finally {
-            try {
-                if(bufferedImage != null)
-                {
-                    bufferedImage.flush();
-                }
-                if(outputStream != null){
-                    outputStream.flush();
-                    outputStream.close();
-                }
-            } catch (Exception e) {
-               e.printStackTrace();
-            }
-
+            e.printStackTrace();
         }
 
-
-
-       map.put("success",outputStream);
-
+        map.put("success","success");
         return map;
     }
 }

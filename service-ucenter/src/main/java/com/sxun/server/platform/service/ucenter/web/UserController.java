@@ -39,8 +39,6 @@ public class UserController implements IUserController {
     private UcenterUserLogService userLogService;
     @Autowired
     private UcenterUserAvatarService userAvatarService;
-    @Autowired
-    private  HttpServletResponse response;
 
 
     private  String key ;
@@ -265,7 +263,7 @@ public class UserController implements IUserController {
     @ApiMethod(description = "用户头像获取")
     @RequestMapping(path="/avatar/{avatar_id}", method= RequestMethod.POST)
     @Override
-    public @ApiResponseObject Result avatar(@ApiPathParam(name="avatar_id",description = "用户id") @PathVariable  Integer avatar_id){
+    public @ApiResponseObject Result avatar(@ApiPathParam(name="avatar_id",description = "用户id") @PathVariable  Integer avatar_id ,HttpServletResponse response){
 
         Map<String,Object> map = userAvatarService.outPutAvatar(response,avatar_id);
 
