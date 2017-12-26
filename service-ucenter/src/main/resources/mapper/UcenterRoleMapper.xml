@@ -14,7 +14,7 @@
 
   <resultMap id="roleResultMap" type="com.sxun.server.platform.service.ucenter.dto.role.rsp.RoleListResult">
     <!--
-      WARNING - @mbg.generated
+    WARNING - @mbg.generated
     -->
     <id column="role_id" jdbcType="INTEGER" property="role_id" />
     <result column="`name`" jdbcType="VARCHAR" property="name" />
@@ -47,6 +47,7 @@
 
     select * from ucenter_role where `name` = #{name}
   </select>
+
   <!--角色删除-->
   <delete id="deleteRoleByKey" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterRole">
 

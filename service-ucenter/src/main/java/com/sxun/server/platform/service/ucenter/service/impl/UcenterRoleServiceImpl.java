@@ -111,7 +111,6 @@ public class UcenterRoleServiceImpl extends AbstractService<UcenterRole> impleme
     @Override
     public int deleteRole(UcenterRole role) {
 
-
         //删除角色表
         int roleResult1 = ucenterRoleMapper.deleteRoleByKey(role);
         //删除角色权限对应表

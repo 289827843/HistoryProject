@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UcenterRoleMapper extends Mapper<UcenterRole>{
     public List<RoleListResult> selectRole();
-    //public List<UcenterRole> selectRoleBySysId(UcenterRole role);
+
     public List<RoleListResult> selectRoleByRoleId(SearchRoleParam param);
     //根据sys_id查询角色
     public List<RoleListResult> selectRoleBySysId(SearchRoleParam param);
@@ -23,6 +23,7 @@ public interface UcenterRoleMapper extends Mapper<UcenterRole>{
 
     //根据角色名称查询角色，返回角色信息集合判断角色是否重复
     public List<UcenterRole> selectRoleByName(UcenterRole role);
+
 
     //删除角色表，根据主键删除
     public int deleteRoleByKey(UcenterRole role);

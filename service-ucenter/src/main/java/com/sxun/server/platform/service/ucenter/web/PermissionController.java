@@ -1,5 +1,7 @@
 package com.sxun.server.platform.service.ucenter.web;
 
+import com.github.pagehelper.PageHelper;
+import com.sxun.server.common.remote.PageInfo;
 import com.sxun.server.common.remote.Result;
 import com.sxun.server.common.remote.ResultGenerator;
 import com.sxun.server.platform.service.ucenter.dto.permission.req.AddPermissionParam;
@@ -8,6 +10,7 @@ import com.sxun.server.platform.service.ucenter.dto.permission.req.SearchPermiss
 import com.sxun.server.platform.service.ucenter.dto.permission.req.UpdatePermissionParam;
 import com.sxun.server.platform.service.ucenter.dto.permission.rsp.AddPermissionResult;
 import com.sxun.server.platform.service.ucenter.dto.permission.rsp.PerListResult;
+import com.sxun.server.platform.service.ucenter.dto.permission.rsp.PermissionInfo;
 import com.sxun.server.platform.service.ucenter.dto.rolper.req.SelectRolePerParam;
 import com.sxun.server.platform.service.ucenter.dto.rolper.req.UpdateRolePermissionParam;
 import com.sxun.server.platform.service.ucenter.dto.rolper.rsp.PermissionListResult;
