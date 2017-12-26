@@ -84,7 +84,6 @@
         WHERE r.role_id IN (SELECT role_id FROM ucenter_user_role WHERE user_id = #{id})
     </select>
 
-
     <select id="selectUserRole" parameterType="com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserRoleParam"
             resultType="com.sxun.server.platform.service.ucenter.dto.user.rsp.UserRoleId">
 
@@ -92,10 +91,16 @@
         WHERE u.user_id = #{user_id} AND r.role_id = #{role_id} AND r.sys_id = #{sys_id}
     </select>
 
-
     <update id="updateRole" parameterType="com.sxun.server.platform.service.ucenter.dto.user.rsp.UcenterRole" >
 
         UPDATE ucenter_role SET `name` = #{name} ,`desc` = #{desc} WHERE role_id = #{role_id}
     </update>
+
+<!--    <select id="aaa" parameterType="java.util.List" resultType="">
+        select * from user id in
+        <foreach collection="list" item="us" open="(" close=")" separator=",">
+            #{us.id}
+        </foreach>
+    </select>-->
 
 </mapper>

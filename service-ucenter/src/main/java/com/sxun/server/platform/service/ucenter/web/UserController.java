@@ -60,7 +60,6 @@ public class UserController implements IUserController {
         if (key.equals("success")){
 
             return ResultGenerator.genSuccessResult(new AddUserResult(Integer.valueOf(value.toString())));
-
         }else{
             return ResultGenerator.genFailResult(value.toString());
         }
@@ -80,7 +79,6 @@ public class UserController implements IUserController {
         if (key.equals("success")){
 
            return ResultGenerator.genSuccessResult(map.get(key).toString());
-
         }else {
 
             return ResultGenerator.genFailResult(map.get(key).toString());
@@ -125,7 +123,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult();
         }else{
-
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
@@ -146,7 +143,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult();
         }else{
-
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
@@ -168,7 +164,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult(map.get(key).toString());
         }else{
-
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
@@ -189,7 +184,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult((UserListResult)map.get(key));
         }else {
-
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
@@ -210,7 +204,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult((UserDetail)map.get(key));
         }else {
-
             return ResultGenerator.genFailResult(map.get(key).toString());
        }
 
@@ -254,7 +247,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult(map.get(key).toString());
         }else {
-
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
@@ -275,7 +267,6 @@ public class UserController implements IUserController {
 
             return ResultGenerator.genSuccessResult(map.get(key));
         }else {
-
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 

@@ -1,13 +1,10 @@
 package com.sxun.server.platform.service.ucenter.dao;
 
-
 import com.sxun.server.common.web.core.Mapper;
 import com.sxun.server.platform.service.ucenter.dto.user.req.SearchUserParam;
 import com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserRoleParam;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.*;
 import com.sxun.server.platform.service.ucenter.model.UcenterUser;
-import com.sxun.server.platform.service.ucenter.model.UcenterUserDetail;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
