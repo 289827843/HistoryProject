@@ -63,10 +63,6 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(value.toString());
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a59e569ccd0d4d7208fbdd7172e26359e5320756
     }
 
     @ApiMethod(description = "更新用户")
