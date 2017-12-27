@@ -47,9 +47,7 @@ public class UserController implements IUserController {
     @ApiMethod(description = "添加用户账号")
     @RequestMapping(path="/add", method= RequestMethod.POST)
     @Override
-    public @ApiResponseObject
-//    Result<AddUserResult> addUer(@ApiBodyObject @RequestBody AddUserParam param) {
-    Result<AddUserResult> addUer(@ApiBodyObject @RequestBody @Valid  AddUserParam param ) {
+    public @ApiResponseObject Result<AddUserResult> addUer(@ApiBodyObject @RequestBody @Valid  AddUserParam param ) {
 
         Map<String,Object> map = ucenterUserService.addUser(param);
         for (Map.Entry<String,Object> entry: map.entrySet()) {
@@ -65,12 +63,6 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(value.toString());
         }
 
-//<<<<<<< HEAD
-//            Result<AddUserResult> re= ResultGenerator.genSuccessResult(new AddUserResult());
-//            re.setMessage(IpUtil.getIpAddr(request));
-//            return re;
-//=======
-//>>>>>>> ucenter-merge
     }
 
     @ApiMethod(description = "更新用户")

@@ -76,7 +76,7 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
 
 
         UcenterUser ucenters = ucenterUserMapper.findbyaccount(account);
-         if (ucenters == null){
+         if (ucenters != null){
 
              map.put("fail", "账号已经存在");
              return map;

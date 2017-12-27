@@ -1,5 +1,6 @@
 package com.sxun.server.platform.service.ucenter.dto.user.req;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
@@ -18,14 +19,14 @@ public class ChangeUserPasswordParam {
     @NotNull
     private int user_id;
     @ApiObjectField(description = "旧密码，最小6位,最大30位",required=true)
-    @NotNull
+    @NotEmpty
     @Size(min = 6,max = 30,message = "旧密码，最小6位,最大30位")
-    private int old_pwd;
+    private String old_pwd;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 6,max = 30,message = "新密码，最小6位,最大30位")
     @ApiObjectField(description = "新密码，最小6位,最大30位",required=true)
-    private int new_pwd;
+    private String new_pwd;
 
     public int getOpr_user_id() {
         return opr_user_id;
@@ -43,19 +44,20 @@ public class ChangeUserPasswordParam {
         this.user_id = user_id;
     }
 
-    public int getOld_pwd() {
+
+    public String getOld_pwd() {
         return old_pwd;
     }
 
-    public void setOld_pwd(int old_pwd) {
+    public void setOld_pwd(String old_pwd) {
         this.old_pwd = old_pwd;
     }
 
-    public int getNew_pwd() {
+    public String getNew_pwd() {
         return new_pwd;
     }
 
-    public void setNew_pwd(int new_pwd) {
+    public void setNew_pwd(String new_pwd) {
         this.new_pwd = new_pwd;
     }
 }
