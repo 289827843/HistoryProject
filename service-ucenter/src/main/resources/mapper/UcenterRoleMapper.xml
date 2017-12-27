@@ -14,6 +14,7 @@
 
   <resultMap id="roleResultMap" type="com.sxun.server.platform.service.ucenter.dto.role.rsp.RoleListResult">
     <!--
+      WARNING - @mbg.generated
     WARNING - @mbg.generated
     -->
     <id column="role_id" jdbcType="INTEGER" property="role_id" />

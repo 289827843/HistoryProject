@@ -47,8 +47,7 @@ public class UserController implements IUserController {
     @ApiMethod(description = "添加用户账号")
     @RequestMapping(path="/add", method= RequestMethod.POST)
     @Override
-    public @ApiResponseObject
-    Result<AddUserResult> addUer(@ApiBodyObject @RequestBody @Valid  AddUserParam param ) {
+    public @ApiResponseObject Result<AddUserResult> addUer(@ApiBodyObject @RequestBody @Valid  AddUserParam param ) {
 
         Map<String,Object> map = ucenterUserService.addUser(param);
         for (Map.Entry<String,Object> entry: map.entrySet()) {
@@ -64,7 +63,10 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(value.toString());
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a59e569ccd0d4d7208fbdd7172e26359e5320756
     }
 
     @ApiMethod(description = "更新用户")
