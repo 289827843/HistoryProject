@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterSysMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterSys">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sys_id" jdbcType="INTEGER" property="sysId" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="`desc`" jdbcType="VARCHAR" property="desc" />
+
+  </resultMap>
+
+</mapper>

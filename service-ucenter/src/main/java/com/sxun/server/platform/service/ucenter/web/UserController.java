@@ -64,6 +64,7 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(value.toString());
         }
 
+
     }
 
     @ApiMethod(description = "更新用户")

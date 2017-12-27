@@ -57,6 +57,7 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
            return user.getUserId();
        else
            return -1;
+
     }
 
     /**
