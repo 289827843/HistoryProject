@@ -36,13 +36,13 @@ public class UserDetail implements Serializable {
     private int status;
 
     @ApiObjectField(description = "创建时间")
-    private int create_time;
+    private String create_time;
 
-    public int getCreate_time() {
+    public String getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(int create_time) {
+    public void setCreate_time(String create_time) {
         this.create_time = create_time;
     }
 

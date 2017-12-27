@@ -1,7 +1,10 @@
 package com.sxun.server.platform.service.ucenter.dto.user.req;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by leizheng on 12/10/2017.
@@ -9,10 +12,13 @@ import org.jsondoc.core.annotation.ApiObjectField;
 @ApiObject(description = "上传并更新用户头像请求")
 public class UpdateAvatarParam {
     @ApiObjectField(description = "操作员ID,自己更新则是自身userid",required=true)
+    @NotNull
     private int opr_user_id;
     @ApiObjectField(description = "需要更新的用户id",required=true)
+    @NotNull
     private int user_id;
     @ApiObjectField(description = "头像base64字符串 不能超过500*500",required=true)
+    @NotEmpty
     private String avatar_base64;
 
 
