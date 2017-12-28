@@ -1,6 +1,7 @@
 package com.sxun.server.platform.service.ucenter.dto.role.req;
 
 
+
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 

@@ -28,4 +28,5 @@ public interface UcenterUserMapper extends Mapper<UcenterUser> {
 
        public void updateRole(UcenterRole ucenterRole);
 
+
 }

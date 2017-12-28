@@ -364,6 +364,33 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
            map.put("success","success");
            return map;
      }
+
+
+    @Override
+    public int regUser(RegUserParam param) {
+
+        //调用图形验证码接口
+
+        //判断用户手机号码是否唯一,手机号码及账号account
+        UcenterUser ucenterUser = ucenterUserMapper.findbyaccount(param.getMobile());
+        if (ucenterUser!=null){
+            return 0;//该用户已存在
+        }
+
+        //用户新增操作
+        UcenterUser user = new UcenterUser();
+        user.setAccount(param.getMobile());
+        user.setName(param.getName());
+        user.setNickname(param.getNickname());
+        user.setSex((byte)param.getSex());
+        user.setAvatarImgId(0);
+        user.setCreateTime(new Date());
+        user.setStatus((byte)0);
+        user.setPwd(MD5Util.MD5(param.getPassword()));
+
+        this.save(user);
+        return user.getUserId();//返回成功新增的用户id
+    }
 }
 
 

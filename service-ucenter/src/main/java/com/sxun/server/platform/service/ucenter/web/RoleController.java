@@ -41,7 +41,7 @@ public class RoleController implements IRoleController{
     @ApiMethod(description = "角色查询")
     @RequestMapping(path = "/list",method = RequestMethod.POST)
     @Override
-    public @ApiResponseObject Result<List<RoleListResult>> selectRole(@ApiBodyObject @RequestBody SearchRoleParam param) {
+    public @ApiResponseObject Result<List<RoleListResult>> selectRole(@ApiBodyObject @RequestBody @Valid SearchRoleParam param) {
 
         List<RoleListResult> results = ucenterRoleService.selectRole(param);
         if(results.size()==0){
@@ -112,6 +112,5 @@ public class RoleController implements IRoleController{
         }
 
     }
-
 
 }

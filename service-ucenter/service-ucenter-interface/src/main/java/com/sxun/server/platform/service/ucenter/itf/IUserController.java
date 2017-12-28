@@ -3,10 +3,7 @@ package com.sxun.server.platform.service.ucenter.itf;
 import com.sxun.server.common.remote.Result;
 
 import com.sxun.server.platform.service.ucenter.dto.user.req.*;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.AddUserResult;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.*;
 import org.jsondoc.core.annotation.ApiBodyObject;
 import org.jsondoc.core.annotation.ApiPathParam;
 import org.jsondoc.core.annotation.ApiResponseObject;
@@ -56,4 +53,6 @@ public interface IUserController {
     @RequestMapping(path="/avatar/{avatar_id}", method= RequestMethod.POST)
     public @ApiResponseObject Result avatar(@ApiPathParam(name="user_avatar_id",description = "頭像id") @PathVariable Integer avatar_id , HttpServletResponse response);
 
+    @RequestMapping(path = "/reg",method = RequestMethod.POST)
+    public @ApiResponseObject Result<RegUserResult> regUser(@RequestBody RegUserParam param);
 }

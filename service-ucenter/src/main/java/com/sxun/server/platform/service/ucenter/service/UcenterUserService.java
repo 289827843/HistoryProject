@@ -41,4 +41,6 @@ public interface UcenterUserService extends Service<UcenterUser> {
 
     public Map<String,Object> userRoleUpdate(UpdateUserRoleParam param);
 
+    public int regUser(RegUserParam param);
+
 }

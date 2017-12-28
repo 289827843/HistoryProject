@@ -4,10 +4,7 @@ import com.sxun.server.common.remote.Result;
 import com.sxun.server.common.remote.ResultGenerator;
 import com.sxun.server.common.util.IpUtil;
 import com.sxun.server.platform.service.ucenter.dto.user.req.*;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.AddUserResult;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.AvatarResult;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
-import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserListResult;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.*;
 import com.sxun.server.platform.service.ucenter.itf.IUserController;
 import com.sxun.server.platform.service.ucenter.model.UcenterUserAvatar;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserAvatarService;
@@ -63,10 +60,7 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(value.toString());
         }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> a59e569ccd0d4d7208fbdd7172e26359e5320756
     }
 
     @ApiMethod(description = "更新用户")
@@ -276,5 +270,19 @@ public class UserController implements IUserController {
     }
 
 
+    @ApiMethod(description = "用户注册")
+    @RequestMapping(path = "/reg",method = RequestMethod.POST)
+    @Override
+    public @ApiResponseObject Result<RegUserResult> regUser(@ApiBodyObject @RequestBody @Valid RegUserParam param) {
 
+        int regResult = ucenterUserService.regUser(param);
+
+        if (regResult == -1)
+            return ResultGenerator.genFailResult("验证码错误");
+        if (regResult == 0)
+            return ResultGenerator.genFailResult("该用户已存在");
+        else
+            return ResultGenerator.genSuccessResult(new RegUserResult(regResult));//返回新增的用户id
+
+    }
 }
