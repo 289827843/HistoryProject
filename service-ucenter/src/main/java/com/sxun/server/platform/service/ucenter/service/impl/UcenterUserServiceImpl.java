@@ -41,6 +41,8 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
     private UcenterUserMapper ucenterUserMapper;
     @Resource
     private UcenterUserAvatarService ucenterUserAvatarService;
+    @Autowired
+    private UcenterUserAuthService authService;
 
     private   Map<String,Object> map = new HashMap<String, Object>();
 
