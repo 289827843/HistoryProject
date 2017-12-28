@@ -15,6 +15,7 @@ import javax.validation.constraints.*;
 public class AddUserParam {
 
     @ApiObjectField(description = "操作员ID,具有权限的操作员ID",required=true)
+    @Pattern(regexp = "^[0-9]*$",message = "格式输入错误，注意数字类型")
     private int opr_user_id;
 
     @Size(min = 3 ,max = 20 ,message = "账号,最小3位 最大20位 数字和英文")
@@ -53,7 +54,7 @@ public class AddUserParam {
 
 
     @NotEmpty(message = "mobile不能为空")
-    @Pattern(regexp = "^[a-zA-Z0-9_+-]{11,12}$" ,message = "电话号码11位 数字 “+” “-”")
+    @Pattern(regexp = "^[0-9_+-]{11,12}$" ,message = "电话号码11位 数字 “+” “-”")
     @ApiObjectField(description = "电话号码 11位")
     private String mobile;
     @Email(message = "电子邮箱 格式 111@xx.xx")

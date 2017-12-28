@@ -1,6 +1,7 @@
 package com.sxun.server.platform.service.ucenter.service.impl;
 
 import com.sxun.server.common.web.core.AbstractService;
+import com.sxun.server.platform.service.ucenter.Util.Tools;
 import com.sxun.server.platform.service.ucenter.dao.UcenterUserAuthMapper;
 import com.sxun.server.platform.service.ucenter.model.UcenterUserAuth;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserAuthService;
@@ -18,4 +19,9 @@ public class UcenterUserAuthServiceImpl extends AbstractService<UcenterUserAuth>
     @Resource
     private UcenterUserAuthMapper ucenterUserAuthMapper;
 
+    @Override
+    public String getAuthCode() {
+
+        return Tools.getAuthCode();
+    }
 }
