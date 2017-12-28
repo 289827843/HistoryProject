@@ -9,4 +9,9 @@ import com.sxun.server.platform.service.ucenter.model.UcenterUserAuth;
  */
 public interface UcenterUserAuthService extends Service<UcenterUserAuth> {
 
+
+    public String getAuthCode();
+
+
+
 }

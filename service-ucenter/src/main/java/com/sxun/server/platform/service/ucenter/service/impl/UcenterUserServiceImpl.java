@@ -74,7 +74,6 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
         mobile = param.getMobile();
         email = param.getEmail();
 
-
         UcenterUser ucenters = ucenterUserMapper.findbyaccount(account);
          if (ucenters != null){
 
@@ -82,10 +81,8 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
              return map;
          }
 
-
-
         UcenterUser ucenterUser = new UcenterUser();
-        ucenterUser.setPwd(MD5Util.MD5(password)+account);
+        ucenterUser.setPwd(MD5Util.MD5(password+account));
         ucenterUser.setAccount(account);
         ucenterUser.setName(name);
         ucenterUser.setCreateTime(new Date());

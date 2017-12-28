@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.validation.Validation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,10 +40,7 @@ public class UserController implements IUserController {
     private UcenterUserLogService userLogService;
     @Autowired
     private UcenterUserAvatarService userAvatarService;
-
-
     private  String key ;
-    private  Object value;
 
     @ApiMethod(description = "添加用户账号")
     @RequestMapping(path="/add", method= RequestMethod.POST)
@@ -50,17 +48,15 @@ public class UserController implements IUserController {
     public @ApiResponseObject Result<AddUserResult> addUer(@ApiBodyObject @RequestBody @Valid  AddUserParam param ) {
 
         Map<String,Object> map = ucenterUserService.addUser(param);
-        for (Map.Entry<String,Object> entry: map.entrySet()) {
-
-              key = entry.getKey();
-              value = entry.getValue();
+        for (String s: map.keySet()) {
+            key = s;
         }
 
         if (key.equals("success")){
 
-            return ResultGenerator.genSuccessResult(new AddUserResult(Integer.valueOf(value.toString())));
+            return ResultGenerator.genSuccessResult(new AddUserResult(Integer.valueOf(map.get(key).toString())));
         }else{
-            return ResultGenerator.genFailResult(value.toString());
+            return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
     }
@@ -70,7 +66,7 @@ public class UserController implements IUserController {
     @Override
     public  @ApiResponseObject Result updateUser(@ApiBodyObject @RequestBody @Valid UpdateUserParam param) {
 
-      Map<String ,Object> map = ucenterUserService.updateUser(param);
+        Map<String ,Object> map = ucenterUserService.updateUser(param);
         for (String s: map.keySet()) {
               key = s;
         }
