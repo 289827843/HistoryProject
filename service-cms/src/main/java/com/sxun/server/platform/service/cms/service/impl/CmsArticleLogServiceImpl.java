@@ -2,6 +2,7 @@ package com.sxun.server.platform.service.cms.service.impl;
 
 import com.sxun.server.platform.service.cms.dao.CmsArticleLogMapper;
 import com.sxun.server.platform.service.cms.model.CmsArticleLog;
+import com.sxun.server.platform.service.cms.model.CmsDir;
 import com.sxun.server.platform.service.cms.service.CmsArticleLogService;
 import com.sxun.server.common.web.core.AbstractService;
 import org.springframework.stereotype.Service;

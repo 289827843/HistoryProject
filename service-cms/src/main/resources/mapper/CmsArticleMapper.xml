@@ -16,5 +16,132 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="dir_id" jdbcType="INTEGER" property="dirId" />
+    <result column="audit_memo" jdbcType="VARCHAR" property="auditMemo" />
   </resultMap>
+  <select id="findArticles" resultType="Integer">
+    select count(*) from
+    cms_article where dir_id=#{0}
+  </select>
+  <insert id="insertArticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
+    insert into cms_article(
+    article_id,
+    title,
+    source,
+    author,
+    status,
+    article_type,
+    own_user_id,
+    audit_user_id,
+    create_time,
+    modify_time,
+    dir_id,
+    audit_memo)values(
+    NULL,
+    #{title},
+    #{source},
+    #{author},
+    0,
+    #{articleType},
+    #{ownUserId},
+    #{auditUserId},
+    NOW(),
+   NOW(),
+    #{dirId},
+    #{auditMemo}
+    );
+  </insert>
+  <select id="findArticleid" resultType="Integer">
+
+    select article_id from cms_article where dir_id=#{dir_id}
+
+  </select>
+  <update id="updateAriticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
+    update cms_article
+    set title=#{title},
+    source=#{source},
+    author=#{author},
+    article_type=#{articleType},
+    status=#{status},
+    dir_id=#{dirId}
+    where article_id=#{articleId}
+
+  </update>
+  <select id="getCounts" resultType="Integer">
+    select count(*)
+    from  cms_article
+    where article_id=#{article_id}
+  </select>
+  <update id="sumbitAriticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
+    update cms_article
+    set audit_user_id=#{auditUserId},
+    audit_memo=#{auditMemo},
+    status=#{status}
+    where article_id=#{articleId}
+
+  </update>
+  <select id="getStatus" resultType="Integer">
+    select status
+    from  cms_article
+    where article_id=#{article_id}
+  </select>
+  <select id="findArticle" resultMap="BaseResultMap">
+    select *
+    from  cms_article
+    where article_id=#{article_id}
+  </select>
+  <update id="updateStatus" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
+    update cms_article
+    set
+    status=#{status}
+    where article_id=#{articleId}
+
+  </update>
+  <select id="listAriticle" resultMap="BaseResultMap"  parameterType="com.sxun.server.platform.service.cms.dto.article.req.ListArticleParam">
+    select *
+    from  cms_article
+
+    <where>
+    <if test="dir_id != null ">
+      dir_id =#{dir_id}
+    </if>
+    <if test="title != null ">
+      and title =#{title}
+    </if>
+    <if test="source != null  ">
+      and source=#{source}
+    </if>
+    <if test="author!= null ">
+      and author =#{author}
+    </if>
+    <if test="article_type!= null">
+      and article_type =#{article_type}
+    </if>
+    </where>
+    limit #{current_page},#{page_size};
+  </select>
+  <select id="getAriticleCounts" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.dto.article.req.ListArticleParam">
+    select count(*)
+    from  cms_article
+    <where>
+      <if test="dir_id != null ">
+        dir_id =#{dir_id}
+      </if>
+      <if test="title != null ">
+        and title =#{title}
+      </if>
+      <if test="source != null  ">
+        and source=#{source}
+      </if>
+      <if test="author!= null ">
+        and author =#{author}
+      </if>
+      <if test="article_type!= null">
+        and article_type =#{article_type}
+      </if>
+    </where>
+  </select>
+  <select id="findArticls" resultMap="BaseResultMap" >
+    select * from cms_article where dir_id=#{dirId}
+  </select>
+
 </mapper>

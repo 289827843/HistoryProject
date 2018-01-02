@@ -9,4 +9,29 @@
     <result column="acticle_id" jdbcType="INTEGER" property="acticleId" />
     <result column="file_id" jdbcType="INTEGER" property="fileId" />
   </resultMap>
+  <insert id="insertCover" parameterType="com.sxun.server.platform.service.cms.model.CmsCover">
+    insert into cms_cover(
+    cover_id,
+    acticle_id,
+    file_id)values(
+    NULL,
+    #{acticleId},
+    #{fileId}
+    );
+  </insert>
+  <delete id="deleteCover" parameterType="Integer">
+    delete from cms_cover
+    where acticle_id =#{0}
+  </delete>
+  <select id="getCounts" resultType="Integer">
+    select count(*)
+    from  cms_cover
+    where acticle_id =#{0}
+  </select>
+  <select id="findCovers" resultMap="BaseResultMap">
+    select *
+    from  cms_cover
+    where acticle_id =#{0}
+  </select>
+
 </mapper>
