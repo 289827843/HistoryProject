@@ -5,4 +5,7 @@ import com.sxun.server.common.web.core.Mapper;
 import com.sxun.server.platform.service.ucenter.model.UcenterSessionRefToken;
 
 public interface UcenterSessionRefTokenMapper extends Mapper<UcenterSessionRefToken> {
+
+
+    public UcenterSessionRefToken findByReftoken(String token);
 }

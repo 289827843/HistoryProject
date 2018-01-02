@@ -8,6 +8,7 @@ import com.sxun.server.common.util.MD5Util;
 import com.sxun.server.common.web.core.AbstractService;
 import com.sxun.server.platform.service.ucenter.Util.ResultMsg;
 import com.sxun.server.platform.service.ucenter.dao.UcenterSessionMapper;
+import com.sxun.server.platform.service.ucenter.dao.UcenterSessionRefTokenMapper;
 import com.sxun.server.platform.service.ucenter.dto.auth.req.LoginParam;
 import com.sxun.server.platform.service.ucenter.dto.user.req.RefreshParam;
 import com.sxun.server.platform.service.ucenter.model.UcenterSession;
@@ -38,6 +39,9 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
 
     @Autowired
     private UcenterSessionRefTokenService refTokenService;
+
+    @Autowired
+    private UcenterSessionRefTokenMapper refTokenMapper;
 
     @Value("${sxun.service.login.session_exp_time}")
     private int session_exp_time;
@@ -136,7 +140,7 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
        session.setState(1);
        session.setExpTime(overdue);
 
-       UcenterSessionRefToken refToken = refTokenService.findBy("ref_token",session.getRefToken());
+       UcenterSessionRefToken refToken = refTokenMapper.findByReftoken(session.getRefToken());
        refToken.setState(1);
        refToken.setExpTime(overdue);
 
