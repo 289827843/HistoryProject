@@ -20,7 +20,11 @@
  <select id="findBySession_token" parameterType="java.lang.String" resultMap="BaseResultMap">
 
    select * from ucenter_session where session_token = #{token}
+ </select>
 
+ <select id="findByRef_token" parameterType="java.lang.String" resultMap="BaseResultMap" >
+
+   select * from ucenter_session where ref_token = #{token}
  </select>
 
 

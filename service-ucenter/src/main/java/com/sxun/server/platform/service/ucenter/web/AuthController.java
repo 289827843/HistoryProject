@@ -70,16 +70,15 @@ public class AuthController  implements IAuthController {
     @Override
     public @ApiResponseObject Result<LoginInfo> login(@ApiBodyObject  @RequestBody @Valid LoginParam param) {
 
-        System.out.println("redis ====================================="+redisService.get("authCode_name"));
-
-        if (!session.getAttribute("authCode_name").equals(param.getAuthCode_name())){
+        if (!redisService.get("authCode_name").equals(param.getAuthCode_name())){
 
             return ResultGenerator.genFailResult("验证码输入错误，请重输验证码");
         }
-
         int user_id=user_service.checkUserPwd(param.getAccount(),param.getPassword());
         if (user_id!=-1){
             LoginInfo login_info=session_service.createSession(user_id,param, IpUtil.getIpAddr(request));
+            redisService.set("ref_token",login_info.getRef_token().getRef_token());
+            redisService.set("ref_sec_key",login_info.getRef_token().getSec_key());
             return ResultGenerator.genSuccessResult(login_info);
         }
         else{
@@ -121,13 +120,19 @@ public class AuthController  implements IAuthController {
      @Override
      public @ApiResponseObject Result refresh(@ApiBodyObject  @RequestBody @Valid RefreshParam param){
 
-      System.out.print(param.getRef_token()+"--------");
+      System.out.println(param.getRef_token()+"--------");
+      System.out.println(redisService.get("ref_token"));
+      System.out.println(redisService.get("ref_sec_key"));
+      ResultMsg msg = session_service.refresh(param);
+      if (msg.getKey().equals("fail")){
 
+          return ResultGenerator.genFailResult(msg.getValue().toString());
+      }else {
 
+          return ResultGenerator.genSuccessResult((LoginInfo)msg.getValue());
+      }
 
-
-        return null;
-     }
+    }
 
 
      @ApiMethod(description = "令牌校验")

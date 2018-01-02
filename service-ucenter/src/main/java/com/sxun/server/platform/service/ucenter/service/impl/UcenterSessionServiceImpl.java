@@ -110,7 +110,7 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
         login_info.getSession().setSec_key(session.getSecKey());
         login_info.getSession().setSession_token(session.getSessionToken());
 
-        login_info.getRef_token().setSec_key(ref.getRefToken());
+        login_info.getRef_token().setSec_key(ref.getSecKey());
         login_info.getRef_token().setCreate_time(formatter.format(ref.getCreateTime()));
         login_info.getRef_token().setExp_time(formatter.format(ref.getExpTime()));
         login_info.getRef_token().setRef_token (ref.getRefToken());
@@ -160,17 +160,80 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
     public ResultMsg refresh(RefreshParam param) {
 
           ResultMsg msg = new ResultMsg();
-          UcenterSessionRefToken refToken  = refTokenService.findBy("ref_token",param.getRef_token());
+          UcenterSessionRefToken refToken  = refTokenMapper.findByReftoken(param.getRef_token());
+
+          if (refToken == null){
+
+              msg.setKey("fail");
+              msg.setValue("ref_token输入错误");
+              return msg;
+
+          }
+
           String ref = MD5Util.MD5(refToken.getRefToken()+refToken.getSecKey());
           String ref2 = MD5Util.MD5(param.getRef_token()+param.getSec_key());
           if (!ref.equals(ref2)){
 
               msg.setKey("fail");
-              msg.setValue("令牌输入有误");
+              msg.setValue("密码匹配错误");
               return msg;
           }
 
-        return null;
+          if (refToken.getState() != 0){
+
+              msg.setKey("fail");
+              msg.setValue("当前状态不能刷新");
+              return msg;
+          }
+
+          UcenterSession ucenterSession = ucenterSessionMapper.findByRef_token(param.getRef_token());
+
+          UcenterSession session = new UcenterSession();
+          session.setSessionToken(UUID.randomUUID().toString().replaceAll("-","").toLowerCase());
+          session.setUserId(ucenterSession.getUserId());
+          Date create_date = new Date();
+          Calendar calendar = Calendar.getInstance();
+          calendar.setTime(create_date);
+          calendar.add(Calendar.HOUR,session_exp_time);
+          session.setCreateTime(create_date);
+          session.setExpTime(calendar.getTime());
+          session.setSysId(ucenterSession.getSysId());
+          session.setIp(ucenterSession.getIp());
+          session.setState(0);
+          session.setClient(ucenterSession.getClient());
+          session.setCreateType(ucenterSession.getCreateType());
+          session.setRefToken(param.getRef_token());
+          session.setSecKey(UUID.randomUUID().toString().replaceAll("-","").toLowerCase());
+
+
+          Calendar calen = Calendar.getInstance();
+          calen.setTime(create_date);
+          calen.add(Calendar.DATE,ref_token_exp_time);
+          refToken.setExpTime(calen.getTime());
+
+          this.save(session);
+          refTokenService.update(refToken);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        LoginInfo login_info=new LoginInfo();
+        login_info.setSys_id(session.getSysId());
+        login_info.setUser_id(session.getUserId());
+        login_info.setSession(new SessionInfo());
+        login_info.setRef_token(new RefTokenInfo());
+        login_info.getSession().setCreate_time(formatter.format(create_date));
+        login_info.getSession().setExp_time(formatter.format(session.getExpTime()));
+        login_info.getSession().setSec_key(session.getSecKey());
+        login_info.getSession().setSession_token(session.getSessionToken());
+
+        login_info.getRef_token().setSec_key(refToken.getSecKey());
+        login_info.getRef_token().setCreate_time(formatter.format(refToken.getCreateTime()));
+        login_info.getRef_token().setExp_time(formatter.format(refToken.getExpTime()));
+        login_info.getRef_token().setRef_token (refToken.getRefToken());
+
+        msg.setKey("success");
+        msg.setValue(login_info);
+
+        return msg;
     }
 }
 
