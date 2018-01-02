@@ -3,6 +3,8 @@ package com.sxun.server.platform.service.ucenter.dto.user.req;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by leizheng on 12/10/2017.
  */
@@ -10,8 +12,10 @@ import org.jsondoc.core.annotation.ApiObjectField;
 public class ResetUserPasswordParam {
 
     @ApiObjectField(description = "操作员ID,自己更新则是自身userid",required=true)
+    @NotNull
     private int opr_user_id;
     @ApiObjectField(description = "需要更新的用户id",required=true)
+    @NotNull
     private int user_id;
 
     public int getOpr_user_id() {

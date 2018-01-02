@@ -1,6 +1,4 @@
 package com.sxun.server.platform.service.ucenter.service.impl;
-
-
 import com.sxun.server.common.web.core.AbstractService;
 import com.sxun.server.platform.service.ucenter.dao.UcenterAuthTypeMapper;
 import com.sxun.server.platform.service.ucenter.model.UcenterAuthType;
