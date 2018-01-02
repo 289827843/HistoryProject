@@ -369,6 +369,10 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
     public int regUser(RegUserParam param) {
 
         //调用图形验证码接口
+        AuthCode authCode = authService.getAuthCode();
+        if (authCode==null){
+            return -1;//图形验证码验证失败
+        }
 
         //判断用户手机号码是否唯一,手机号码及账号account
         UcenterUser ucenterUser = ucenterUserMapper.findbyaccount(param.getMobile());
@@ -386,9 +390,16 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
         user.setCreateTime(new Date());
         user.setStatus((byte)0);
         user.setPwd(MD5Util.MD5(param.getPassword()));
-
         this.save(user);
+
         return user.getUserId();//返回成功新增的用户id
+    }
+
+    @Override
+    public List<UserDetail> mutilUser(SearchMutilUserParam param) {
+
+        List<UserDetail> userDetailList = ucenterUserMapper.mutilUser(param.getUserIdList());
+        return userDetailList;
     }
 }
 

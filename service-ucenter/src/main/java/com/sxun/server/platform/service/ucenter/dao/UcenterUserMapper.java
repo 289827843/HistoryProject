@@ -4,6 +4,7 @@ package com.sxun.server.platform.service.ucenter.dao;
 
 
 import com.sxun.server.common.web.core.Mapper;
+import com.sxun.server.platform.service.ucenter.dto.user.req.SearchMutilUserParam;
 import com.sxun.server.platform.service.ucenter.dto.user.req.SearchUserParam;
 import com.sxun.server.platform.service.ucenter.dto.user.req.UpdateUserRoleParam;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.*;
@@ -28,5 +29,5 @@ public interface UcenterUserMapper extends Mapper<UcenterUser> {
 
        public void updateRole(UcenterRole ucenterRole);
 
-
+       public List<UserDetail> mutilUser(List<Integer> ids);
 }
