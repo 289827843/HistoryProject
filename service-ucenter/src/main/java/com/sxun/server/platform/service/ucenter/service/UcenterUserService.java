@@ -3,6 +3,7 @@ package com.sxun.server.platform.service.ucenter.service;
 
 import com.sxun.server.common.web.core.Service;
 import com.sxun.server.platform.service.ucenter.dto.user.req.*;
+import com.sxun.server.platform.service.ucenter.dto.user.rsp.UserDetail;
 import com.sxun.server.platform.service.ucenter.model.UcenterUser;
 
 import java.util.List;
@@ -42,5 +43,7 @@ public interface UcenterUserService extends Service<UcenterUser> {
     public Map<String,Object> userRoleUpdate(UpdateUserRoleParam param);
 
     public int regUser(RegUserParam param);
+
+    public List<UserDetail> mutilUser(SearchMutilUserParam param);
 
 }

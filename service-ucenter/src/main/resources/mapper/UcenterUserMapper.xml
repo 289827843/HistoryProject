@@ -103,4 +103,10 @@
         </foreach>
     </select>-->
 
+    <select id="mutilUser" parameterType="java.util.List" resultMap="DetailResultMap">
+        select * from ucenter_user where user_id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>
