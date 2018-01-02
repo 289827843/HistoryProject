@@ -2,6 +2,7 @@ package com.sxun.server.platform.service.cms.web;
 
 import com.sxun.server.common.remote.Result;
 import com.sxun.server.common.remote.ResultGenerator;
+import com.sxun.server.platform.service.cms.api.UserFeignService;
 import com.sxun.server.platform.service.cms.dto.article.req.*;
 import com.sxun.server.platform.service.cms.dto.article.rsp.AddArticleResult;
 import com.sxun.server.platform.service.cms.itf.IArticleController;
@@ -13,6 +14,7 @@ import com.sxun.server.platform.service.cms.service.CmsArticleLogService;
 import com.sxun.server.platform.service.cms.service.CmsArticleService;
 import com.sxun.server.platform.service.cms.service.CmsContentService;
 import com.sxun.server.platform.service.cms.service.CmsCoverService;
+import com.sxun.server.platform.service.ucenter.dto.user.req.SearchMutilUserParam;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiBodyObject;
 import org.jsondoc.core.annotation.ApiMethod;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.sql.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -132,4 +135,21 @@ public class ArticleController implements IArticleController {
             return ResultGenerator.genFailResult("查询失败");
         }
     }
+
+    @Autowired
+    private UserFeignService userFeignService;
+
+    @ApiMethod(description = "test")
+    @RequestMapping(value="/test", method=RequestMethod.GET)
+    public String demoServiceTest() {
+        StringBuffer sb = new StringBuffer();
+        List<Integer> ls=new ArrayList<Integer>();
+        ls.add(1);
+        SearchMutilUserParam smup=new SearchMutilUserParam();
+        smup.setUserIdList(ls);
+        sb.append(userFeignService.mutilUser(smup).getDataObj().getUserDetailList().get(0).getAccount());
+        return sb.toString();
+
+    }
+
 }
