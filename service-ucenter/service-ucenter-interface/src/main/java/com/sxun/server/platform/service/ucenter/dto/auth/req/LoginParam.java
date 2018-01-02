@@ -4,6 +4,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -25,6 +28,17 @@ public class LoginParam {
     @Size(min = 1,max = 30,message = "客户端信息应该在1-30位之间")
     @ApiObjectField(description = "客户端信息",required=true)
     private String client;
+
+    @NotNull
+    @ApiObjectField(description = "验证码流水号",required=true)
+    private int authCode_id;
+
+
+    @NotEmpty(message = "验证码信息不能为空")
+    @Size(min = 6,max = 6,message = "验证码信息在6位")
+    @ApiObjectField(description = "验证码",required=true)
+    private String authCode_name;
+
 
     public Integer getSys_id() {
         return sys_id;
@@ -60,5 +74,21 @@ public class LoginParam {
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    public int getAuthCode_id() {
+        return authCode_id;
+    }
+
+    public void setAuthCode_id(int authCode_id) {
+        this.authCode_id = authCode_id;
+    }
+
+    public String getAuthCode_name() {
+        return authCode_name;
+    }
+
+    public void setAuthCode_name(String authCode_name) {
+        this.authCode_name = authCode_name;
     }
 }

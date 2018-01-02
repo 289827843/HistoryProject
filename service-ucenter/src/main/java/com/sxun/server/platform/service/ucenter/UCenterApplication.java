@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableJSONDoc
 @SpringBootApplication
 @ComponentScan(basePackages={"com.sxun.server.platform.service.ucenter","com.sxun.server.common.web"})
