@@ -56,10 +56,6 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b26935f0765e109306461f26c876fbaea0e22c85
     }
 
     @ApiMethod(description = "更新用户")
@@ -277,7 +273,7 @@ public class UserController implements IUserController {
         int regResult = ucenterUserService.regUser(param);
 
         if (regResult == -1)
-            return ResultGenerator.genFailResult("验证码错误");
+            return ResultGenerator.genFailResult("图形验证码验证失败");
         if (regResult == 0)
             return ResultGenerator.genFailResult("该用户已存在");
         else
