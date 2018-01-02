@@ -9,4 +9,5 @@ import com.sxun.server.platform.service.ucenter.model.UcenterUserDetail;
  */
 public interface UcenterUserDetailService extends Service<UcenterUserDetail> {
 
+
 }

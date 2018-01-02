@@ -5,8 +5,8 @@
     服务端口：8302
 ##  依赖
     sxun-service-center
-    sxun-service-config
-##  编译
+          sxun-service-config
+      ##  编译
     mvn clean
     mvn package
 ##  目录结构
