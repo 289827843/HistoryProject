@@ -13,6 +13,7 @@ import com.sxun.server.platform.service.ucenter.dto.auth.req.LoginParam;
 import com.sxun.server.platform.service.ucenter.dto.user.req.RefreshParam;
 import com.sxun.server.platform.service.ucenter.model.UcenterSession;
 import com.sxun.server.platform.service.ucenter.model.UcenterSessionRefToken;
+import com.sxun.server.platform.service.ucenter.service.RedisService;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionRefTokenService;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
 
     @Autowired
     private UcenterSessionRefTokenMapper refTokenMapper;
+
+    @Autowired
+    private RedisService redisService;
 
     @Value("${sxun.service.login.session_exp_time}")
     private int session_exp_time;
@@ -127,7 +131,6 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
     @Override
     public ResultMsg cancel(String session_token) {
 
-        System.out.print(session_token+"---------------------");
         ResultMsg msg = new ResultMsg();
        UcenterSession session = ucenterSessionMapper.findBySession_token(session_token);
        if (session == null){
@@ -166,19 +169,6 @@ public class UcenterSessionServiceImpl extends AbstractService<UcenterSession> i
               msg.setValue("令牌输入有误");
               return msg;
           }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         return null;
     }

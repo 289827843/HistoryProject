@@ -11,6 +11,7 @@ import com.sxun.server.platform.service.ucenter.dto.auth.req.LoginParam;
 import com.sxun.server.platform.service.ucenter.dto.user.req.RefreshParam;
 import com.sxun.server.platform.service.ucenter.dto.user.rsp.AuthCode;
 import com.sxun.server.platform.service.ucenter.itf.IAuthController;
+import com.sxun.server.platform.service.ucenter.service.RedisService;
 import com.sxun.server.platform.service.ucenter.service.UcenterSessionService;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserAuthService;
 import com.sxun.server.platform.service.ucenter.service.UcenterUserService;
@@ -59,6 +60,9 @@ public class AuthController  implements IAuthController {
     private UcenterUserAuthService authService;
 
     @Autowired
+    private RedisService redisService;
+
+    @Autowired
     private HttpSession session;
 
     @ApiMethod(description = "账号密码登录")
@@ -66,7 +70,7 @@ public class AuthController  implements IAuthController {
     @Override
     public @ApiResponseObject Result<LoginInfo> login(@ApiBodyObject  @RequestBody @Valid LoginParam param) {
 
-        System.out.println(session.getAttribute("authCode_name")+"--------------------------------------------------");
+        System.out.println("redis ====================================="+redisService.get("authCode_name"));
 
         if (!session.getAttribute("authCode_name").equals(param.getAuthCode_name())){
 
@@ -90,8 +94,8 @@ public class AuthController  implements IAuthController {
     public  @ApiResponseObject Result captcha(){
 
         AuthCode authCode =  authService.getAuthCode();
-        session.setAttribute("authCode_id",authCode.getAuthCode_id());
-        session.setAttribute("authCode_name",authCode.getAuthCode_name());
+        redisService.set("authCode_id",authCode.getAuthCode_id());
+        redisService.set("authCode_name",authCode.getAuthCode_name());
 
         return  ResultGenerator.genSuccessResult(authCode);
     }
