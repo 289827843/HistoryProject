@@ -57,6 +57,9 @@ third= 第三方登录 ref=会话刷新
     @Column(name = "ip")
     private String ip;
 
+    @Column(name = "state")
+    private int state;
+
     /**
      * @return session_token
      */
@@ -207,6 +210,11 @@ third= 第三方登录 ref=会话刷新
         this.refToken = refToken;
     }
 
+    public int getState() {
+        return state;
+    }
 
-
+    public void setState(int state) {
+        this.state = state;
+    }
 }
