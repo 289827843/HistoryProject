@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+
 @Service
 @Transactional
 public class CmsCommentServiceImpl extends AbstractService<CmsComment> implements CmsCommentService {
@@ -59,8 +61,8 @@ public class CmsCommentServiceImpl extends AbstractService<CmsComment> implement
     }
 
     @Override
-    public List<ListCommentResult> findComments(int article_id,int is_display, int is_del, String columnName) {
-        List<ListCommentResult> listCommentResults=cmsCommentMapper.listComment(article_id,is_display,is_del,columnName);
+    public List<ListCommentResult> findComments(Map<String,Object> map) {
+        List<ListCommentResult> listCommentResults=cmsCommentMapper.listComment(map);
         if(listCommentResults!=null){
             return  listCommentResults;
         }else {

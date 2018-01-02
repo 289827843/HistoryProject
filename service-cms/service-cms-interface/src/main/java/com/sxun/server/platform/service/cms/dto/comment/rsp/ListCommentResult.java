@@ -13,10 +13,6 @@ public class ListCommentResult {
     private Integer articleId;
     @ApiObjectField(description = "评论人id",required=true)
     private Integer commentUserId;
-    @ApiObjectField(description = "评论人昵称",required=true)
-    private String nickname;
-    @ApiObjectField(description = "评论人头像id",required=true)
-    private Integer avatarImgId;
     @ApiObjectField(description = "评论内容",required=true)
     private String content;
     @ApiObjectField(description = "是否显示",required=true)
@@ -53,22 +49,6 @@ public class ListCommentResult {
 
     public void setCommentUserId(Integer commentUserId) {
         this.commentUserId = commentUserId;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Integer getAvatarImgId() {
-        return avatarImgId;
-    }
-
-    public void setAvatarImgId(Integer avatarImgId) {
-        this.avatarImgId = avatarImgId;
     }
 
     public String getContent() {

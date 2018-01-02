@@ -27,10 +27,6 @@
         <result column="is_display" jdbcType="BIT" property="isDisplay" />
         <result column="article_id" jdbcType="INTEGER" property="articleId" />
         <result column="is_del" jdbcType="BIT" property="isDel" />
-            <result column="user_id" jdbcType="INTEGER" property="userId" />
-            <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-            <result column="avatar_img_id" jdbcType="INTEGER" property="avatarImgId" />
-
         <collection property="reply_list" ofType="CmsReply">
             <id column="reply_id" jdbcType="INTEGER" property="replyId" />
             <result column="content" jdbcType="VARCHAR" property="content" />
@@ -42,21 +38,20 @@
 
 
     </resultMap>
-    <select id="listComment" resultMap="ResultMap" >
-        select A.*,B.nickname,B.avatar_img_id,C.reply_id ,C.content,C.create_time,C.modify_time,C.is_display,C.is_del
+    <select id="listComment" resultMap="ResultMap" parameterType="hashmap">
+        select A.*,C.reply_id ,C.content,C.create_time,C.modify_time,C.is_display,C.is_del
         from cms_comment as A
-        left join sxun_ucenter.ucenter_user as B on A.comment_user_id=B.user_id
         left join cms_reply as C on A.comment_id=C.comment_id
         <trim prefix="where" prefixOverrides="and">
             <if test="article_id != null and article_id != '' ">
-                and article_id=#{article_id}
+                and A.article_id=#{article_id}
             </if>
             <choose>
-                <when test=" is_display==0 oris_display==1 "> and is_display=#{is_display}</when>
+                <when test=" is_display==0 or is_display==1 "> and A.is_display=#{is_display}</when>
                 <when test="is_display==2"></when>
             </choose>
             <choose>
-                <when test=" is_del==0 is_del==1 "> and is_del=#{is_del}</when>
+                <when test=" is_del==0 or is_del==1 "> and A.is_del=#{is_del}</when>
                 <when test="is_del==2"></when>
             </choose>
         </trim>

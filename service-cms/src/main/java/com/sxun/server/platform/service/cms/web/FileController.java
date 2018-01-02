@@ -110,7 +110,7 @@ public class FileController  implements IFileConterller{
         row=cmsFileService.saveFirle(cmsFile);
         if(row>0){
             AddFileResult addFileResult=new AddFileResult();
-            addFileResult.setFile_id(file_id);
+            addFileResult.setFile_id(Integer.valueOf(file_id));
             return ResultGenerator.genSuccessResult(addFileResult);
         }else {
             return ResultGenerator.genFailResult("添加附件失败");
