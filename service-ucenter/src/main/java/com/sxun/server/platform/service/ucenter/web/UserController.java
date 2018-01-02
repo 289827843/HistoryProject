@@ -56,10 +56,6 @@ public class UserController implements IUserController {
             return ResultGenerator.genFailResult(map.get(key).toString());
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b26935f0765e109306461f26c876fbaea0e22c85
     }
 
     @ApiMethod(description = "更新用户")
@@ -277,11 +273,32 @@ public class UserController implements IUserController {
         int regResult = ucenterUserService.regUser(param);
 
         if (regResult == -1)
-            return ResultGenerator.genFailResult("验证码错误");
+            return ResultGenerator.genFailResult("图形验证码验证失败");
         if (regResult == 0)
             return ResultGenerator.genFailResult("该用户已存在");
         else
             return ResultGenerator.genSuccessResult(new RegUserResult(regResult));//返回新增的用户id
+
+    }
+
+
+    @ApiMethod(description = "多用户查询")
+    @RequestMapping(path = "/mutiluser",method = RequestMethod.POST)
+    @Override
+    public @ApiResponseObject Result<SearchMutilUserResult> mutilUser(@ApiBodyObject @RequestBody @Valid SearchMutilUserParam param) {
+
+        List<UserDetail> userDetailList = ucenterUserService.mutilUser(param);
+
+        if (userDetailList.size()==0){
+            return ResultGenerator.genFailResult("未查询到指定用户id的用户信息");
+        }
+        else {
+            SearchMutilUserResult searchMutilUserResult = new SearchMutilUserResult();
+            searchMutilUserResult.setUserDetailList(userDetailList);
+            Result<SearchMutilUserResult> result = ResultGenerator.genSuccessResult();
+            result.setDataObj(searchMutilUserResult);
+            return result;
+        }
 
     }
 }

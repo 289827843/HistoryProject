@@ -55,4 +55,7 @@ public interface IUserController {
 
     @RequestMapping(path = "/reg",method = RequestMethod.POST)
     public @ApiResponseObject Result<RegUserResult> regUser(@RequestBody RegUserParam param);
+
+    @RequestMapping(path = "/mutiluser",method = RequestMethod.POST)
+    public @ApiResponseObject Result<SearchMutilUserResult> mutilUser(@RequestBody SearchMutilUserParam param);
 }

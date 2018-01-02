@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sxun.server.platform.service.cms.dao.UcenterSessionMapper">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterSessionMapper">
   <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterSession">
     <!--
       WARNING - @mbg.generated
@@ -16,4 +16,17 @@
     <result column="ref_token" jdbcType="VARCHAR" property="refToken" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
   </resultMap>
+
+ <select id="findBySession_token" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+   select * from ucenter_session where session_token = #{token}
+ </select>
+
+ <select id="findByRef_token" parameterType="java.lang.String" resultMap="BaseResultMap" >
+
+   select * from ucenter_session where ref_token = #{token}
+ </select>
+
+
+
 </mapper>
