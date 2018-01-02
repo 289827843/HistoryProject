@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 
 @ApiObject(description = "创建目录结果对象")
 public class AddDirResult {
-    @NotNull(message = "不能为空")
     @ApiObjectField(description = "新增的目录ID")
     private Integer dir_id;
 

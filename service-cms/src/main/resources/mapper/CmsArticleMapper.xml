@@ -50,9 +50,9 @@
     #{auditMemo}
     );
   </insert>
-  <select id="findArticleid" resultType="Integer">
+  <select id="findArticleid" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
 
-    select article_id from cms_article where dir_id=#{dir_id}
+    select article_id from cms_article where dir_id =#{dirId} and  title=#{title} and source=#{source} and author=#{author} and article_type=#{articleType}
 
   </select>
   <update id="updateAriticle" parameterType="com.sxun.server.platform.service.cms.model.CmsArticle">
@@ -62,6 +62,7 @@
     author=#{author},
     article_type=#{articleType},
     status=#{status},
+    modify_time=#{modifyTime},
     dir_id=#{dirId}
     where article_id=#{articleId}
 
@@ -100,45 +101,45 @@
     select *
     from  cms_article
 
-    <where>
-    <if test="dir_id != null ">
-      dir_id =#{dir_id}
+    <trim prefix="where" prefixOverrides="and" >
+    <if test="dir_id != null and dir_id!=''  ">
+     and dir_id =#{dir_id}
     </if>
-    <if test="title != null ">
+    <if test="title != null and title!=''">
       and title =#{title}
     </if>
-    <if test="source != null  ">
+    <if test="source != null and source!='' ">
       and source=#{source}
     </if>
-    <if test="author!= null ">
+    <if test="author!= null and author!=''">
       and author =#{author}
     </if>
-    <if test="article_type!= null">
+    <if test="article_type!= null and article_type!=''">
       and article_type =#{article_type}
     </if>
-    </where>
+    </trim>
     limit #{current_page},#{page_size};
   </select>
   <select id="getAriticleCounts" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.dto.article.req.ListArticleParam">
     select count(*)
     from  cms_article
-    <where>
-      <if test="dir_id != null ">
-        dir_id =#{dir_id}
+    <trim prefix="where" prefixOverrides="and" >
+      <if test="dir_id != null and dir_id!=''  ">
+        and dir_id =#{dir_id}
       </if>
-      <if test="title != null ">
+      <if test="title != null and title!=''">
         and title =#{title}
       </if>
-      <if test="source != null  ">
+      <if test="source != null and source!='' ">
         and source=#{source}
       </if>
-      <if test="author!= null ">
+      <if test="author!= null and author!=''">
         and author =#{author}
       </if>
-      <if test="article_type!= null">
+      <if test="article_type!= null and article_type!=''">
         and article_type =#{article_type}
       </if>
-    </where>
+    </trim>
   </select>
   <select id="findArticls" resultMap="BaseResultMap" >
     select * from cms_article where dir_id=#{dirId}

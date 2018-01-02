@@ -22,12 +22,13 @@ public class CmsFileServiceImpl extends AbstractService<CmsFile> implements CmsF
     @Override
     public int saveFirle(CmsFile cmsFile) {
         int row=cmsFileMapper.insertFile(cmsFile);
-        if(row>0){
-            int frileId=cmsFileMapper.findFirleId(cmsFile);
-            return frileId;
-        }else {
-            return 0;
-        }
+
+       if(row>0) {
+           return row;
+       }else {
+           return 0;
+       }
+
     }
 
     @Override
@@ -41,7 +42,7 @@ public class CmsFileServiceImpl extends AbstractService<CmsFile> implements CmsF
     }
 
     @Override
-    public CmsFile find(Integer file_id) {
+    public CmsFile find(String file_id) {
         CmsFile cmsFile=cmsFileMapper.findByFileId(file_id);
         if(cmsFile!=null){
             return cmsFile;

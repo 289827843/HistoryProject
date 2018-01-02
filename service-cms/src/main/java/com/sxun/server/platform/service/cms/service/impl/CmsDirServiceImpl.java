@@ -27,10 +27,11 @@ public class CmsDirServiceImpl extends AbstractService<CmsDir> implements CmsDir
    private CmsArticleMapper cmsArticleMapper;
     @Override
     public int saveDir(CmsDir cmsDir) {
-        int dirId;
+        int dirId=-1;
+        int row=-1;
         int rows = cmsDirMapper.insertDir(cmsDir);
         if (rows > 0) {
-            dirId = cmsDirMapper.findDirid(cmsDir.getName(), cmsDir.getCataId(), cmsDir.getParentDirId());
+            dirId = cmsDirMapper.findDirid(cmsDir);
             String path = "\r\n/" + cmsDir.getCataId() + "/" + cmsDir.getParentDirId() + "/" + dirId;
             cmsDir.setPath(path);
             if(cmsDir.getParentDirId()==-1){
@@ -40,16 +41,16 @@ public class CmsDirServiceImpl extends AbstractService<CmsDir> implements CmsDir
             }
             cmsDir.setDirId(dirId);
             if (cmsDir != null) {
-                int row = cmsDirMapper.updatePath(cmsDir);
-                if (row > 0) {
-                    return dirId;
-                }
+               row = cmsDirMapper.updatePath(cmsDir);
+
             }
 
         }
-
-
-            return -1;
+         if(row>0 && dirId>0){
+            return dirId;
+         }else{
+             return -1;
+         }
 
     }
 

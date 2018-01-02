@@ -12,7 +12,7 @@ public interface CmsArticleMapper extends Mapper<CmsArticle> {
 
     int insertArticle(CmsArticle cmsArticle);
 
-    int findArticleid(@Param("name") Integer dir_id);
+    int findArticleid(CmsArticle cmsArticle);
 
     int updateAriticle(CmsArticle cmsArticle);
 

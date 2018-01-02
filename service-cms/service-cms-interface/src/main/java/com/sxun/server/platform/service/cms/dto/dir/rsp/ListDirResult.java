@@ -8,22 +8,16 @@ import javax.validation.constraints.NotNull;
 
 @ApiObject(description = "查询目录结果对象")
 public class ListDirResult {
-    @NotNull(message = "不能为空")
     @ApiObjectField(description = "目录id",required=true)
     private Integer dir_id;
-    @NotNull(message = "不能为空")
     @ApiObjectField(description = "归属内容分类id",required=true)
     private Integer cata_id;
-    @NotNull(message = "不能为空")
     @ApiObjectField(description = "上级目录id，顶级目录为-1，需要存在于cata_id之下",required=true)
     private Integer parent_id;
-    @NotEmpty(message = "不能为空")
     @ApiObjectField(description = "目录名称，在2到20字符",required=true)
     private String name;
-    @NotNull(message = "不能为空")
     @ApiObjectField(description = "是否显示",required=true)
     private boolean is_display;
-    @NotNull(message = "不能为空")
     @ApiObjectField(description = "目录层级",required=true)
     private  int level;
 

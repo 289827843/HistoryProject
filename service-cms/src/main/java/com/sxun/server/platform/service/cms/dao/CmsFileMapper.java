@@ -8,5 +8,6 @@ public interface CmsFileMapper extends Mapper<CmsFile> {
     int insertFile(CmsFile cmsFile);
     int findFirleId(CmsFile cmsFile);
     int deleteFirle(Integer file_id);
-     CmsFile findByFileId(@Param("file_id") Integer file_id);
+     CmsFile findByFileId(@Param("file_id") String file_id);
+
 }

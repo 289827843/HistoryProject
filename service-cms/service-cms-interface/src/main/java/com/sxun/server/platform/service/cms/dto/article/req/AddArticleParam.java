@@ -31,7 +31,7 @@ public class AddArticleParam {
      @ApiObjectField(description = "所属目录id",required=true)
     private Integer dir_id;
     @ApiObjectField(description = "封面图片列表")
-    private Integer[] cover_list;
+    private List<Cover> cover_list;
 
     @ApiObjectField(description = "内容列表")
     private List<Content> content_List;
@@ -85,11 +85,11 @@ public class AddArticleParam {
         this.dir_id = dir_id;
     }
 
-    public Integer[] getCover_list() {
+    public List<Cover> getCover_list() {
         return cover_list;
     }
 
-    public void setCover_list(Integer[] cover_list) {
+    public void setCover_list(List<Cover> cover_list) {
         this.cover_list = cover_list;
     }
 

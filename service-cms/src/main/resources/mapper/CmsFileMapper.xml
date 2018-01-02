@@ -5,7 +5,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="file_id" jdbcType="INTEGER" property="fileId" />
+    <id column="file_id" jdbcType="VARCHAR" property="fileId" />
     <result column="file_path" jdbcType="VARCHAR" property="filePath" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
@@ -18,16 +18,14 @@
     create_time,
     file_name,
     file_ext)values(
-    NULL,
-    #{filePath},
+    #{fileId},
+   #{filePath},
     NOW(),
     #{fileName},
-    #{fileExt},
+    #{fileExt}
     );
   </insert>
-  <select id="findFirleId" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsFile" >
-    select file_id from cms_file where  file_path=#{file_path} and file_name=#{fileName} and file_ext=#{fileExt}
-  </select>
+
   <delete id="deleteFirle" parameterType="Integer">
     delete from cms_file
     where file_id=#{0}
@@ -35,4 +33,5 @@
   <select id="findByFileId" resultMap="BaseResultMap" >
     select * from cms_file where file_id=#{file_id}
   </select>
+
 </mapper>
