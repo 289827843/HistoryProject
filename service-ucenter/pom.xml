@@ -94,6 +94,10 @@
             <version>1.5.4.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
 
 
         <!--常用库依赖-->
@@ -198,6 +202,8 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.0.Final</version>
         </dependency>
+
+
 
         <!-- sxun -->
         <dependency>
