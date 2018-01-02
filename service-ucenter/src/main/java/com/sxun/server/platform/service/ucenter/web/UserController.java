@@ -280,4 +280,25 @@ public class UserController implements IUserController {
             return ResultGenerator.genSuccessResult(new RegUserResult(regResult));//返回新增的用户id
 
     }
+
+
+    @ApiMethod(description = "多用户查询")
+    @RequestMapping(path = "/mutiluser",method = RequestMethod.POST)
+    @Override
+    public @ApiResponseObject Result<SearchMutilUserResult> mutilUser(@ApiBodyObject @RequestBody @Valid SearchMutilUserParam param) {
+
+        List<UserDetail> userDetailList = ucenterUserService.mutilUser(param);
+
+        if (userDetailList.size()==0){
+            return ResultGenerator.genFailResult("未查询到指定用户id的用户信息");
+        }
+        else {
+            SearchMutilUserResult searchMutilUserResult = new SearchMutilUserResult();
+            searchMutilUserResult.setUserDetailList(userDetailList);
+            Result<SearchMutilUserResult> result = ResultGenerator.genSuccessResult();
+            result.setDataObj(searchMutilUserResult);
+            return result;
+        }
+
+    }
 }

@@ -394,6 +394,13 @@ public class UcenterUserServiceImpl extends AbstractService<UcenterUser> impleme
 
         return user.getUserId();//返回成功新增的用户id
     }
+
+    @Override
+    public List<UserDetail> mutilUser(SearchMutilUserParam param) {
+
+        List<UserDetail> userDetailList = ucenterUserMapper.mutilUser(param.getUserIdList());
+        return userDetailList;
+    }
 }
 
 
