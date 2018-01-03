@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.cms.dao.CmsCommentMapper">
+    <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.cms.model.CmsComment">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="conent" jdbcType="VARCHAR" property="content" />
+        <result column="comment_user_id" jdbcType="INTEGER" property="commentUserId" />
+        <result column="is_display" jdbcType="BIT" property="isDisplay" />
+        <result column="article_id" jdbcType="INTEGER" property="articleId" />
+        <result column="is_del" jdbcType="BIT" property="isDel" />
+
+    </resultMap>
+  <resultMap id="ResultMap" type="com.sxun.server.platform.service.cms.dto.comment.rsp.ListCommentResult">
+
+          <!--  WARNING - @mbg.generated-->
+
+        <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="conent" jdbcType="VARCHAR" property="content" />
+        <result column="comment_user_id" jdbcType="INTEGER" property="commentUserId" />
+        <result column="is_display" jdbcType="BIT" property="isDisplay" />
+        <result column="article_id" jdbcType="INTEGER" property="articleId" />
+        <result column="is_del" jdbcType="BIT" property="isDel" />
+        <collection property="reply_list" ofType="CmsReply">
+            <id column="reply_id" jdbcType="INTEGER" property="replyId" />
+            <result column="content" jdbcType="VARCHAR" property="content" />
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+            <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+            <result column="is_display" jdbcType="BIT" property="isDisplay" />
+            <result column="is_del" jdbcType="BIT" property="isDel" />
+        </collection>
+
+
+    </resultMap>
+    <select id="listComment" resultMap="ResultMap" parameterType="hashmap">
+        select A.*,C.reply_id ,C.content,C.create_time,C.modify_time,C.is_display,C.is_del
+        from cms_comment as A
+        left join cms_reply as C on A.comment_id=C.comment_id
+        <trim prefix="where" prefixOverrides="and">
+            <if test="article_id != null and article_id != '' ">
+                and A.article_id=#{article_id}
+            </if>
+            <choose>
+                <when test=" is_display==0 or is_display==1 "> and A.is_display=#{is_display}</when>
+                <when test="is_display==2"></when>
+            </choose>
+            <choose>
+                <when test=" is_del==0 or is_del==1 "> and A.is_del=#{is_del}</when>
+                <when test="is_del==2"></when>
+            </choose>
+        </trim>
+        <if test="columnName != null and columnName != '' ">
+            ORDER BY ${columnName}
+        </if>
+
+    </select>
+
+
+    <insert id="insertComment" parameterType="com.sxun.server.platform.service.cms.model.CmsComment">
+        insert into cms_comment(
+        comment_id,
+        create_time,
+        modify_time,
+        conent,
+        comment_user_id,
+        is_display,
+        article_id,
+        is_del )values(
+        NULL,
+        NOW(),
+        NOW(),
+        #{content},
+        #{commentUserId},
+        1,
+        #{articleId},
+       0
+        );
+    </insert>
+    <select id="findCommentId" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsComment" >
+        select comment_id from cms_comment where conent=#{content} and comment_user_id =#{commentUserId} and article_id=#{articleId}
+    </select>
+    <update id="updateComment" parameterType="com.sxun.server.platform.service.cms.model.CmsComment">
+        update cms_comment
+        set conent=#{content},
+        is_display=#{isDisplay},
+        is_del=#{isDel},
+        modify_time=#{modifyTime}
+        where comment_id = #{commentId}
+
+    </update>
+    <delete id="deleteComment" parameterType="Integer">
+        delete from cms_comment
+        where comment_id=#{comment_id}
+    </delete>
+</mapper>

@@ -12,6 +12,7 @@ public class UcenterUserLog {
     /**
      * 操作人id
      */
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //自增
     @Column(name = "user_id")
     private Integer userId;
 
@@ -26,6 +27,11 @@ public class UcenterUserLog {
      */
     @Column(name = "action_content")
     private String actionContent;
+
+
+    @Column(name = "opr_userid")
+    private int oprUserId;
+
 
     /**
      * 发生时间
@@ -141,4 +147,17 @@ public class UcenterUserLog {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
+
+
+
+    public int getOprUserId() {
+        return oprUserId;
+    }
+
+    public void setOprUserId(int oprUserId) {
+        this.oprUserId = oprUserId;
+    }
+
+
 }

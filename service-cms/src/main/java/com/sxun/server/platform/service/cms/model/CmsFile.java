@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CmsFile {
     @Id
     @Column(name = "file_id")
-    private Integer fileId;
+    private String fileId;
 
     @Column(name = "file_path")
     private String filePath;
@@ -30,14 +30,14 @@ public class CmsFile {
     /**
      * @return file_id
      */
-    public Integer getFileId() {
+    public String getFileId() {
         return fileId;
     }
 
     /**
      * @param fileId
      */
-    public void setFileId(Integer fileId) {
+    public void setFileId(String fileId) {
         this.fileId = fileId;
     }
 

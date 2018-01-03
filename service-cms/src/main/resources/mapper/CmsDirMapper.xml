@@ -14,4 +14,94 @@
     <result column="level" jdbcType="INTEGER" property="level" />
     <result column="path" jdbcType="VARCHAR" property="path" />
   </resultMap>
+  <insert id="insertDir" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+    insert into cms_dir(
+    dir_id,
+    parent_dir_id,
+    cata_id,
+    create_time,
+    name,
+    is_display,
+    level,
+    path)values(
+    NULL,
+    #{parentDirId},
+    #{cataId},
+    NOW(),
+    #{name},
+    1,
+    NULL,
+    NULL
+    );
+  </insert>
+
+  <select id="findDirid" resultType="Integer" parameterType="com.sxun.server.platform.service.cms.model.CmsDir" >
+    select dir_id from cms_dir where name=#{name} and cata_id =#{cataId} and parent_dir_id=#{parentDirId}
+  </select>
+  <update id="updateDir" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+    update cms_dir
+    set name=#{name},
+    is_display=#{isDisplay}
+    where dir_id=#{dirId}
+
+  </update>
+  <delete id="deleteDir" parameterType="Integer">
+    delete from cms_dir
+    where dir_id=#{dir_id}
+  </delete>
+  <select id="hasChilds" resultType="Integer">
+    select count(*)
+    from cms_dir
+    where parent_dir_id=#{dir_id}
+  </select>
+  <select id="findDirs" resultMap="BaseResultMap" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+    select *
+    from cms_dir
+    <trim prefix="where" prefixOverrides="and" >
+
+      <if test="dirId != null and dirId!='' ">
+         and dir_id =#{dirId}
+      </if>
+      <if test="cataId != null and cataId!='' ">
+        and cata_id =#{cataId}
+      </if>
+      <if test="parentDirId != null and parentDirId!=''">
+        and parent_dir_id =#{parentDirId}
+      </if>
+      <if test="name!= null and name!=''">
+        and name =#{name}
+      </if>
+      <if test="isDisplay!= null and isDisplay!=''">
+        and is_display =#{isDisplay}
+      </if>
+
+    </trim>
+  </select>
+  <update id="updatePath" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+    update cms_dir
+    set path=#{path},
+    level=#{level}
+    where dir_id=#{dirId}
+
+  </update>
+  <select id="findDir" resultMap="BaseResultMap" >
+  select *
+  from cms_dir
+    where parent_dir_id=#{dir_id}
+  </select>
+  <update id="updateCataId" parameterType="com.sxun.server.platform.service.cms.model.CmsDir">
+    update cms_dir
+    set path=#{path},
+    level=#{level},
+    cata_id=#{cataId},
+    parent_dir_id=#{parentDirId}
+    where dir_id=#{dirId}
+
+  </update>
+  <select id="findChilds" resultMap="BaseResultMap" >
+    select *
+    from cms_dir
+    where parent_dir_id=#{dir_id}
+  </select>
+
 </mapper>

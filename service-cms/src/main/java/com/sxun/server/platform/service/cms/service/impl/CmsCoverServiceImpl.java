@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -18,5 +19,38 @@ import javax.annotation.Resource;
 public class CmsCoverServiceImpl extends AbstractService<CmsCover> implements CmsCoverService {
     @Resource
     private CmsCoverMapper cmsCoverMapper;
+
+    @Override
+    public void saveCover(CmsCover cmsCover) {
+        if(cmsCover!=null) {
+            int rows = cmsCoverMapper.insertCover(cmsCover);
+        }
+    }
+
+    @Override
+    public void deleteCover(Integer article_id) {
+        if(article_id!=null || article_id>0){
+            cmsCoverMapper.deleteCover(article_id);
+        }
+    }
+
+    @Override
+    public int getCounts(Integer article_id) {
+        if(article_id!=null && article_id>0){
+            int count=cmsCoverMapper.getCounts(article_id);
+            return count;
+        }
+
+        return 0;
+    }
+
+    @Override
+    public List<CmsCover> findCovers(Integer article_id) {
+        if(article_id!=null && article_id>0){
+            List<CmsCover> cmsCovers=cmsCoverMapper.findCovers(article_id);
+            return  cmsCovers;
+        }
+        return null;
+    }
 
 }

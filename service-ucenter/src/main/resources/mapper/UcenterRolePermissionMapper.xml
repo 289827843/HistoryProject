@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterRolePermission">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="role_permission_id" jdbcType="INTEGER" property="rolePermissionId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId "/>
+    <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="`create_time`" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="`modify_time`" jdbcType="TIMESTAMP" property="modifyTime" />
+
+  </resultMap>
+
+  <delete id="deleteRolePermissionByRoleId" parameterType="java.lang.Integer">
+    delete from ucenter_role_permission where role_id = #{roleId}
+  </delete>
+
+
+</mapper>

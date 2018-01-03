@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxun.server.platform.service.ucenter.dao.UcenterPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.sxun.server.platform.service.ucenter.model.UcenterPermission">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="type_name" jdbcType="INTEGER" property="typeName" />
+    <result column="`link_url`" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="`create_time`" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="`modify_time`" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="`sys_id`" jdbcType="INTEGER" property="sysId" />
+  </resultMap>
+
+  <resultMap id="selectResultMap" type="com.sxun.server.platform.service.ucenter.dto.permission.rsp.PermissionInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="type_name" jdbcType="INTEGER" property="typeName" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="sys_id" jdbcType="INTEGER" property="sysId" />
+  </resultMap>
+
+  <resultMap id="permissionResultMap" type="com.sxun.server.platform.service.ucenter.dto.rolper.rsp.PermissionListResult">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="permission_id" jdbcType="INTEGER" property="permission_id" />
+    <result column="`name`" jdbcType="VARCHAR" property="name" />
+    <result column="type_name" jdbcType="INTEGER" property="type_name" />
+    <result column="link_url" jdbcType="VARCHAR" property="link_url" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modify_time" />
+    <result column="sys_id" jdbcType="INTEGER" property="sys_id" />
+  </resultMap>
+  <!--查询制定的name+sys_id 是否唯一 -->
+  <select id="selectIsUnique" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterPermission" resultMap="BaseResultMap">
+    select * from ucenter_permission where `name` = #{name} and sys_id = #{sysId}
+  </select>
+
+  <!--执行修改语句时查询name+sys_id是否唯一 -->
+  <select id="checkUnique" parameterType="com.sxun.server.platform.service.ucenter.model.UcenterPermission" resultType="java.lang.Integer">
+    select count(1) from ucenter_permission where `name` = #{name}
+    and sys_id =(
+    select sys_id from ucenter_permission where permission_id = #{permissionId})
+    and permission_id != #{permissionId}
+  </select>
+
+  <!--权限查询-->
+  <select id="selectPermission" parameterType="com.sxun.server.platform.service.ucenter.dto.permission.req.SearchPermissionParam" resultMap="selectResultMap">
+    
+      select * from ucenter_permission
+      <trim prefix="where" prefixOverrides="or|and">
+        <if test="name !=null and name != ''">or `name` like concat('%',#{name},'%')</if>
+        <if test="linkUrl !=null and linkUrl != ''">or `link_url` like concat('%',#{linkUrl},'%')</if>
+        <if test="typeName !=null and typeName != ''">and type_name = #{typeName}</if>
+        <if test="sysId !=null and sysId != ''">and sys_id = #{sysId}</if>
+      </trim>
+    </select>
+
+  <!--角色对应权限查询-->
+  <select id="selectPermissions" parameterType="com.sxun.server.platform.service.ucenter.dto.rolper.req.SelectRolePerParam" resultMap="permissionResultMap">
+    SELECT p.* FROM ucenter_permission p join ucenter_role_permission rp on p.permission_id=rp.permission_id where rp.role_id=#{role_id};
+  </select>
+
+  <!--根据权限id查询角色权限对应表是否存在该记录,判断权限是否被角色引用 -->
+  <select id="selectRolePermissionByPerId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(1) from ucenter_role_permission where permission_id = #{permission_id}
+  </select>
+</mapper>

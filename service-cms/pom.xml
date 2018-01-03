@@ -57,6 +57,11 @@
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
@@ -209,6 +214,13 @@
         <dependency>
             <groupId>com.sxun.server.platform</groupId>
             <artifactId>service-cms-interface</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.sxun.server.platform</groupId>
+            <artifactId>service-ucenter-interface</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 

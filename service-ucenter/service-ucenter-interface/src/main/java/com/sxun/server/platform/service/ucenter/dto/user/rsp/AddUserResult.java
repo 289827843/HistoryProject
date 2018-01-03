@@ -9,7 +9,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 @ApiObject(description = "创建用户结果对象")
 public class AddUserResult {
     @ApiObjectField(description = "新增的用户ID")
-    private int user_id=-1;
+    private int user_id = -1;
 
     public int getUser_id() {
         return user_id;
@@ -18,4 +18,11 @@ public class AddUserResult {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+
+    public AddUserResult(int user_id){
+
+        this.user_id = user_id;
+    }
+
 }

@@ -11,4 +11,18 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="article_id" jdbcType="INTEGER" property="articleId" />
   </resultMap>
+  <insert id="insertArticleLog" parameterType="com.sxun.server.platform.service.cms.model.CmsArticleLog">
+    insert into cms_article_log(
+    article_log_id,
+    opr_user_id,
+    opr_content,
+    create_time,
+    article_id)values(
+    NULL,
+    #{oprUserId},
+    #{oprContent},
+    NOW(),
+    #{articleId}
+    );
+  </insert>
 </mapper>

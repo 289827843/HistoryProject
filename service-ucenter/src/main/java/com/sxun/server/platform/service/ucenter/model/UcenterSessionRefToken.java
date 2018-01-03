@@ -24,6 +24,18 @@ public class UcenterSessionRefToken {
     @Column(name = "sec_key")
     private String secKey;
 
+    @Column(name = "state")
+    private int state;
+
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     /**
      * @return ref_token
      */
